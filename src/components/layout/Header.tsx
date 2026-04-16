@@ -23,7 +23,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 w-full bg-white/40 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_30px_rgba(0,0,0,0.05)] text-slate-800 transition-all duration-300">
+      <header className="fixed top-0 z-50 w-full bg-white/60 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_30px_rgba(41,37,36,0.05)] text-stone-800 transition-all duration-300">
         <div className="container mx-auto flex h-[72px] items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-2">
             <Image 
@@ -33,7 +33,7 @@ export function Header() {
               height={54}
               className="object-cover rounded-full mix-blend-multiply hover:scale-105 transition-transform"
             />
-            <span className="font-extrabold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 hidden md:inline-block">Яковка</span>
+            <span className="font-heading font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-stone-900 to-stone-600 hidden md:inline-block">Яковка</span>
           </Link>
           <nav className="hidden md:flex gap-8 text-[15px] font-semibold tracking-wide" aria-label="Main navigation">
             {[
@@ -44,24 +44,24 @@ export function Header() {
             ].map((link) => {
               const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`relative transition-colors ${
-                    isActive ? 'text-blue-700' : 'hover:text-blue-700'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+               <Link
+                 key={link.href}
+                 href={link.href}
+                 aria-current={isActive ? 'page' : undefined}
+                 className={`relative transition-colors font-heading ${
+                   isActive ? 'text-primary' : 'text-stone-600 hover:text-primary'
+                 }`}
+               >
+                 {link.label}
+               </Link>
               );
             })}
           </nav>
           <div className="flex items-center gap-4">
-            <Button onClick={openWidget} className="hidden md:inline-flex bg-blue-600/90 backdrop-blur-md hover:bg-blue-600 text-white shadow-[0_10px_20px_rgba(37,99,235,0.2)] hover:shadow-[0_15px_30px_rgba(37,99,235,0.4)] rounded-full px-7 py-5 font-medium transition-all hover:-translate-y-0.5">
+            <Button onClick={openWidget} className="hidden md:inline-flex bg-primary/95 backdrop-blur-md hover:bg-primary text-white shadow-[0_10px_20px_rgba(var(--primary),0.2)] hover:shadow-[0_15px_30px_rgba(var(--primary),0.4)] rounded-full px-7 py-5 font-semibold transition-all hover:-translate-y-0.5">
               Забронировать
             </Button>
-            <button onClick={() => setIsMenuOpen(true)} className="md:hidden p-2 text-slate-700 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-sm">
+            <button onClick={() => setIsMenuOpen(true)} className="md:hidden p-2 text-stone-700 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-sm">
               <Menu size={24} />
             </button>
           </div>

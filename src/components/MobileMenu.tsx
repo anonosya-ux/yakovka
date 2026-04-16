@@ -58,8 +58,8 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         <ul ref={linksRef} className="space-y-6 text-[32px] font-extrabold tracking-tight text-slate-900" aria-label="Mobile navigation">
           {[
             { href: '/rooms', label: 'Номера и цены' },
-            { href: '/services', label: 'Услуги' },
-            { href: '/infrastructure/restaurant', label: 'Ресторан' },
+            { href: '/infrastructure/ski', label: 'Горнолыжный сезон' },
+            { href: '/events', label: 'Мероприятия' },
             { href: '/contacts', label: 'Контакты' }
           ].map(link => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -81,6 +81,8 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
               onClose();
               if (typeof window !== 'undefined' && (window as any).HotelWidget) {
                 (window as any).HotelWidget.open();
+              } else {
+                window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
               }
             }} className="w-full text-center bg-blue-600 text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all">
               Забронировать

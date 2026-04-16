@@ -59,6 +59,8 @@ export default function Home() {
   const openWidget = () => {
     if (typeof window !== 'undefined' && (window as any).HotelWidget) {
       (window as any).HotelWidget.open();
+    } else {
+      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
     }
   };
 

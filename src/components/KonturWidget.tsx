@@ -54,13 +54,20 @@ export function KonturWidgetSearch({ containerId = 'BookingVertical' }: { contai
   }, [containerId]);
 
   return (
-    <div 
-      id={containerId} 
-      ref={containerRef}
-      className="min-h-[90px] w-full flex items-center justify-center text-slate-400 bg-white/70 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/40"
-    >
-      <div className="absolute inset-0 flex items-center justify-center -z-10">
-         <span className="animate-pulse">Синхронизация с системой бронирования...</span>
+    <div className="relative min-h-[90px] w-full flex items-center justify-center rounded-2xl">
+      <div 
+        id={containerId} 
+        ref={containerRef}
+        className="w-full z-10"
+      />
+      {/* Elegant Skeleton Loader instead of generic text */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center gap-3">
+        <div className="flex space-x-2 animate-pulse bg-white/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/40 shadow-sm">
+          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+          <span className="text-sm font-medium text-slate-500 ml-2">Загрузка системы бронирования...</span>
+        </div>
       </div>
     </div>
   );

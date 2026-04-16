@@ -15,6 +15,9 @@ export function Header() {
   const openWidget = () => {
     if (typeof window !== 'undefined' && (window as any).HotelWidget) {
       (window as any).HotelWidget.open();
+    } else {
+      // Fallback redirect to direct booking page
+      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
     }
   };
 
@@ -28,14 +31,14 @@ export function Header() {
               alt="Яковка Логотип" 
               width={54} 
               height={54}
-              className="object-contain drop-shadow-md"
+              className="object-cover rounded-full mix-blend-multiply hover:scale-105 transition-transform"
             />
+            <span className="font-extrabold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 hidden md:inline-block">Яковка</span>
           </Link>
           <nav className="hidden md:flex gap-8 text-[15px] font-semibold tracking-wide" aria-label="Main navigation">
             {[
-              { href: '/rooms', label: 'Номера' },
-              { href: '/infrastructure/restaurant', label: 'Ресторан' },
-              { href: '/services', label: 'Услуги' },
+              { href: '/rooms', label: 'Номера и цены' },
+              { href: '/infrastructure/ski', label: 'Горнолыжный сезон' },
               { href: '/events', label: 'Мероприятия' },
               { href: '/contacts', label: 'Контакты' },
             ].map((link) => {

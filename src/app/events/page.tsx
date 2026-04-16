@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Sparkles, Users, GlassWater, Building, ChevronRight, Check } from 'lucide-react';
-import { CallbackModal } from '@/components/CallbackModal';
+import CallbackModal from '@/components/CallbackModal';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export default function EventsPage() {

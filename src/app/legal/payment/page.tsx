@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ArrowLeft, CreditCard, Banknote, Building2 } from 'lucide-react';
+import { CreditCard, Banknote, Building2 } from 'lucide-react';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export default function PaymentPage() {
   return (

@@ -2,18 +2,19 @@
 
 import { useEffect, useRef } from 'react';
 
-export function KonturWidgetSearch({ containerId = 'BookingVertical' }: { containerId?: string }) {
+export function KonturWidgetSearch({ containerId = 'HotelWidgetBookingFormId' }: { containerId?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // We need to inject the Kontur initialization script properly
+    // We need to inject the Kontur initialization script exactly as provided
     const loadKonturWidget = () => {
       // If already initialized globally, just add the block
       if (typeof window !== 'undefined' && (window as any).HotelWidget) {
          try {
            (window as any).HotelWidget.add({
-             type: 'searchBlock',
-             appearance: { container: containerId, layout: 'horizontal' }
+             type: 'bookingForm',
+             inline: false,
+             appearance: { container: containerId }
            });
          } catch (e) {
            console.error("Kontur Add error:", e);
@@ -21,23 +22,33 @@ export function KonturWidgetSearch({ containerId = 'BookingVertical' }: { contai
          return;
       }
 
+      // Initialize global HotelWidget queuing function
+      const win = window as any;
+      win.HotelWidgetApp = "HotelWidget";
+      win.HotelWidget = win.HotelWidget || function() {
+        (win.HotelWidget.q = win.HotelWidget.q || []).push(arguments);
+      };
+
       // Load script exactly as required
       const script = document.createElement('script');
-      script.src = 'https://bookonline24.ru/widget.js';
+      script.src = "https://widget.bookonline24.ru/widget/js/init.js?v=" + new Date().getTime();
       script.async = true;
       script.onload = () => {
-         const hw = (window as any).HotelWidget;
-         if (hw) {
+         const hw = win.HotelWidget;
+         if (hw && typeof hw.init === 'function') {
             hw.init({
                hotelId: "2774874f-1347-4c7d-a835-9791d5814751",
                version: "2",
                hooks: {
-                  onError: (e: any) => console.error("Kontur error:", e)
+                  onError: function(e: any) { console.error("onError", e); },
+                  onInit: function() { console.log("onInit widget loaded"); },
+                  onBooking: function(v: any) { console.log("onBooking", v); }
                }
             });
             hw.add({
-               type: 'searchBlock',
-               appearance: { container: containerId, layout: 'horizontal' }
+               type: "bookingForm",
+               inline: false,
+               appearance: { container: containerId }
             });
          }
       };

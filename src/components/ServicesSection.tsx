@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Home, Utensils, Mountain, ShieldCheck, Coffee, Dog } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,62 +9,37 @@ import PhotoGallery from './ui/PhotoGallery';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
-  {
-    title: 'Домашний уют',
-    description: 'Наш отель находится в далеке от городского шума. Где слышан звук ручья, где воздух чист и снег пушист.',
-    icon: <Home className="text-primary" size={28} />
-  },
-  {
-    title: 'Любимые блюда',
-    description: 'Домашняя кухня порадует Вас заказными обедами и ужинами, а также исполнением Ваших пожеланий нашими поварами.',
-    icon: <Utensils className="text-secondary" size={28} />
-  },
-  {
-    title: 'Близко к склону',
-    description: 'Вы всегда сможете выйти из отеля и сразу оказаться на склоне горы, здание отеля находится в пешей доступности от горнолыжного склона.',
-    icon: <Mountain className="text-stone-500" size={28} />
-  },
-  {
-    title: 'Территория под видеонаблюдением',
-    description: 'Вы можете отдыхать спокойно, а мы присмотрим за вашим "железным конем".',
-    icon: <ShieldCheck className="text-amber-600" size={28} />
-  },
-  {
-    title: 'Прохладительные и горячие напитки',
-    description: 'После дневного отдыха на природе вы можете позволить себе расслабиться в нашем уютном шале.',
-    icon: <Coffee className="text-primary/70" size={28} />
-  },
-  {
-    title: 'Можно с животными',
-    description: 'Берите Вашего пушистого друга с собой! до 8 кг — 500 ₽/сутки, свыше 8 кг — 1000 ₽/сутки.',
-    icon: <Dog className="text-stone-700" size={28} />
-  }
-];
-
 export default function ServicesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate text sections
-      gsap.fromTo(
-        '.anim-text > *',
-        { y: 30, opacity: 0 },
-        { 
-          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out",
-          scrollTrigger: { trigger: '.anim-text', start: "top 80%" }
-        }
-      );
+      // Parallax effect for bento box images
+      gsap.utils.toArray('.bento-img').forEach((img: any) => {
+        gsap.to(img, {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
+      });
 
-      // Animate features grid
-      gsap.fromTo(
-        '.feature-card',
-        { y: 40, opacity: 0 },
+      // Stagger entrance of the text and boxes
+      gsap.fromTo('.bento-item', 
+        { y: 100, opacity: 0 },
         { 
-          y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
-          scrollTrigger: { trigger: '.features-grid', start: "top 85%" }
+          y: 0, opacity: 1, 
+          duration: 1, 
+          stagger: 0.1, 
+          ease: "expo.out",
+          scrollTrigger: { 
+            trigger: ".bento-grid", 
+            start: "top 80%" 
+          }
         }
       );
     }, containerRef);
@@ -80,54 +56,96 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="about" className="py-24 md:py-32 relative bg-white overflow-hidden" ref={containerRef}>
+    <section id="about" className="py-32 md:py-48 relative bg-white overflow-hidden" ref={containerRef}>
       <div className="container mx-auto px-6">
         
-        {/* Main Text Content */}
-        <div className="max-w-4xl mx-auto text-center mb-24 anim-text" ref={textRef}>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mb-8">
-            О горнолыжном курорте «Яковка»
+        <div className="max-w-5xl mb-24">
+          <span className="text-secondary font-bold tracking-widest uppercase mb-4 block">О горнолыжном курорте «Яковка»</span>
+          <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tight text-stone-900 mb-8 leading-[1.1]">
+            Место, где отдыхает душа, <br className="hidden md:block"/><span className="text-stone-400 italic">а горы возвращают силы</span>
           </h2>
-          <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed mb-6">
-            Загородный отель «Яковка» находится в курортном городе Белокуриха, по улице Угрюмова, у подножия одноименной горы Яковка. Предлагаем нашим гостям зимний и летний семейный отдых с детьми в условиях домашнего уюта и гостеприимства. Домашняя кухня, баня, зона барбекю, уютный зал для посиделок с друзьями.
+          <p className="text-xl md:text-2xl text-stone-600 font-light leading-relaxed max-w-3xl">
+            Вдали от городского шума, у самого подножия покрытой хвоей горы Яковка, находится наш курорт. Загородный отель, где слышен звук ручья, где воздух по-настоящему чист, а снег всегда пушист.
           </p>
-          <div className="flex flex-col md:flex-row gap-6 text-left my-10 bg-stone-50 rounded-3xl p-8 border border-stone-100">
-            <div className="flex-1">
-              <h4 className="font-heading font-bold text-xl text-stone-900 mb-3 border-b-2 border-primary/20 pb-2 inline-block">В зимний сезон</h4>
-              <p className="text-stone-600 font-light text-sm leading-relaxed">
-                Это полный комплекс услуг для активного горнолыжного отдыха. Расположение трасс на северной стороне – главный плюс данного склона (очень удобные спуски для начинающих, пологие и широкие склоны помогут освоить горные лыжи). Снежный покров держится дольше, чем на других склонах.
-              </p>
-            </div>
-            <div className="flex-1">
-              <h4 className="font-heading font-bold text-xl text-stone-900 mb-3 border-b-2 border-secondary/20 pb-2 inline-block">В летний период</h4>
-              <p className="text-stone-600 font-light text-sm leading-relaxed">
-                Работает открытый бассейн. Для спортсменов имеется гимнастический батут и спортивная площадка. Вас ждут увлекательные экскурсии и знакомство с достопримечательностями Белокурихи и Горного Алтая.
-              </p>
-            </div>
-          </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="mb-24">
-          <h3 className="font-heading text-3xl font-bold text-center text-stone-900 mb-12">У нас есть все необходимое для комфортного отдыха</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 features-grid">
-            {features.map((feature, idx) => (
-              <div key={idx} className="feature-card bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-shadow border border-stone-200/60 flex flex-col items-start">
-                <div className="bg-stone-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-stone-100">
-                  {feature.icon}
-                </div>
-                <h4 className="font-heading font-bold text-xl text-stone-900 mb-3">{feature.title}</h4>
-                <p className="text-stone-500 font-light text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+        {/* BENTO BOX GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[350px] bento-grid mb-32">
+          
+          {/* Winter Box - spans 2 cols, 2 rows */}
+          <div className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-default">
+            <div className="absolute inset-0 z-0">
+              <Image 
+                src="/images/gallery/DSCN3434.JPG" 
+                alt="Зимний сезон" 
+                fill 
+                className="bento-img object-cover scale-110 object-bottom" 
+              />
+              <div className="absolute inset-0 bg-stone-900/40 group-hover:bg-stone-900/50 transition-colors duration-500" />
+            </div>
+            <div className="relative z-10 w-full h-full flex flex-col justify-end p-10 md:p-14 text-white">
+              <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 backdrop-blur-md mb-6">
+                <Mountain size={28} />
+              </span>
+              <h3 className="font-heading text-3xl md:text-5xl font-bold mb-4">Зимний сезон</h3>
+              <p className="text-lg text-white/80 font-light max-w-md">Полный комплекс услуг для активного горнолыжного отдыха. Широкие склоны северной экспозиции держат снег дольше всех в Белокурихе.</p>
+            </div>
           </div>
+
+          {/* Food Box */}
+          <div className="bento-item bg-stone-100 rounded-[3rem] overflow-hidden p-10 flex flex-col justify-between group hover:bg-stone-200 transition-colors">
+            <Utensils size={32} className="text-secondary" />
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-stone-900 mb-2">Любимые блюда</h3>
+              <p className="text-stone-600 font-light">Домашняя кухня с заказными обедами и исполнением ваших кулинарных желаний.</p>
+            </div>
+          </div>
+
+          {/* Dogs Box */}
+          <div className="bento-item relative rounded-[3rem] overflow-hidden group">
+            <div className="absolute inset-0 z-0">
+               <Image 
+                src="/images/gallery/_6-140.jpg" 
+                alt="Можно с питомцами" 
+                fill 
+                className="bento-img object-cover scale-125" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent" />
+            </div>
+            <div className="relative z-10 w-full h-full flex flex-col justify-end p-8 text-white">
+              <Dog size={28} className="mb-4 text-white/80" />
+              <h3 className="font-heading text-2xl font-bold mb-2">Pets Friendly</h3>
+              <p className="text-sm text-white/80 font-light">Вместе с пушистым другом. До 8кг - 500₽/сутки</p>
+            </div>
+          </div>
+
+          {/* Summer Box - spans 2 cols */}
+          <div className="bento-item md:col-span-2 relative rounded-[3rem] overflow-hidden p-10 flex items-center justify-between group bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
+            <div className="max-w-sm">
+              <h3 className="font-heading text-3xl font-bold text-stone-900 mb-4">Летний период</h3>
+              <p className="text-stone-700 font-light text-lg">Открытый подогреваемый бассейн, батут для спортсменов, спортивная площадка и увлекательные экскурсии по Алтаю.</p>
+            </div>
+            <div className="hidden lg:flex w-40 h-40 relative rounded-full overflow-hidden flex-shrink-0 shadow-xl border-4 border-white">
+               <Image src="/images/gallery/image-28-09-23-05-16-1.jpeg" alt="Лето" fill className="object-cover" />
+            </div>
+          </div>
+
+          {/* Security & Relax Box */}
+          <div className="bento-item bg-stone-900 rounded-[3rem] overflow-hidden p-10 flex flex-col justify-between text-white">
+            <ShieldCheck size={32} className="text-primary" />
+            <div>
+              <h3 className="font-heading text-2xl font-bold mb-2">Безопасность</h3>
+              <p className="text-stone-400 font-light">Собственная территория под наблюдением. Охраняемая парковка для вашего «железного коня».</p>
+            </div>
+          </div>
+
         </div>
 
-        {/* Photo Gallery Component Using the recently processed images */}
-        <div className="mt-24 pt-16 border-t border-stone-100">
-          <div className="text-center mb-12 anim-text">
-            <h2 className="font-heading text-4xl font-bold tracking-tight text-stone-900 mb-4">Фотогалерея</h2>
-            <p className="text-stone-500 font-light">Почувствуйте атмосферу отдыха на Алтае</p>
+        {/* Gallery huge reveal */}
+        <div className="mt-32 pt-24 border-t border-stone-100">
+          <div className="text-center mb-20 bento-item">
+            <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tight text-stone-900 mb-6 font-primary">Архив воспоминаний</h2>
+            <p className="text-xl text-stone-500 font-light max-w-2xl mx-auto">Жизнь курорта в живых кадрах наших гостей</p>
           </div>
           <PhotoGallery images={galleryImages} columns={3} />
         </div>

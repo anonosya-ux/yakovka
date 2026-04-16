@@ -64,6 +64,7 @@ export default function Home() {
     }
   };
 
+  const containerGlobalRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -71,9 +72,10 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Background parallax
+      // Background parallax scaling
       gsap.to('.hero-bg', {
-        yPercent: 30,
+        scale: 1, // scales down from 1.1 to 1
+        opacity: 0.6,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
@@ -83,85 +85,112 @@ export default function Home() {
         },
       });
 
-      // Hero content floating
-      gsap.fromTo(
-        heroTextRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5, ease: 'power4.out', delay: 0.2 }
-      );
+      // Text elements staggering up based on scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        }
+      });
 
-      // Widget floating
-      gsap.fromTo(
-        widgetProxyRef.current,
-        { y: 100, opacity: 0, rotationX: 15 },
-        { y: 48, opacity: 1, rotationX: 0, duration: 1.2, ease: 'back.out(1.2)', delay: 0.6 }
-      );
+      tl.to('.hero-badge, .hero-title-container, .hero-subtitle, .hero-btn', {
+        y: -150,
+        opacity: 0,
+        stagger: 0.1,
+        ease: 'power1.inOut'
+      }, 0);
 
-      // Room cards staggered entrance
+      // Widget floating disappearance
+      gsap.to(widgetProxyRef.current, {
+        y: 100,
+        opacity: 0,
+        rotationX: 15,
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: '+=500',
+          scrub: true,
+        }
+      });
+
+      // Room cards sticky effect
       if (cardsRef.current) {
-        gsap.fromTo(
-          cardsRef.current.children,
-          { y: 80, opacity: 0, rotationY: 10, rotationX: 10 },
-          {
-            y: 0,
-            opacity: 1,
-            rotationY: 0,
-            rotationX: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 80%',
-            },
-          }
-        );
+        const cards = cardsRef.current.children;
+        gsap.set(cards, { position: 'sticky', top: '15vh' });
+        
+        gsap.utils.toArray(cards).forEach((card: any, i) => {
+          gsap.fromTo(card, 
+            { scale: 1, filter: 'brightness(1)' },
+            { 
+              scale: 0.9, 
+              filter: 'brightness(0.5)',
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 15vh",
+                end: "bottom 5vh",
+                scrub: true,
+              }
+            }
+          );
+        });
       }
-    }, heroRef);
+    }, containerGlobalRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="flex flex-col font-sans overflow-x-hidden bg-background">
+    <div ref={containerGlobalRef} className="flex flex-col font-sans overflow-x-hidden bg-background">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[85vh] min-h-[650px] w-full flex items-center justify-center [perspective:1000px]">
-        <div className="absolute inset-0 z-0 overflow-hidden hero-bg bg-stone-900">
-          <Image
-            src="/images/gallery/_6-12.jpg"
-            alt="Загородный отель Яковка"
-            fill
-            className="w-full h-[120%] object-cover object-center absolute -top-[10%] opacity-80 mix-blend-overlay"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/60 to-stone-900/20" />
-        </div>
-
-        <div className="container relative z-10 mx-auto px-4 text-center text-white pb-12 pt-16">
-          <div ref={heroTextRef}>
-            <span className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-sm font-medium mb-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Белокуриха, у подножия горы
-            </span>
-            <h1 className="font-heading text-5xl md:text-[80px] leading-[1.1] font-bold tracking-tight mb-6 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
-              Отдых в горах Алтая
-            </h1>
-            <p className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto font-light drop-shadow mb-12">
-              Загородный отель «Яковка» — это семейный уют, живописные виды и по-настоящему чистый воздух.
-            </p>
-
-            <Button onClick={openWidget} size="lg" className="md:hidden bg-primary/90 backdrop-blur-md text-white text-lg rounded-full px-8 py-7 shadow-[0_20px_40px_rgba(var(--primary),0.4)] mb-8 border border-white/20 active:scale-95 transition-all">
-              Найти номер
-            </Button>
-          </div>
+      <section ref={heroRef} className="relative h-[300vh] w-full">
+        {/* Sticky Container */}
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:1000px]">
           
-          {/* Booking Widget Container (Desktop) - 3D Floating */}
-          <div className="hidden md:block w-full max-w-5xl mx-auto absolute left-0 right-0 bottom-0 pointer-events-none" style={{ perspective: "1200px" }}>
-            <div ref={widgetProxyRef} className="pointer-events-auto w-full max-w-5xl mx-auto px-4">
-              <KonturWidgetSearch containerId="BookingVertical" />
+          <div className="absolute inset-0 z-0 overflow-hidden hero-bg bg-stone-900 origin-center scale-110">
+            <Image
+              src="/images/gallery/_6-12.jpg"
+              alt="Загородный отель Яковка"
+              fill
+              className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
+              priority
+            />
+            <div className="hero-overlay absolute inset-0 bg-stone-950/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />
+          </div>
+
+          <div className="container relative z-10 mx-auto px-4 text-center text-white pb-12 pt-16 flex flex-col items-center justify-center h-full">
+            <div ref={heroTextRef} className="relative z-20 flex flex-col items-center">
+              <span className="hero-badge inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-sm font-medium mb-8">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                Белокуриха, у подножия горы
+              </span>
+              
+              <div className="hero-title-container overflow-hidden">
+                <h1 className="font-heading text-6xl md:text-[120px] leading-[0.9] font-bold tracking-tight mb-2 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+                  ОТДЫХ<br/><span className="text-primary italic">В ГОРАХ</span>
+                </h1>
+              </div>
+              
+              <p className="hero-subtitle text-xl md:text-3xl text-white/90 max-w-3xl mx-auto font-light drop-shadow mb-12 mt-6">
+                Загородный отель «Яковка» — это величественная природа Алтая и первоклассный уют.
+              </p>
+
+              <Button onClick={openWidget} size="lg" className="hero-btn bg-white text-stone-900 text-lg rounded-full px-10 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all font-bold">
+                Найти шале
+              </Button>
+            </div>
+            
+            {/* Booking Widget Container (Desktop) - 3D Floating */}
+            <div className="hidden md:block w-full max-w-5xl mx-auto absolute left-0 right-0 bottom-12 pointer-events-none" style={{ perspective: "1200px" }}>
+              <div ref={widgetProxyRef} className="pointer-events-auto w-full max-w-5xl mx-auto px-4">
+                <KonturWidgetSearch containerId="BookingVertical" />
+              </div>
             </div>
           </div>
         </div>
@@ -170,62 +199,68 @@ export default function Home() {
       {/* spacer for widget overlap */}
       <div className="h-16 md:h-32 bg-transparent" />
 
-      {/* Rooms Section */}
-      <section id="rooms" className="py-24 relative">
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent"></div>
+      {/* Rooms Sticky Section */}
+      <section id="rooms" className="py-32 relative bg-stone-900 border-t border-stone-800">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mb-6 drop-shadow-sm">Номера и Шале</h2>
-            <p className="text-xl text-stone-500 max-w-3xl mx-auto font-light leading-relaxed">Выберите комфорт по душе — от уютных стандартов до больших семейных шале с собственной террасой.</p>
+          <div className="mb-32 md:flex justify-between items-end">
+            <div className="max-w-2xl">
+              <span className="text-primary font-bold tracking-widest uppercase mb-4 block">Отдых на Алтае</span>
+              <h2 className="font-heading text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 drop-shadow-sm">Номера и Шале</h2>
+              <p className="text-xl md:text-2xl text-stone-400 font-light leading-relaxed">
+                Почувствуйте настоящий комфорт горных резиденций. Просторные террасы и вид на хвойный лес.
+              </p>
+            </div>
+            <div className="mt-8 md:mt-0">
+               <Button onClick={openWidget} variant="outline" className="rounded-full border-stone-700 text-stone-300 hover:text-white hover:bg-white/10 px-8 py-6 text-lg">
+                  Смотреть все
+               </Button>
+            </div>
           </div>
 
-          <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 [perspective:1000px]">
+          <div ref={cardsRef} className="relative space-y-[40vh] pb-[20vh]">
             {rooms.map((room, idx) => (
               <div 
                 key={idx} 
-                className="group flex flex-col bg-white rounded-[2rem] overflow-hidden transition-all duration-700 cursor-pointer will-change-transform"
+                className="group flex flex-col md:flex-row bg-stone-50 rounded-[3rem] overflow-hidden"
                 style={{
-                  boxShadow: "0 15px 40px -10px rgba(41, 37, 36, 0.08), 0 1px 3px rgba(41, 37, 36, 0.05)",
+                  boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.4)",
                   transformStyle: "preserve-3d"
                 }}
               >
-                <div className="relative h-64 w-full overflow-hidden">
-                  {/* Subtle Image Blur/Zoom combo */}
+                <div className="relative h-80 md:h-[600px] w-full md:w-1/2 overflow-hidden bg-stone-200">
                   <Image 
                     src={room.img} 
                     alt={room.title}
                     fill
-                    className="object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-110"
+                    className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
                   {room.features.includes('Завтрак включен') && (
-                    <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md text-stone-800 text-xs font-bold px-4 py-2 rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.15)] flex items-center gap-1.5 transform group-hover:translate-z-10 transition-transform">
-                      <span className="text-amber-600">☕</span> Завтрак включен
+                    <div className="absolute top-8 left-8 bg-white/95 backdrop-blur-md text-stone-800 text-sm font-bold px-5 py-3 rounded-full flex items-center gap-2">
+                       ☕ Завтрак включен
                     </div>
                   )}
                 </div>
                 
-                <div className="p-8 flex flex-col flex-grow relative bg-white z-10 transition-transform">
-                  <h3 className="font-heading text-2xl font-bold text-stone-800 mb-4 tracking-tight group-hover:text-primary transition-colors">{room.title}</h3>
-                  <div className="flex items-center gap-3 text-sm font-semibold border-b border-stone-100 pb-5 mb-5">
-                    <span className="bg-stone-50 text-stone-500 px-3 py-1.5 rounded-lg border border-stone-200/60">{room.size}</span>
-                    <span className="bg-primary/5 text-primary px-3 py-1.5 rounded-lg border border-primary/20">{room.guests}</span>
+                <div className="p-10 md:p-16 flex flex-col justify-center w-full md:w-1/2 relative bg-stone-50 z-10 transition-transform">
+                  <h3 className="font-heading text-4xl md:text-5xl font-bold text-stone-800 mb-6 tracking-tight group-hover:text-primary transition-colors">{room.title}</h3>
+                  <div className="flex flex-wrap items-center gap-3 text-sm font-semibold border-b border-stone-200 pb-8 mb-8">
+                    <span className="bg-white text-stone-500 px-4 py-2 rounded-xl shadow-sm border border-stone-100">{room.size}</span>
+                    <span className="bg-primary/5 text-primary px-4 py-2 rounded-xl shadow-sm border border-primary/10">{room.guests}</span>
                   </div>
-                  <ul className="space-y-3 mb-8 flex-grow">
+                  <ul className="space-y-4 mb-12 flex-grow">
                     {room.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-stone-600 text-[15px] font-medium">
-                        <Check size={18} className="text-primary mr-3 shrink-0" strokeWidth={3} />
+                      <li key={i} className="flex items-center text-stone-600 text-lg font-medium">
+                        <Check size={20} className="text-primary mr-4 shrink-0" strokeWidth={3} />
                         {feature}
                       </li>
                     ))}
                   </ul>
                   <div className="flex items-end justify-between mt-auto">
                     <div>
-                      <span className="block text-[11px] uppercase tracking-widest text-stone-400 font-bold mb-1">За сутки от</span>
-                      <span className="font-heading text-2xl font-bold text-stone-900">{room.price}</span>
+                      <span className="block text-sm uppercase tracking-widest text-stone-400 font-bold mb-2">За сутки от</span>
+                      <span className="font-heading text-4xl font-bold text-stone-900">{room.price}</span>
                     </div>
-                    <Button onClick={openWidget} variant="outline" className="rounded-full hover:bg-primary hover:border-primary border-stone-200 text-stone-700 hover:text-white transition-all shadow-sm group-hover:shadow-[0_8px_20px_rgba(var(--primary),0.3)] hover:-translate-y-1">
+                    <Button onClick={openWidget} className="rounded-2xl bg-stone-900 text-white hover:bg-primary transition-colors px-8 py-6 text-lg font-bold shadow-xl hover:-translate-y-2">
                        Бронь
                     </Button>
                   </div>

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ArrowRight, Users, Maximize, BedDouble } from 'lucide-react';
+import { Users, Maximize, Check } from 'lucide-react';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { Button } from '@/components/ui/button';
+import gsap from 'gsap';
 
 const rooms = [
   {
@@ -15,6 +15,8 @@ const rooms = [
     guests: 'до 2 гостей',
     price: 'от 3000 ₽',
     img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-1.webp',
+    description: 'Уютный однокомнатный номер, идеальный для комфортного размещения одного или двух гостей. Оснащен всем необходимым для отдыха после активного дня в горах.',
+    features: ['Двуспальная кровать', 'Wi-Fi', 'Телевизор', 'Душ', 'Чайник', 'Панорамные окна'],
   },
   {
     slug: 'standart-plus',
@@ -23,6 +25,8 @@ const rooms = [
     guests: 'до 3 гостей',
     price: 'от 4000 ₽',
     img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-plus-1.webp',
+    description: 'Просторный однокомнатный номер с дополнительным местом (диван), отлично подходящий для небольшой семьи или компании друзей.',
+    features: ['Двуспальная кровать', 'Раскладной диван', 'Wi-Fi', 'Телевизор', 'Душ', 'Чайник'],
   },
   {
     slug: 'family',
@@ -31,6 +35,8 @@ const rooms = [
     guests: 'до 4 гостей',
     price: 'от 5500 ₽',
     img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-family-1.webp',
+    description: 'Увеличенный номер для комфортного семейного отдыха. Пространство разделено таким образом, чтобы каждому члену семьи было уютно.',
+    features: ['Двуспальная кровать', 'Раскладной диван', 'Холодильник', 'Завтрак включен', 'Чайная станция', 'Душ и санузел'],
   },
   {
     slug: 'family-plus',
@@ -39,14 +45,18 @@ const rooms = [
     guests: 'до 6 гостей',
     price: 'от 7500 ₽',
     img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-family-plus-1.webp',
+    description: 'Большой семейный номер повышенной комфортности с зонами отдыха и сна. Идеально для больших семей.',
+    features: ['2 Кондиционера', '2 Телевизора', 'Теплые полы', 'Завтрак включен', 'Холодильник', 'Диванная зона'],
   },
   {
     slug: 'cottage',
     title: 'Коттедж',
     size: 'от 60 м²',
     guests: 'до 8 гостей',
-    price: 'от 15000 ₽',
-    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-1.webp', // fallback img
+    price: 'от 15 000 ₽',
+    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-1.webp', // fallback img, will update if needed
+    description: 'Отдельно стоящий двухэтажный коттедж для большой компании. Собственная мангальная зона, кухня и большая гостиная.',
+    features: ['2 Этажа', 'Своя кухня', 'Несколько спален', 'Мангальная зона', 'Холодильник', 'Своя парковка', 'Завтрак включен'],
   }
 ];
 
@@ -55,7 +65,7 @@ export default function RoomsPage() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.fromTo('.room-card', 
+      gsap.fromTo('.anim-up', 
         { y: 50, opacity: 0 }, 
         { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out' }
       );
@@ -63,40 +73,106 @@ export default function RoomsPage() {
     return () => ctx.revert();
   }, []);
 
+  const openWidget = () => {
+    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
+      (window as any).HotelWidget.open();
+    } else {
+      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#fafafa] pt-24 pb-24" ref={containerRef}>
       <div className="container mx-auto px-6">
         <Breadcrumbs variant="light" />
-        <div className="mb-16 text-center max-w-2xl mx-auto">
+        
+        {/* Header Block */}
+        <div className="mb-16 mt-8 max-w-4xl mx-auto text-center anim-up">
           <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Номера и Цены</h1>
-          <p className="text-lg text-slate-600">Комфортное размещение у подножия горы. От уютных стандартов до просторных шале для больших компаний.</p>
+          <p className="text-lg text-slate-600 mb-8">
+            Загородный отель «Яковка» предлагает размещение в комфортабельных номерах различной вместимости 
+            у подножия одноименной горы. Всего в 150 метрах от бугельного подъемника.
+          </p>
+          <p className="text-base font-medium text-slate-800 bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+            В нашем отеле работает кафе, русская баня, прокат горнолыжного инвентаря.
+            Наши двери открыты для тех, кто ищет гармонию, тишину, чистейший воздух и новые впечатления.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
+        {/* Children Prices Rule Block */}
+        <div className="mb-20 anim-up max-w-5xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-100 p-8 md:p-10">
+          <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">Размещение с детьми и доп. места</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-slate-50 rounded-2xl p-5 text-center border border-slate-100">
+              <span className="block text-4xl mb-3">👶</span>
+              <h4 className="font-bold text-slate-900 mb-1">До 3 лет</h4>
+              <p className="text-green-600 font-bold">Бесплатно</p>
+              <p className="text-xs text-slate-500 mt-1">Без предост. места</p>
+            </div>
+            <div className="bg-slate-50 rounded-2xl p-5 text-center border border-slate-100">
+              <span className="block text-4xl mb-3">🧸</span>
+              <h4 className="font-bold text-slate-900 mb-1">От 4 до 12 лет</h4>
+              <p className="text-blue-600 font-bold">500 руб.</p>
+              <p className="text-xs text-slate-500 mt-1">В сутки</p>
+            </div>
+            <div className="bg-slate-50 rounded-2xl p-5 text-center border border-slate-100">
+              <span className="block text-4xl mb-3">🎒</span>
+              <h4 className="font-bold text-slate-900 mb-1">От 13 до 18 лет</h4>
+              <p className="text-blue-600 font-bold">700 руб.</p>
+              <p className="text-xs text-slate-500 mt-1">В сутки</p>
+            </div>
+            <div className="bg-slate-50 rounded-2xl p-5 text-center border border-slate-100">
+              <span className="block text-4xl mb-3">👤</span>
+              <h4 className="font-bold text-slate-900 mb-1">От 18 лет</h4>
+              <p className="text-slate-800 font-bold">1000 руб.</p>
+              <p className="text-xs text-slate-500 mt-1">Взрослое место</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Room List */}
+        <div className="space-y-12 max-w-6xl mx-auto">
           {rooms.map((room) => (
-            <div key={room.slug} className="room-card group flex flex-col bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="relative h-72 md:h-80 w-full overflow-hidden">
+            <div key={room.slug} className="anim-up flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-500">
+              <div className="relative w-full md:w-5/12 h-64 md:h-auto overflow-hidden">
                 <Image 
                   src={room.img} 
                   alt={room.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-slate-900 font-bold shadow-sm">
-                  {room.price}
-                </div>
               </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">{room.title}</h2>
-                <div className="flex gap-4 mb-6 text-sm text-slate-500 font-medium border-b border-slate-100 pb-6">
-                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg"><Maximize size={16}/> {room.size}</div>
-                  <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg"><Users size={16}/> {room.guests}</div>
+              <div className="p-8 md:p-10 flex flex-col flex-grow w-full md:w-7/12">
+                <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
+                  <h2 className="text-3xl font-bold text-slate-900">{room.title}</h2>
+                  <div className="text-right">
+                    <span className="block text-sm text-slate-500 uppercase font-semibold">за сутки</span>
+                    <span className="text-2xl font-black text-blue-600">{room.price}</span>
+                  </div>
                 </div>
-                <div className="mt-auto">
-                  <Link href={`/rooms/${room.slug}`} className="inline-flex items-center justify-between w-full p-4 bg-slate-50 hover:bg-blue-600 hover:text-white text-slate-700 rounded-2xl transition-colors group/btn">
-                    <span className="font-semibold">Подробнее о номере</span>
-                    <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
+                
+                <div className="flex gap-4 mb-6 text-sm text-slate-600 font-medium">
+                  <div className="flex items-center gap-1.5"><Maximize size={16} className="text-slate-400"/> {room.size}</div>
+                  <div className="flex items-center gap-1.5"><Users size={16} className="text-slate-400"/> {room.guests}</div>
+                </div>
+
+                <p className="text-slate-600 mb-8 leading-relaxed">
+                  {room.description}
+                </p>
+
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 mt-auto">
+                  {room.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-sm font-medium text-slate-700">
+                      <Check size={16} className="text-green-500 mr-2 shrink-0" strokeWidth={3} />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <div>
+                  <Button onClick={openWidget} className="w-full md:w-auto px-8 py-6 rounded-xl text-lg font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
+                    Забронировать номер
+                  </Button>
                 </div>
               </div>
             </div>

@@ -26,7 +26,7 @@ export default function ContactsPage() {
                <Mail size={24} />
              </div>
              <h3 className="text-lg font-bold text-slate-400 mb-2 uppercase tracking-wider text-sm">Email</h3>
-             <a href="mailto:info@yakovka.ru" className="text-2xl font-bold text-slate-900 hover:text-blue-600 transition-colors">info@yakovka.ru</a>
+             <a href="mailto:valynkina.44@mail.ru" className="text-2xl font-bold text-slate-900 hover:text-blue-600 transition-colors">valynkina.44@mail.ru</a>
            </div>
 
            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col">

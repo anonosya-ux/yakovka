@@ -5,7 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Snowflake, Mountain, LocateFixed, Zap } from 'lucide-react';
-import CallToActionButton from '@/components/CallToActionButton'; // We will create a simple CTA component or reuse modal
+
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 gsap.registerPlugin(ScrollTrigger);

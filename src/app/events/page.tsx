@@ -39,7 +39,7 @@ export default function EventsPage() {
         <div className="max-w-6xl mx-auto bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-stone-200/50 mb-16 anim-fade flex flex-col md:flex-row border border-stone-200/60">
           <div className="md:w-1/2 relative h-64 md:h-auto">
             <Image 
-              src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-plus-1.webp" 
+              src="/images/gallery/IMG_4760.jpg" 
               alt="Корпоративы"
               fill
               className="object-cover"
@@ -71,7 +71,7 @@ export default function EventsPage() {
         <div className="max-w-6xl mx-auto bg-stone-900 text-stone-50 rounded-[2.5rem] overflow-hidden shadow-2xl mb-16 anim-fade flex flex-col md:flex-row-reverse border border-stone-800">
           <div className="md:w-1/2 relative h-64 md:h-auto">
             <Image 
-              src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-family-1.webp" 
+              src="/images/gallery/_6-1.jpg" 
               alt="Свадьбы на Алтае"
               fill
               className="object-cover opacity-80 mix-blend-screen"

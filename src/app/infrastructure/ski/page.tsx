@@ -139,7 +139,7 @@ export default function SkiSeasonPage() {
           <div>
             <div className="relative h-80 rounded-[2rem] overflow-hidden shadow-xl">
               <Image 
-                src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-plus-1.webp" 
+                src="/images/gallery/DSCN3504.JPG" 
                 alt="Прокат оборудования" 
                 fill 
                 className="object-cover"

@@ -24,7 +24,7 @@ const rooms = [
     size: 'от 12 м²',
     guests: 'до 2 гостей',
     price: 'от 3000 ₽',
-    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-1.webp',
+    img: '/images/gallery/image-14-03-24-11-18.jpeg',
     features: ['Двуспальная кровать', 'Wi-Fi', 'Телевизор', 'Душ'],
   },
   {
@@ -32,7 +32,7 @@ const rooms = [
     size: 'от 16 м²',
     guests: 'до 3 гостей',
     price: 'от 4000 ₽',
-    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-st-plus-1.webp',
+    img: '/images/gallery/image-28-09-23-05-16-4.jpeg',
     features: ['Двуспальная кровать', 'Диван', 'Телевизор', 'Душ'],
   },
   {
@@ -40,7 +40,7 @@ const rooms = [
     size: 'от 20 м²',
     guests: 'до 4 гостей',
     price: 'от 5500 ₽',
-    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-family-1.webp',
+    img: '/images/gallery/image-28-09-23-05-05.jpeg',
     features: ['Двуспальная кровать', 'Раскладной диван', 'Холодильник', 'Завтрак включен'],
   },
   {
@@ -48,7 +48,7 @@ const rooms = [
     size: 'от 30 м²',
     guests: 'до 6 гостей',
     price: 'от 7500 ₽',
-    img: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/slide-family-plus-1.webp',
+    img: '/images/gallery/FullSizeRender (10).jpeg',
     features: ['2 Кондиционера', '2 Телевизора', 'Теплые полы', 'Завтрак включен'],
   },
 ];
@@ -126,19 +126,14 @@ export default function Home() {
     <div className="flex flex-col font-sans overflow-x-hidden bg-background">
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-[85vh] min-h-[650px] w-full flex items-center justify-center [perspective:1000px]">
-        {/* Background Image / Video fallback */}
         <div className="absolute inset-0 z-0 overflow-hidden hero-bg bg-stone-900">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
+          <Image
+            src="/images/gallery/_6-12.jpg"
+            alt="Загородный отель Яковка"
+            fill
             className="w-full h-[120%] object-cover object-center absolute -top-[10%] opacity-80 mix-blend-overlay"
-            poster="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/11/0T5A0962-scaled.jpg"
-          >
-             <source src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/11/Яковка-маленький-вес.mp4" type="video/mp4" />
-          </video>
-          {/* Deep complex gradient overlay for better text contrast */}
+            priority
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/60 to-stone-900/20" />
         </div>
 
@@ -250,10 +245,16 @@ export default function Home() {
       {/* Booking FAQ Section */}
       <BookingInfoSection />
 
-      {/* Testimonials Marquee Component */}
-      <TestimonialsSection />
+      <div className="container mx-auto px-6 py-20 text-center bg-stone-50 rounded-3xl mb-16 shadow-inner border border-stone-100">
+        <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-stone-900 mb-6">Гора «Яковка» пользуется большой популярностью</h2>
+        <p className="text-stone-600 max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+          Большинство из них возвращается к нам снова. Реальные отзывы о нашем загородном отеле «Яковка» Вы можете прочитать в сервисах Яндекс.Карты или Гугл.Карты. Будем рады, если и Вы оставите о нас пару приятных слов!
+        </p>
+        <a href="https://yandex.ru/maps/org/yakovka/1062999531/" target="_blank" rel="noopener noreferrer" className="inline-flex py-4 px-8 bg-black text-white font-bold rounded-2xl hover:scale-105 transition-transform shadow-lg">
+          Яковка на Яндекс Картах
+        </a>
+      </div>
 
-      {/* Map & Contacts Section */}
       <MapSection />
 
       <CallbackModal isOpen={isCallbackModalOpen} onClose={() => setIsCallbackModalOpen(false)} />

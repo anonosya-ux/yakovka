@@ -1,148 +1,137 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { ChefHat, Flame, Snowflake, ArrowRight } from 'lucide-react';
+import { Home, Utensils, Mountain, ShieldCheck, Coffee, Dog } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import PhotoGallery from './ui/PhotoGallery';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const services = [
+const features = [
   {
-    id: 'restaurant',
-    title: 'Ресторан «Яковка»',
-    description: 'Авторская кухня, местные фермерские продукты и потрясающий вид на горы. Идеально подходит для романтических ужинов и семейных обедов.',
-    icon: <ChefHat className="text-orange-500" size={24} />,
-    image: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Ресторан-1.webp',
-    accentColor: 'bg-orange-100',
-    tags: ['Завтраки', 'Детское меню', 'Панорамный вид']
+    title: 'Домашний уют',
+    description: 'Наш отель находится в далеке от городского шума. Где слышан звук ручья, где воздух чист и снег пушист.',
+    icon: <Home className="text-primary" size={28} />
   },
   {
-    id: 'banya',
-    title: 'Русская баня на дровах',
-    description: 'Настоящая кедровая баня с холодной купелью. Отличный способ расслабиться после активного дня на склонах или прогулок по алтайскому лесу.',
-    icon: <Flame className="text-red-500" size={24} />,
-    image: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Баня-1.webp',
-    accentColor: 'bg-red-100',
-    tags: ['Кедровый сруб', 'Веники', 'Купель']
+    title: 'Любимые блюда',
+    description: 'Домашняя кухня порадует Вас заказными обедами и ужинами, а также исполнением Ваших пожеланий нашими поварами.',
+    icon: <Utensils className="text-secondary" size={28} />
   },
   {
-    id: 'ski',
-    title: 'Горнолыжный склон',
-    description: 'Комплекс находится прямо у подножия бугельного подъемника. Прокат снаряжения, услуги инструкторов и подготовленные трассы.',
-    icon: <Snowflake className="text-blue-500" size={24} />,
-    image: 'https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Гора-1.webp',
-    accentColor: 'bg-blue-100',
-    tags: ['Бугельный подъемник', 'Прокат', 'Инструкторы']
+    title: 'Близко к склону',
+    description: 'Вы всегда сможете выйти из отеля и сразу оказаться на склоне горы, здание отеля находится в пешей доступности от горнолыжного склона.',
+    icon: <Mountain className="text-stone-500" size={28} />
+  },
+  {
+    title: 'Территория под видеонаблюдением',
+    description: 'Вы можете отдыхать спокойно, а мы присмотрим за вашим "железным конем".',
+    icon: <ShieldCheck className="text-amber-600" size={28} />
+  },
+  {
+    title: 'Прохладительные и горячие напитки',
+    description: 'После дневного отдыха на природе вы можете позволить себе расслабиться в нашем уютном шале.',
+    icon: <Coffee className="text-primary/70" size={28} />
+  },
+  {
+    title: 'Можно с животными',
+    description: 'Берите Вашего пушистого друга с собой! до 8 кг — 500 ₽/сутки, свыше 8 кг — 1000 ₽/сутки.',
+    icon: <Dog className="text-stone-700" size={28} />
   }
 ];
 
 export default function ServicesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.service-row').forEach((row, i) => {
-        const isEven = i % 2 === 0;
-        const imageBlock = row.querySelector('.service-image');
-        const textBlock = row.querySelector('.service-text');
+      // Animate text sections
+      gsap.fromTo(
+        '.anim-text > *',
+        { y: 30, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out",
+          scrollTrigger: { trigger: '.anim-text', start: "top 80%" }
+        }
+      );
 
-        gsap.fromTo(
-          imageBlock,
-          { opacity: 0, x: isEven ? -50 : 50, scale: 0.95 },
-          { 
-            opacity: 1, x: 0, scale: 1, 
-            duration: 1, 
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: row,
-              start: "top 75%",
-            }
-          }
-        );
-
-        gsap.fromTo(
-          textBlock,
-          { opacity: 0, x: isEven ? 50 : -50 },
-          { 
-            opacity: 1, x: 0, 
-            duration: 1, 
-            ease: "power2.out",
-            delay: 0.2,
-            scrollTrigger: {
-              trigger: row,
-              start: "top 75%",
-            }
-          }
-        );
-      });
+      // Animate features grid
+      gsap.fromTo(
+        '.feature-card',
+        { y: 40, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
+          scrollTrigger: { trigger: '.features-grid', start: "top 85%" }
+        }
+      );
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
+  const galleryImages = [
+    '/images/gallery/IMG_4547-30-09-20-06-14.JPG',
+    '/images/gallery/image-14-03-24-11-18.jpeg',
+    '/images/gallery/DSC_6043.jpg',
+    '/images/gallery/Красивые Девычки (1).jpg',
+    '/images/gallery/FullSizeRender (10).jpeg',
+    '/images/gallery/_6-59.jpg',
+  ];
+
   return (
-    <section id="services" className="py-24 md:py-32 relative bg-white overflow-hidden" ref={containerRef}>
+    <section id="about" className="py-24 md:py-32 relative bg-white overflow-hidden" ref={containerRef}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">Инфраструктура комплекса</h2>
-          <p className="text-xl text-slate-500 max-w-3xl mx-auto font-light leading-relaxed">
-            Всё, что нужно для полноценного курортного отдыха круглый год.
+        
+        {/* Main Text Content */}
+        <div className="max-w-4xl mx-auto text-center mb-24 anim-text" ref={textRef}>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mb-8">
+            О горнолыжном курорте «Яковка»
+          </h2>
+          <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed mb-6">
+            Загородный отель «Яковка» находится в курортном городе Белокуриха, по улице Угрюмова, у подножия одноименной горы Яковка. Предлагаем нашим гостям зимний и летний семейный отдых с детьми в условиях домашнего уюта и гостеприимства. Домашняя кухня, баня, зона барбекю, уютный зал для посиделок с друзьями.
           </p>
+          <div className="flex flex-col md:flex-row gap-6 text-left my-10 bg-stone-50 rounded-3xl p-8 border border-stone-100">
+            <div className="flex-1">
+              <h4 className="font-heading font-bold text-xl text-stone-900 mb-3 border-b-2 border-primary/20 pb-2 inline-block">В зимний сезон</h4>
+              <p className="text-stone-600 font-light text-sm leading-relaxed">
+                Это полный комплекс услуг для активного горнолыжного отдыха. Расположение трасс на северной стороне – главный плюс данного склона (очень удобные спуски для начинающих, пологие и широкие склоны помогут освоить горные лыжи). Снежный покров держится дольше, чем на других склонах.
+              </p>
+            </div>
+            <div className="flex-1">
+              <h4 className="font-heading font-bold text-xl text-stone-900 mb-3 border-b-2 border-secondary/20 pb-2 inline-block">В летний период</h4>
+              <p className="text-stone-600 font-light text-sm leading-relaxed">
+                Работает открытый бассейн. Для спортсменов имеется гимнастический батут и спортивная площадка. Вас ждут увлекательные экскурсии и знакомство с достопримечательностями Белокурихи и Горного Алтая.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="space-y-24 md:space-y-32">
-          {services.map((service, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <div 
-                key={service.id} 
-                id={service.id === 'restaurant' ? 'restaurant' : undefined}
-                className={`service-row flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-10 lg:gap-20`}
-              >
-                
-                {/* Image Block */}
-                <div className="service-image w-full lg:w-1/2 relative">
-                  <div className={`absolute inset-0 ${service.accentColor} rounded-[3rem] -rotate-3 scale-105 opacity-50 blur-lg`} />
-                  <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] group">
-                    <Image 
-                      src={service.image} 
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
-                  </div>
+        {/* Features Grid */}
+        <div className="mb-24">
+          <h3 className="font-heading text-3xl font-bold text-center text-stone-900 mb-12">У нас есть все необходимое для комфортного отдыха</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 features-grid">
+            {features.map((feature, idx) => (
+              <div key={idx} className="feature-card bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-shadow border border-stone-200/60 flex flex-col items-start">
+                <div className="bg-stone-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-stone-100">
+                  {feature.icon}
                 </div>
-
-                {/* Text Block */}
-                <div className="service-text w-full lg:w-1/2 flex flex-col justify-center">
-                  <div className={`w-14 h-14 ${service.accentColor} rounded-2xl flex items-center justify-center mb-6 shadow-sm`}>
-                    {service.icon}
-                  </div>
-                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">{service.title}</h3>
-                  <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                    {service.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-3 mb-10">
-                    {service.tags.map((tag, i) => (
-                      <span key={i} className="bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-sm font-medium border border-slate-200">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <button className="flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors group self-start">
-                    <span>Подробнее</span>
-                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-
+                <h4 className="font-heading font-bold text-xl text-stone-900 mb-3">{feature.title}</h4>
+                <p className="text-stone-500 font-light text-sm leading-relaxed">{feature.description}</p>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
+
+        {/* Photo Gallery Component Using the recently processed images */}
+        <div className="mt-24 pt-16 border-t border-stone-100">
+          <div className="text-center mb-12 anim-text">
+            <h2 className="font-heading text-4xl font-bold tracking-tight text-stone-900 mb-4">Фотогалерея</h2>
+            <p className="text-stone-500 font-light">Почувствуйте атмосферу отдыха на Алтае</p>
+          </div>
+          <PhotoGallery images={galleryImages} columns={3} />
+        </div>
+
       </div>
     </section>
   );

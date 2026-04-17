@@ -167,7 +167,7 @@ export default function Home() {
   return (
     <div ref={containerGlobalRef} className="flex flex-col font-sans overflow-x-hidden bg-background">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[300vh] w-full">
+      <section ref={heroRef} className="relative h-[200vh] w-full">
         {/* Sticky Container */}
         <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:1000px]">
           
@@ -218,8 +218,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* spacer for widget overlap */}
-      <div className="h-16 md:h-32 bg-transparent" />
+
 
       {/* Animated Counter Section */}
       <AnimatedCounter />

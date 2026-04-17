@@ -69,7 +69,7 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                   href={link.href} 
                   onClick={onClose} 
                   aria-current={isActive ? 'page' : undefined}
-                  className={`block hover:translate-x-3 transition-all ${isActive ? 'text-blue-600' : 'hover:text-blue-600'}`}
+                  className={`block hover:translate-x-3 transition-all ${isActive ? 'text-primary' : 'hover:text-primary'}`}
                 >
                   {link.label}
                 </Link>
@@ -84,7 +84,7 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
               } else {
                 window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
               }
-            }} className="w-full text-center bg-blue-600 text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(37,99,235,0.3)] active:scale-95 transition-all">
+            }} className="w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
               Забронировать
             </button>
           </li>
@@ -94,11 +94,11 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
       <div className="px-8 pb-12 opacity-80">
         <div className="flex flex-col gap-4 text-slate-700 font-medium">
           <div className="flex items-center gap-3">
-            <Phone className="text-blue-600" size={20} />
+            <Phone className="text-primary" size={20} />
             <a href="tel:+79609552100">+7 (960) 955-21-00</a>
           </div>
           <div className="flex items-center gap-3">
-            <MapPin className="text-blue-600" size={20} />
+            <MapPin className="text-primary" size={20} />
             <span>г. Белокуриха, ул. Угрюмова, д. 4</span>
           </div>
         </div>

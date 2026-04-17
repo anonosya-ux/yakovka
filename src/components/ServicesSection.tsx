@@ -76,10 +76,10 @@ export default function ServicesSection() {
           <div className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-default">
             <div className="absolute inset-0 z-0">
               <Image 
-                src="/images/gallery/DSCN3434.JPG" 
+                src="/images/gallery/winter_season.png" 
                 alt="Зимний сезон" 
                 fill 
-                className="bento-img object-cover scale-110 object-bottom" 
+                className="bento-img object-cover scale-110 object-center" 
               />
               <div className="absolute inset-0 bg-stone-900/40 group-hover:bg-stone-900/50 transition-colors duration-500" />
             </div>
@@ -105,10 +105,10 @@ export default function ServicesSection() {
           <div className="bento-item relative rounded-[3rem] overflow-hidden group">
             <div className="absolute inset-0 z-0">
                <Image 
-                src="/images/gallery/_6-140.jpg" 
+                src="/images/gallery/pets_friendly.png" 
                 alt="Можно с питомцами" 
                 fill 
-                className="bento-img object-cover scale-125" 
+                className="bento-img object-cover scale-125 object-center" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent" />
             </div>
@@ -126,7 +126,7 @@ export default function ServicesSection() {
               <p className="text-stone-700 font-light text-lg">Открытый подогреваемый бассейн, батут для спортсменов, спортивная площадка и увлекательные экскурсии по Алтаю.</p>
             </div>
             <div className="hidden lg:flex w-40 h-40 relative rounded-full overflow-hidden flex-shrink-0 shadow-xl border-4 border-white">
-               <Image src="/images/gallery/image-28-09-23-05-16-1.jpeg" alt="Лето" fill className="object-cover" />
+               <Image src="/images/gallery/summer_season.png" alt="Лето" fill className="object-cover" />
             </div>
           </div>
 

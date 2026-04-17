@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import { KonturWidgetSearch } from '@/components/KonturWidget';
 import ServicesSection from '@/components/ServicesSection';
 import EventsSection from '@/components/EventsSection';
 import BookingInfoSection from '@/components/BookingInfoSection';
@@ -121,19 +120,10 @@ export default function Home() {
         .to('.hero-subtitle', { yPercent: -350, opacity: 0, ease: 'power2.inOut' }, 0.1)
         .to('.hero-btn', { yPercent: -400, opacity: 0, ease: 'power2.inOut' }, 0.15);
 
-      // Widget floating disappearance
-      gsap.to(widgetProxyRef.current, {
-        yPercent: 150,
-        opacity: 0,
-        rotationX: 25,
-        scale: 0.9,
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: '+=800',
-          scrub: true,
-        }
-      });
+      // Removed Widget disappearance code since widget is no longer here
+
+      // Wait, there's no widget proxy anymore, so I'll just remove this part
+      // ...
 
       // Room cards sticky effect
       if (cardsRef.current) {
@@ -167,53 +157,45 @@ export default function Home() {
   return (
     <div ref={containerGlobalRef} className="flex flex-col font-sans overflow-x-hidden bg-background">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[200vh] w-full">
-        {/* Sticky Container */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:1000px]">
-          
-          <div className="absolute inset-0 z-0 overflow-hidden hero-bg bg-stone-900 origin-center scale-110">
-            <Image
-              src="/images/gallery/_6-12.jpg"
-              alt="Загородный отель Яковка — горнолыжный курорт в Белокурихе, Алтай"
-              fill
-              className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
-              priority
-            />
-            <div className="hero-overlay absolute inset-0 bg-stone-950/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />
-          </div>
+      <section ref={heroRef} className="relative min-h-[100svh] w-full flex items-center justify-center overflow-hidden">
+        
+        <div className="absolute inset-0 z-0 hero-bg bg-stone-900 origin-center scale-110">
+          <Image
+            src="/images/gallery/_6-12.jpg"
+            alt="Загородный отель Яковка — горнолыжный курорт в Белокурихе, Алтай"
+            fill
+            className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
+            priority
+          />
+          <div className="hero-overlay absolute inset-0 bg-stone-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />
+        </div>
 
-          <div className="container relative z-10 mx-auto px-4 text-center text-white pb-12 pt-16 flex flex-col items-center justify-center h-full">
-            <div ref={heroTextRef} className="relative z-20 flex flex-col items-center">
-              <span className="hero-badge inline-flex items-center gap-2 py-2 px-5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-sm font-medium mb-8">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                Белокуриха, у подножия горы
+        <div className="container relative z-10 mx-auto px-4 text-center text-white pb-12 pt-32 flex flex-col items-center justify-center h-full">
+          <div ref={heroTextRef} className="relative z-20 flex flex-col items-center w-full max-w-4xl">
+            <span className="hero-badge inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-sm font-medium mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              
-              <div className="hero-title-container overflow-hidden">
-                <h1 className="font-heading text-6xl md:text-[120px] leading-[0.9] font-bold tracking-tight mb-2 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
-                  ОТДЫХ<br/><span className="text-primary italic">В ГОРАХ</span>
-                </h1>
-              </div>
-              
-              <p className="hero-subtitle text-xl md:text-3xl text-white/90 max-w-3xl mx-auto font-light drop-shadow mb-12 mt-6">
-                Загородный отель «Яковка» — это величественная природа Алтая и первоклассный уют.
-              </p>
-
-              <Button onClick={openWidget} size="lg" className="hero-btn bg-white text-stone-900 text-lg rounded-full px-10 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all font-bold">
-                Найти шале
-              </Button>
+              Белокуриха, у подножия горы
+            </span>
+            
+            <div className="hero-title-container w-full overflow-hidden flex flex-col items-center justify-center space-y-2">
+              <h1 className="font-heading text-5xl sm:text-6xl md:text-[100px] leading-[1] font-bold tracking-tight mb-2 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] text-center">
+                ОТДЫХ<br/>
+                <span className="text-primary italic block mt-2 md:mt-4 text-4xl sm:text-5xl md:text-[90px]">В ГОРАХ</span>
+              </h1>
             </div>
             
-            {/* Booking Widget Container (Desktop) - 3D Floating */}
-            <div className="hidden md:block w-full max-w-5xl mx-auto absolute left-0 right-0 bottom-12 pointer-events-none" style={{ perspective: "1200px" }}>
-              <div ref={widgetProxyRef} className="pointer-events-auto w-full max-w-5xl mx-auto px-4">
-                <KonturWidgetSearch containerId="BookingVertical" />
-              </div>
-            </div>
+            <p className="hero-subtitle text-lg md:text-2xl text-white/90 max-w-2xl mx-auto font-light drop-shadow-md mb-12 mt-8">
+              Загородный отель «Яковка» — это величественная природа Алтая и первоклассный уют.
+            </p>
+
+            <Button onClick={openWidget} size="lg" className="hero-btn bg-white text-stone-900 text-lg md:text-xl rounded-full px-12 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all font-bold group">
+              Найти шале
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
       </section>

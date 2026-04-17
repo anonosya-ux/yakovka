@@ -3,13 +3,7 @@
 import { Phone } from 'lucide-react';
 
 export default function FloatingCTA() {
-  const openWidget = () => {
-    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-      (window as any).HotelWidget.open();
-    } else {
-      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-    }
-  };
+
 
   return (
     <>
@@ -22,12 +16,12 @@ export default function FloatingCTA() {
         >
           <Phone size={22} />
         </a>
-        <button
-          onClick={openWidget}
-          className="px-6 py-4 bg-primary text-white rounded-full font-bold shadow-premium-lg animate-pulse-glow hover:scale-105 transition-all duration-300 text-sm tracking-wide"
+        <a
+          href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer"
+          className="px-6 py-4 bg-primary text-white rounded-full font-bold shadow-premium-lg animate-pulse-glow hover:scale-105 transition-all duration-300 text-sm tracking-wide block text-center"
         >
           Забронировать
-        </button>
+        </a>
       </div>
 
       {/* Mobile sticky bottom bar */}
@@ -39,12 +33,12 @@ export default function FloatingCTA() {
           <Phone size={16} />
           Позвонить
         </a>
-        <button
-          onClick={openWidget}
-          className="flex-1 py-3.5 bg-primary text-white rounded-2xl font-semibold text-sm"
+        <a
+          href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer"
+          className="flex-1 py-3.5 bg-primary text-white rounded-2xl font-semibold text-sm flex items-center justify-center"
         >
           Забронировать
-        </button>
+        </a>
       </div>
     </>
   );

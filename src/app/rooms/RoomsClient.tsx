@@ -73,13 +73,6 @@ export default function RoomsPage() {
     return () => ctx.revert();
   }, []);
 
-  const openWidget = () => {
-    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-      (window as any).HotelWidget.open();
-    } else {
-      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-24" ref={containerRef}>
@@ -170,9 +163,9 @@ export default function RoomsPage() {
                 </ul>
 
                 <div>
-                  <Button onClick={openWidget} className="w-full md:w-auto px-8 py-6 rounded-xl text-lg font-semibold bg-primary text-white hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30">
+                  <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full md:w-auto px-8 py-6 rounded-xl text-lg font-semibold bg-primary text-white hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30">
                     Забронировать номер
-                  </Button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -77,16 +77,9 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             );
           })}
           <li style={{ transformStyle: 'preserve-3d' }} className="pt-6">
-            <button onClick={() => {
-              onClose();
-              if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-                (window as any).HotelWidget.open();
-              } else {
-                window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-              }
-            }} className="w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" onClick={onClose} className="block w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
               Забронировать
-            </button>
+            </a>
           </li>
         </ul>
       </div>

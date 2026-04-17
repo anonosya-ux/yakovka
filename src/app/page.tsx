@@ -72,14 +72,6 @@ const homeFAQ = [
 export default function Home() {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
 
-  const openWidget = () => {
-    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-      (window as any).HotelWidget.open();
-    } else {
-      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-    }
-  };
-
   const containerGlobalRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
@@ -181,7 +173,7 @@ export default function Home() {
               Белокуриха, у подножия горы
             </span>
             
-            <div className="hero-title-container w-full overflow-hidden flex flex-col items-center justify-center space-y-2">
+            <div className="hero-title-container w-full flex flex-col items-center justify-center space-y-2 py-4">
               <h1 className="font-heading text-5xl sm:text-6xl md:text-[100px] leading-[1] font-bold tracking-tight mb-2 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] text-center">
                 ОТДЫХ<br/>
                 <span className="text-primary italic block mt-2 md:mt-4 text-4xl sm:text-5xl md:text-[90px]">В ГОРАХ</span>
@@ -192,10 +184,10 @@ export default function Home() {
               Загородный отель «Яковка» — это величественная природа Алтая и первоклассный уют.
             </p>
 
-            <Button onClick={openWidget} size="lg" className="hero-btn bg-white text-stone-900 text-lg md:text-xl rounded-full px-12 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all font-bold group">
+            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hero-btn bg-white text-stone-900 text-lg md:text-xl rounded-full px-12 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all font-bold group">
               Найти шале
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -276,9 +268,9 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-8 md:mt-0">
-               <Button onClick={openWidget} variant="outline" className="rounded-full border-stone-700 text-stone-300 hover:text-white hover:bg-white/10 px-8 py-6 text-lg">
+               <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-stone-700 text-stone-300 hover:text-white hover:bg-white/10 px-8 py-6 text-lg transition-colors">
                  Смотреть все
-               </Button>
+               </a>
             </div>
           </div>
 
@@ -325,9 +317,9 @@ export default function Home() {
                       <span className="block text-sm uppercase tracking-widest text-stone-400 font-bold mb-2">За сутки от</span>
                       <span className="font-heading text-4xl font-bold text-stone-900">{room.price}</span>
                     </div>
-                    <Button onClick={openWidget} className="rounded-2xl bg-stone-900 text-white hover:bg-primary transition-colors px-8 py-6 text-lg font-bold shadow-xl hover:-translate-y-2">
+                    <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-2xl bg-stone-900 text-white hover:bg-primary transition-colors px-8 py-6 text-lg font-bold shadow-xl hover:-translate-y-1">
                        Бронь
-                    </Button>
+                    </a>
                   </div>
                 </div>
               </div>

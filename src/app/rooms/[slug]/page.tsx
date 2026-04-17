@@ -72,12 +72,6 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
     );
   }
 
-  const openWidget = () => {
-    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-      (window as any).HotelWidget.open();
-    }
-  };
-
   return (
     <div className="min-h-screen bg-white pt-24 pb-32">
       <div className="container mx-auto px-6">
@@ -139,9 +133,9 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
                  <p className="text-slate-400 text-sm font-medium mb-1 uppercase tracking-wider">За сутки</p>
                  <p className="text-4xl font-extrabold">{room.price}</p>
                </div>
-               <Button onClick={openWidget} size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white rounded-full px-8 py-6 text-lg font-bold shadow-[0_10px_25px_rgba(37,99,235,0.4)] hover:-translate-y-1 transition-all z-10 relative">
+               <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white rounded-full px-8 py-6 text-lg font-bold shadow-[0_10px_25px_rgba(37,99,235,0.4)] hover:-translate-y-1 transition-all z-10 relative">
                  Забронировать номер
-               </Button>
+               </a>
             </div>
 
             <Link href="/rooms" className="inline-flex items-center gap-2 mt-8 text-slate-500 hover:text-blue-600 transition-colors font-medium">

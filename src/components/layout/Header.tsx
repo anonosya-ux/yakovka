@@ -42,13 +42,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const openWidget = () => {
-    if (typeof window !== 'undefined' && (window as any).HotelWidget) {
-      (window as any).HotelWidget.open();
-    } else {
-      window.open('https://bookonline24.ru/widget.js?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-    }
-  };
 
   const handleMouseEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -132,9 +125,9 @@ export function Header() {
               +7 (960) 955-21-00
             </a>
             
-            <Button onClick={openWidget} className="hidden md:inline-flex bg-primary/95 backdrop-blur-md hover:bg-primary text-white shadow-[0_10px_20px_rgba(34,85,34,0.2)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.3)] rounded-full px-7 py-5 font-semibold transition-all hover:-translate-y-0.5">
+            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center bg-primary/95 backdrop-blur-md hover:bg-primary text-white shadow-[0_10px_20px_rgba(34,85,34,0.2)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.3)] rounded-full px-7 py-5 font-semibold transition-all hover:-translate-y-0.5">
               Забронировать
-            </Button>
+            </a>
             <button onClick={() => setIsMenuOpen(true)} className="lg:hidden p-2 text-stone-700 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-sm">
               <Menu size={24} />
             </button>

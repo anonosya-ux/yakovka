@@ -89,45 +89,48 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Background parallax scaling
-      gsap.to('.hero-bg', {
-        scale: 1,
-        opacity: 0.6,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
+      // True Y-axis Parallax for background
+      gsap.fromTo('.hero-bg', 
+        { yPercent: -5, scale: 1.15 },
+        {
+          yPercent: 30, // Background sinks deeply
+          scale: 1,
+          opacity: 0.4,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
 
-      // Text elements staggering up based on scroll
+      // Deep 3D Text Parallax staggered
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1,
+          scrub: 1.5, // Smoother follow
         }
       });
 
-      tl.to('.hero-badge, .hero-title-container, .hero-subtitle, .hero-btn', {
-        y: -150,
-        opacity: 0,
-        stagger: 0.1,
-        ease: 'power1.inOut'
-      }, 0);
+      tl.to('.hero-badge', { yPercent: -300, opacity: 0, rotationX: 10, ease: 'power2.inOut' }, 0)
+        .to('.hero-title-container', { yPercent: -150, opacity: 0, scale: 0.85, ease: 'power2.inOut' }, 0.05)
+        .to('.hero-subtitle', { yPercent: -350, opacity: 0, ease: 'power2.inOut' }, 0.1)
+        .to('.hero-btn', { yPercent: -400, opacity: 0, ease: 'power2.inOut' }, 0.15);
 
       // Widget floating disappearance
       gsap.to(widgetProxyRef.current, {
-        y: 100,
+        yPercent: 150,
         opacity: 0,
-        rotationX: 15,
+        rotationX: 25,
+        scale: 0.9,
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
-          end: '+=500',
+          end: '+=800',
           scrub: true,
         }
       });
@@ -139,10 +142,12 @@ export default function Home() {
         
         gsap.utils.toArray(cards).forEach((card: any, i) => {
           gsap.fromTo(card, 
-            { scale: 1, filter: 'brightness(1)' },
+            { scale: 1, filter: 'brightness(1)', yPercent: 0 },
             { 
-              scale: 0.9, 
-              filter: 'brightness(0.5)',
+              scale: 0.88, 
+              filter: 'brightness(0.3)',
+              yPercent: -5, // slight tuck-in effect
+
               ease: "none",
               scrollTrigger: {
                 trigger: card,

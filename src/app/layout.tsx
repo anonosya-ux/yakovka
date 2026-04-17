@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import SmoothScroll from '@/components/ui/SmoothScroll';
 import CustomCursor from '@/components/ui/CustomCursor';
 import FloatingCTA from '@/components/FloatingCTA';
+import { KonturWidgetMobileButton } from '@/components/KonturWidget';
 
 const montserrat = Montserrat({
   variable: "--font-heading",
@@ -18,7 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yakovka-next.vercel.app'),
+  metadataBase: new URL('https://yakovka.vercel.app'),
   title: {
     default: 'Загородный отель «Яковка» — горнолыжный курорт в Белокурихе, Алтай',
     template: '%s | Отель «Яковка» — Белокуриха, Алтай',
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    url: 'https://yakovka-next.vercel.app',
+    url: 'https://yakovka.vercel.app',
     siteName: 'Загородный отель «Яковка»',
     title: 'Загородный отель «Яковка» — горнолыжный курорт в Белокурихе',
     description: 'Загородный отель у подножия горы Яковка. Горнолыжные трассы, ресторан, баня, комфортные номера. Семейный отдых на Алтае.',
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     images: ['/images/gallery/_6-12.jpg'],
   },
   alternates: {
-    canonical: 'https://yakovka-next.vercel.app',
+    canonical: 'https://yakovka.vercel.app',
   },
   robots: {
     index: true,
@@ -82,7 +83,7 @@ export default function RootLayout({
                 "@type": ["Hotel", "LodgingBusiness"],
                 "name": "Загородный отель «Яковка»",
                 "description": "Загородный отель у подножия горы Яковка в Белокурихе. Горнолыжные трассы, ресторан, русская баня, комфортные номера для семейного отдыха на Алтае.",
-                "url": "https://yakovka-next.vercel.app",
+                "url": "https://yakovka.vercel.app",
                 "telephone": "+7 (960) 955-21-00",
                 "email": "info@yakovka.ru",
                 "address": {
@@ -115,8 +116,8 @@ export default function RootLayout({
                   { "@type": "LocationFeatureSpecification", "name": "Детская площадка", "value": true }
                 ],
                 "image": [
-                  "https://yakovka-next.vercel.app/images/gallery/_6-12.jpg",
-                  "https://yakovka-next.vercel.app/images/gallery/image-14-03-24-11-18.jpeg"
+                  "https://yakovka.vercel.app/images/gallery/_6-12.jpg",
+                  "https://yakovka.vercel.app/images/gallery/image-14-03-24-11-18.jpeg"
                 ],
                 "sameAs": [
                   "https://yandex.ru/maps/org/yakovka/1062999531/"
@@ -137,7 +138,7 @@ export default function RootLayout({
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Главная",
-                    "item": "https://yakovka-next.vercel.app"
+                    "item": "https://yakovka.vercel.app"
                   }
                 ]
               })
@@ -150,6 +151,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <FloatingCTA />
+          <KonturWidgetMobileButton />
         </SmoothScroll>
       </body>
     </html>

@@ -1,92 +1,115 @@
-'use client';
+import { Metadata } from 'next';
+import PageHero from '@/components/PageHero';
+import CTABanner from '@/components/CTABanner';
+import { Flame, Droplets, Clock, Users, Sparkles, Heart } from 'lucide-react';
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Flame, Droplets, ThermometerSun, LeafyGreen } from 'lucide-react';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
+export const metadata: Metadata = {
+  title: 'Русская баня на дровах',
+  description: 'Русская баня на дровах в загородном отеле «Яковка» в Белокурихе. Берёзовые и дубовые веники, комната отдыха, купель. Аренда для компаний. Ежедневно 10:00–22:00.',
+  keywords: ['баня Белокуриха', 'русская баня Алтай', 'баня на дровах', 'парная отруби'],
+  alternates: { canonical: '/infrastructure/banya' },
+};
 
-gsap.registerPlugin(ScrollTrigger);
+const features = [
+  { icon: Flame, title: 'На берёзовых дровах', desc: 'Настоящая дровяная печь — мягкий, ароматный пар без электрических аналогов' },
+  { icon: Droplets, title: 'Купель', desc: 'Контрастное обливание в деревянной купели с холодной горной водой' },
+  { icon: Sparkles, title: 'Веники и масла', desc: 'Берёзовые, дубовые, пихтовые веники. Ароматные масла и травяные настои' },
+  { icon: Users, title: 'Для компаний', desc: 'Аренда бани для компаний до 8 человек с комнатой отдыха' },
+  { icon: Heart, title: 'Оздоровление', desc: 'Баня улучшает кровообращение, выводит токсины, укрепляет иммунитет' },
+  { icon: Clock, title: 'Режим работы', desc: 'Ежедневно с 10:00 до 22:00. Бронирование рекомендуется заранее' },
+];
 
 export default function BanyaPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.fromTo('.banya-feature', 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power2.out' }
-      );
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div className="bg-[#fafafa] pt-24" ref={containerRef}>
-      
-      <div className="container mx-auto px-6 py-12">
-        <div className="flex flex-col lg:flex-row gap-16 items-center mb-24">
-          <div className="w-full lg:w-1/2 space-y-8 banya-feature">
-            <Breadcrumbs variant="light" />
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-semibold uppercase tracking-widest border border-orange-200 mt-4">
-              <Flame size={16} /> Оздоровление
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">Настоящая Русская Баня</h1>
-            <p className="text-xl text-slate-600 leading-relaxed font-light">
-              После активного дня на горнолыжном склоне или долгой прогулки на свежем воздухе нет ничего лучше, чем как следует попариться в настоящей русской бане. 
-            </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              Жаркая парная, березовые и дубовые веники, купель с ледяной водой — мы создали идеальные условия для глубокого восстановления и очищения организма.
-            </p>
-          </div>
+    <div className="flex flex-col bg-background">
+      <PageHero
+        title="Русская баня"
+        subtitle="Настоящая баня на берёзовых дровах с купелью и вениками — оздоровление после горнолыжного дня"
+        badge="🔥 На дровах"
+        imageSrc="/images/gallery/_6-12.jpg"
+        imageAlt="Русская баня на дровах — загородный отель Яковка"
+        breadcrumbs={[
+          { label: 'Инфраструктура', href: '/infrastructure/ski' },
+          { label: 'Баня' }
+        ]}
+      />
 
-          <div className="w-full lg:w-1/2 relative">
-            <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative banya-feature">
-               <Image 
-                 src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Баня-1.webp" 
-                 alt="Русская баня"
-                 fill
-                 className="object-cover"
-                 priority
-               />
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Традиции</span>
+              <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight text-stone-900 mb-6">
+                Русская баня на дровах
+              </h2>
+              <p className="text-stone-500 text-lg font-light leading-relaxed max-w-3xl mx-auto">
+                Наша баня — это не просто парная, а настоящий ритуал оздоровления и отдыха. 
+                Мы используем берёзовые дрова для мягкого, ароматного пара, а после парной — 
+                контрастное обливание в деревянной купели с чистой горной водой.
+              </p>
             </div>
-            
-            {/* Info Card floating */}
-            <div className="absolute -bottom-8 -left-8 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 banya-feature hidden md:block">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
-                  <Droplets size={24} />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((f, idx) => {
+                const Icon = f.icon;
+                return (
+                  <div key={idx} className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-500 group">
+                    <div className="p-2.5 bg-primary/10 rounded-xl w-fit mb-4 group-hover:bg-primary/20 transition-colors">
+                      <Icon size={22} className="text-primary" />
+                    </div>
+                    <h3 className="font-heading text-lg font-bold text-stone-800 mb-2">{f.title}</h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">{f.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-16 bg-stone-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="font-heading text-2xl md:text-3xl font-bold text-stone-900 mb-8 text-center">Стоимость</h3>
+            <div className="bg-white rounded-3xl shadow-premium overflow-hidden border border-stone-100">
+              <div className="p-8 border-b border-stone-100">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-heading font-bold text-stone-800 text-lg">Аренда бани (2 часа)</h4>
+                    <p className="text-stone-400 text-sm mt-1">До 4 человек</p>
+                  </div>
+                  <span className="font-heading text-2xl font-bold text-primary">2 500 ₽</span>
                 </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">Купель с родниковой водой</h4>
-                  <p className="text-sm text-slate-500">Идеальный контраст</p>
+              </div>
+              <div className="p-8 border-b border-stone-100">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-heading font-bold text-stone-800 text-lg">Аренда бани (2 часа)</h4>
+                    <p className="text-stone-400 text-sm mt-1">До 8 человек, с комнатой отдыха</p>
+                  </div>
+                  <span className="font-heading text-2xl font-bold text-primary">4 000 ₽</span>
+                </div>
+              </div>
+              <div className="p-8">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-heading font-bold text-stone-800 text-lg">Веник</h4>
+                    <p className="text-stone-400 text-sm mt-1">Берёзовый/дубовый</p>
+                  </div>
+                  <span className="font-heading text-2xl font-bold text-primary">300 ₽</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-16">
-           <div className="banya-feature bg-orange-50/50 p-8 rounded-[2rem] border border-orange-100 text-center flex flex-col items-center hover:bg-orange-50 transition-colors">
-             <ThermometerSun size={40} className="text-orange-500 mb-6" />
-             <h3 className="text-xl font-bold text-slate-900 mb-3">Правильный пар</h3>
-             <p className="text-slate-600">Печь на дровах создает мягкий и обволакивающий пар, который не обжигает дыхательные пути.</p>
-           </div>
-           <div className="banya-feature bg-emerald-50/50 p-8 rounded-[2rem] border border-emerald-100 text-center flex flex-col items-center hover:bg-emerald-50 transition-colors">
-             <LeafyGreen size={40} className="text-emerald-500 mb-6" />
-             <h3 className="text-xl font-bold text-slate-900 mb-3">Банные ритуалы</h3>
-             <p className="text-slate-600">Широкий выбор качественных веников, фиточай на алтайских травах и мед с собственной пасеки.</p>
-           </div>
-           <div className="banya-feature bg-blue-50/50 p-8 rounded-[2rem] border border-blue-100 text-center flex flex-col items-center hover:bg-blue-50 transition-colors">
-             <Droplets size={40} className="text-blue-500 mb-6" />
-             <h3 className="text-xl font-bold text-slate-900 mb-3">Комната отдыха</h3>
-             <p className="text-slate-600">Просторная и комфортная зона отдыха со столом, ТВ и всем необходимым для большой компании.</p>
-           </div>
-        </div>
-
-      </div>
+      <CTABanner 
+        title="Забронируйте баню" 
+        subtitle="Позвоните: +7 (960) 955-21-00. Рекомендуем бронировать заранее!"
+        variant="dark"
+      />
     </div>
   );
 }

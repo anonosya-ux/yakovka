@@ -3,8 +3,9 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { ChefHat, Leaf, Clock, UtensilsCrossed } from 'lucide-react';
+import { ChefHat, Leaf, Clock, UtensilsCrossed, Wine, Users, Music } from 'lucide-react';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import CTABanner from '@/components/CTABanner';
 
 export default function RestaurantPage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -20,9 +21,9 @@ export default function RestaurantPage() {
   }, []);
 
   return (
-    <div className="bg-[#fafafa]" ref={heroRef}>
+    <div className="bg-background" ref={heroRef}>
       <div className="relative h-[65vh] w-full flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-zinc-900 z-0">
+        <div className="absolute inset-0 bg-stone-900 z-0">
           <Image 
             src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Ресторан-1.webp" 
             alt="Ресторан Яковка" 
@@ -30,15 +31,16 @@ export default function RestaurantPage() {
             className="object-cover opacity-60 mix-blend-overlay"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />
         </div>
         <div className="relative z-10 text-center px-6 reveal-el pt-16">
           <div className="flex justify-center -mt-8"><Breadcrumbs variant="dark" /></div>
-          <ChefHat size={64} className="mx-auto mb-8 text-orange-400 opacity-90 drop-shadow-lg mt-8" />
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl font-serif">
-            Ресторан <span className="text-orange-400">«Яковка»</span>
+          <ChefHat size={64} className="mx-auto mb-8 text-primary opacity-90 drop-shadow-lg mt-8" />
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl font-heading">
+            Ресторан <span className="text-primary">«Яковка»</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-200 font-medium max-w-2xl mx-auto">
-            Авторская сибирская кухня с панорамным видом на алтайские горы.
+          <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl mx-auto">
+            Авторская алтайская кухня из натуральных местных продуктов с панорамным видом на горы.
           </p>
         </div>
       </div>
@@ -46,34 +48,34 @@ export default function RestaurantPage() {
       <div className="container mx-auto px-6 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8 reveal-el">
-            <h2 className="text-4xl font-bold text-slate-900 tracking-tight">Домашняя кухня с алтайским характером</h2>
-            <div className="w-16 h-1.5 bg-orange-400 rounded-full" />
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <h2 className="font-heading text-4xl font-bold text-stone-900 tracking-tight">Домашняя кухня с алтайским характером</h2>
+            <div className="w-16 h-1.5 bg-primary rounded-full" />
+            <p className="text-lg text-stone-600 leading-relaxed">
               Наш ресторан порадует вас заказными обедами и ужинами, а также индивидуальным исполнением ваших пожеланий нашими шеф-поварами. Мы гордимся тем, что используем экологически чистые, фермерские продукты от местных алтайских производителей.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed mb-6">
+            <p className="text-lg text-stone-600 leading-relaxed">
               Уютный зал с камином идеально подходит для теплых семейных посиделок после активного дня на склоне, романтических ужинов или торжественных банкетов.
             </p>
             
             <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
-                <Leaf className="text-emerald-500 shrink-0" size={28} />
+              <div className="bg-white p-6 rounded-2xl shadow-premium border border-stone-100 flex items-start gap-4">
+                <Leaf className="text-primary shrink-0" size={28} />
                 <div>
-                  <h4 className="font-bold text-slate-900 mb-1">Эко-продукты</h4>
-                  <p className="text-sm text-slate-500 leading-snug">Местное фермерское хозяйство и дикоросы</p>
+                  <h4 className="font-heading font-bold text-stone-900 mb-1">Эко-продукты</h4>
+                  <p className="text-sm text-stone-500 leading-snug">Местное фермерское хозяйство и дикоросы</p>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
-                <UtensilsCrossed className="text-rose-500 shrink-0" size={28} />
+              <div className="bg-white p-6 rounded-2xl shadow-premium border border-stone-100 flex items-start gap-4">
+                <UtensilsCrossed className="text-primary shrink-0" size={28} />
                 <div>
-                  <h4 className="font-bold text-slate-900 mb-1">Спец. меню</h4>
-                  <p className="text-sm text-slate-500 leading-snug">Детское и диетическое меню по запросу</p>
+                  <h4 className="font-heading font-bold text-stone-900 mb-1">Спец. меню</h4>
+                  <p className="text-sm text-stone-500 leading-snug">Детское и диетическое меню по запросу</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl reveal-el">
+          <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-premium-lg reveal-el">
             <Image 
               src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Ресторан-1.webp" 
               alt="Интерьер ресторана" 
@@ -83,7 +85,7 @@ export default function RestaurantPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-10 left-10 right-10">
               <div className="bg-white/20 backdrop-blur-xl border border-white/30 p-6 rounded-3xl flex items-center gap-6 text-white text-lg">
-                <div className="bg-orange-500/80 p-4 rounded-2xl shrink-0">
+                <div className="bg-primary/80 p-4 rounded-2xl shrink-0">
                   <Clock size={32} />
                 </div>
                 <div>
@@ -95,6 +97,67 @@ export default function RestaurantPage() {
           </div>
         </div>
       </div>
+
+      {/* Menu highlights */}
+      <section className="py-16 bg-stone-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h3 className="font-heading text-3xl font-bold text-stone-900">Популярные блюда</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
+              <div className="text-4xl mb-4">🥩</div>
+              <h4 className="font-heading font-bold text-stone-800 mb-2">Стейк из марала</h4>
+              <p className="text-stone-400 text-sm">С ягодным соусом и печёным картофелем</p>
+            </div>
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
+              <div className="text-4xl mb-4">🍯</div>
+              <h4 className="font-heading font-bold text-stone-800 mb-2">Медовая панакота</h4>
+              <p className="text-stone-400 text-sm">С горным мёдом и кедровыми орехами</p>
+            </div>
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 text-center">
+              <div className="text-4xl mb-4">🫖</div>
+              <h4 className="font-heading font-bold text-stone-800 mb-2">Алтайский чай</h4>
+              <p className="text-stone-400 text-sm">Травяной сбор с чабрецом и мятой</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Additional features */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">
+              <Wine className="text-primary shrink-0" size={24} />
+              <div>
+                <h4 className="font-heading font-bold text-stone-900 mb-1">Напитки</h4>
+                <p className="text-sm text-stone-500">Травяные чаи, алтайские бальзамы, хвойные лимонады</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">
+              <Users className="text-primary shrink-0" size={24} />
+              <div>
+                <h4 className="font-heading font-bold text-stone-900 mb-1">Банкетный зал</h4>
+                <p className="text-sm text-stone-500">До 80 человек для свадеб и корпоративов</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">
+              <Music className="text-primary shrink-0" size={24} />
+              <div>
+                <h4 className="font-heading font-bold text-stone-900 mb-1">Живая музыка</h4>
+                <p className="text-sm text-stone-500">По пятницам и субботам</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CTABanner 
+        title="Попробуйте вкусы Алтая" 
+        subtitle="Завтрак включён в номера «Семейный» и «Семейный++». Забронируйте прямо сейчас!"
+        variant="nature"
+      />
     </div>
   );
 }

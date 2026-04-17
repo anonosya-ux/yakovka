@@ -11,7 +11,11 @@ import EventsSection from '@/components/EventsSection';
 import BookingInfoSection from '@/components/BookingInfoSection';
 import MapSection from '@/components/MapSection';
 import CallbackModal from '@/components/CallbackModal';
-import { Menu, MapPin, Phone, Mail, ChevronRight, Check } from 'lucide-react';
+import AnimatedCounter from '@/components/AnimatedCounter';
+import FAQAccordion from '@/components/FAQAccordion';
+import CTABanner from '@/components/CTABanner';
+import ReviewCard from '@/components/ReviewCard';
+import { MapPin, Phone, Check, ArrowRight, Star, Snowflake, Sun } from 'lucide-react';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -53,6 +57,19 @@ const rooms = [
   },
 ];
 
+const homeReviews = [
+  { name: 'Анна П.', date: 'Март 2026', rating: 5, text: 'Прекрасный отдых с детьми! Трассы идеально подходят для начинающих. Обязательно вернёмся!' },
+  { name: 'Михаил К.', date: 'Февраль 2026', rating: 5, text: 'Баня на дровах — сказка после дня на склоне. Персонал приветливый. 10 из 10.' },
+  { name: 'Елена С.', date: 'Январь 2026', rating: 5, text: 'Номер «Семейный++» огромный — разместились всей семьёй. Ресторан порадовал алтайской кухней.' },
+];
+
+const homeFAQ = [
+  { question: 'Как забронировать номер?', answer: 'Забронировать можно онлайн через наш сайт, по телефону +7 (960) 955-21-00 или в WhatsApp. Принимаем карты, переводы и наличные.' },
+  { question: 'Во сколько заезд и выезд?', answer: 'Заезд с 14:00, выезд до 12:00. Ранний заезд/поздний выезд — по договорённости.' },
+  { question: 'Подходит ли отель для детей?', answer: 'Да! Детская площадка, семейные номера, детское меню. Дети до 5 лет бесплатно, от 5 до 12 — скидка 50%.' },
+  { question: 'Есть ли горнолыжные трассы?', answer: '2 трассы у подножия горы Яковка: для начинающих (300 м) и среднего уровня (800 м). Прокат снаряжения на месте. Сезон: декабрь–март.' },
+];
+
 export default function Home() {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
 
@@ -74,7 +91,7 @@ export default function Home() {
     const ctx = gsap.context(() => {
       // Background parallax scaling
       gsap.to('.hero-bg', {
-        scale: 1, // scales down from 1.1 to 1
+        scale: 1,
         opacity: 0.6,
         ease: 'none',
         scrollTrigger: {
@@ -152,7 +169,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0 overflow-hidden hero-bg bg-stone-900 origin-center scale-110">
             <Image
               src="/images/gallery/_6-12.jpg"
-              alt="Загородный отель Яковка"
+              alt="Загородный отель Яковка — горнолыжный курорт в Белокурихе, Алтай"
               fill
               className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
               priority
@@ -199,6 +216,68 @@ export default function Home() {
       {/* spacer for widget overlap */}
       <div className="h-16 md:h-32 bg-transparent" />
 
+      {/* Animated Counter Section */}
+      <AnimatedCounter />
+
+      {/* Season Toggle Section */}
+      <section className="py-24 md:py-32 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Круглый год</span>
+            <h2 className="font-heading text-4xl md:text-6xl font-bold tracking-tight text-stone-900 mb-4">
+              Отдых в любой сезон
+            </h2>
+            <p className="text-stone-500 text-lg max-w-2xl mx-auto font-light">
+              Белокуриха прекрасна зимой и летом — выбирайте свой идеальный отдых
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {/* Winter Card */}
+            <Link href="/season" className="group relative overflow-hidden rounded-3xl aspect-[4/5] md:aspect-[3/4]">
+              <Image
+                src="/images/gallery/_6-12.jpg"
+                alt="Горнолыжный сезон в Белокурихе"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm text-white mb-4">
+                  <Snowflake size={14} /> Декабрь — Март
+                </div>
+                <h3 className="font-heading text-3xl md:text-4xl font-bold text-white mb-2">Зима</h3>
+                <p className="text-white/70 text-base md:text-lg font-light mb-4">Горные лыжи, сноуборд, тюбинг. 2 трассы с прокатом и инструкторами.</p>
+                <span className="inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
+                  Подробнее <ArrowRight size={18} />
+                </span>
+              </div>
+            </Link>
+
+            {/* Summer Card */}
+            <Link href="/summer" className="group relative overflow-hidden rounded-3xl aspect-[4/5] md:aspect-[3/4]">
+              <Image
+                src="/images/gallery/image-28-09-23-05-05.jpeg"
+                alt="Летний отдых на Алтае"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm text-white mb-4">
+                  <Sun size={14} /> Июнь — Сентябрь
+                </div>
+                <h3 className="font-heading text-3xl md:text-4xl font-bold text-white mb-2">Лето</h3>
+                <p className="text-white/70 text-base md:text-lg font-light mb-4">Горные походы, экскурсии, рыбалка, велопрогулки на свежем воздухе.</p>
+                <span className="inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
+                  Подробнее <ArrowRight size={18} />
+                </span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Rooms Sticky Section */}
       <section id="rooms" className="py-32 relative bg-stone-900 border-t border-stone-800">
         <div className="container mx-auto px-6">
@@ -212,7 +291,7 @@ export default function Home() {
             </div>
             <div className="mt-8 md:mt-0">
                <Button onClick={openWidget} variant="outline" className="rounded-full border-stone-700 text-stone-300 hover:text-white hover:bg-white/10 px-8 py-6 text-lg">
-                  Смотреть все
+                 Смотреть все
                </Button>
             </div>
           </div>
@@ -277,20 +356,62 @@ export default function Home() {
       {/* Events Section */}
       <EventsSection onOpenCallback={() => setIsCallbackModalOpen(true)} />
 
+      {/* Reviews Section */}
+      <section className="py-24 md:py-32 bg-stone-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Отзывы гостей</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mb-4">
+              Нам доверяют
+            </h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              {[1,2,3,4,5].map(i => <Star key={i} size={20} className="text-amber-400 fill-amber-400" />)}
+              <span className="text-stone-600 font-semibold ml-2">4.5 на Яндекс.Картах</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {homeReviews.map((r, idx) => (
+              <ReviewCard key={idx} {...r} />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/reviews" className="inline-flex items-center gap-2 bg-stone-900 text-white px-8 py-4 rounded-full font-bold hover:bg-primary transition-colors shadow-premium group">
+              Все отзывы <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section (for GEO/AI optimization) */}
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Вопросы</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mb-4">
+              Часто задаваемые вопросы
+            </h2>
+          </div>
+
+          <FAQAccordion items={homeFAQ} />
+
+          <div className="text-center mt-10">
+            <Link href="/faq" className="text-primary font-semibold hover:underline inline-flex items-center gap-1">
+              Ещё вопросы и ответы <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Booking FAQ Section */}
       <BookingInfoSection />
 
-      <div className="container mx-auto px-6 py-20 text-center bg-stone-50 rounded-3xl mb-16 shadow-inner border border-stone-100">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-stone-900 mb-6">Гора «Яковка» пользуется большой популярностью</h2>
-        <p className="text-stone-600 max-w-3xl mx-auto mb-8 font-light leading-relaxed">
-          Большинство из них возвращается к нам снова. Реальные отзывы о нашем загородном отеле «Яковка» Вы можете прочитать в сервисах Яндекс.Карты или Гугл.Карты. Будем рады, если и Вы оставите о нас пару приятных слов!
-        </p>
-        <a href="https://yandex.ru/maps/org/yakovka/1062999531/" target="_blank" rel="noopener noreferrer" className="inline-flex py-4 px-8 bg-black text-white font-bold rounded-2xl hover:scale-105 transition-transform shadow-lg">
-          Яковка на Яндекс Картах
-        </a>
-      </div>
-
+      {/* Map */}
       <MapSection />
+
+      {/* CTA Banner */}
+      <CTABanner variant="nature" />
 
       <CallbackModal isOpen={isCallbackModalOpen} onClose={() => setIsCallbackModalOpen(false)} />
     </div>

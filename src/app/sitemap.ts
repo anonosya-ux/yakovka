@@ -3,23 +3,30 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://yakovka-next.vercel.app';
 
-  // Статические роуты (Высокий приоритет)
+  // Core pages (Highest priority)
   const coreRoutes = [
     '',
     '/about',
-    '/invest',
     '/rooms',
+    '/season',
+    '/summer',
+    '/offers',
+    '/gallery',
+    '/reviews',
+    '/faq',
+    '/how-to-get',
     '/services',
     '/events',
     '/contacts',
+    '/invest',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 0.9,
+    priority: route === '' ? 1.0 : route === '/rooms' ? 0.95 : 0.9,
   }));
 
-  // Инфраструктура (Средне-высокий приоритет)
+  // Infrastructure (Medium-high priority)
   const infraRoutes = [
     '/infrastructure/restaurant',
     '/infrastructure/banya',
@@ -31,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Номера (Временно хардкод под статические роуты, после Strapi будут тянуться fetch)
+  // Room subpages
   const roomRoutes = [
     '/rooms/standart',
     '/rooms/family',
@@ -44,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Юридические документы (Низкий приоритет)
+  // Legal pages (Low priority)
   const legalRoutes = [
     '/legal/rules',
     '/legal/offer',

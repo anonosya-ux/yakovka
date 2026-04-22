@@ -2,11 +2,13 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface CTABannerProps {
   title?: string;
   subtitle?: string;
   buttonText?: string;
+  buttonLink?: string;
   onButtonClick?: () => void;
   variant?: 'primary' | 'dark' | 'nature';
 }
@@ -15,6 +17,7 @@ export default function CTABanner({
   title = 'Готовы к отдыху в горах?',
   subtitle = 'Забронируйте номер прямо сейчас и получите лучшую цену на проживание в загородном отеле «Яковка»',
   buttonText = 'Забронировать номер',
+  buttonLink,
   onButtonClick,
   variant = 'primary',
 }: CTABannerProps) {
@@ -56,6 +59,14 @@ export default function CTABanner({
           >
             {buttonText} <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
+        ) : buttonLink ? (
+          <Link
+            href={buttonLink}
+            className="inline-flex items-center justify-center bg-white text-stone-900 hover:bg-white/90 rounded-full px-10 py-7 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all group"
+          >
+            {buttonText}
+            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+          </Link>
         ) : (
           <a
             href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer"

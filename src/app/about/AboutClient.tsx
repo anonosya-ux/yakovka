@@ -82,7 +82,7 @@ export default function AboutClient() {
         title="О курорте"
         subtitle="Место, где первозданная природа Алтая встречается с безупречным комфортом, а сибирское гостеприимство становится философией."
         badge="🌿 Философия отдыха"
-        imageSrc="/images/gallery/_6-12.jpg"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Курорт Яковка"
         breadcrumbs={[{ label: 'О курорте' }]}
       />
@@ -113,7 +113,7 @@ export default function AboutClient() {
           
           <div className="w-full md:w-1/2 relative h-[500px] md:h-[650px] rounded-[3rem] overflow-hidden shadow-2xl">
             <Image 
-              src="/images/gallery/image-28-09-23-05-05.jpeg"
+              src="/optimized/Виды/Природа/Природа-03.webp"
               alt="Уютные номера" 
               fill
               className="object-cover"

@@ -67,7 +67,7 @@ export default function HowToGetPage() {
         title="Как добраться"
         subtitle="Маршруты до загородного отеля «Яковка» из Барнаула, Новосибирска и других городов"
         badge="📍 г. Белокуриха, Алтайский край"
-        imageSrc="/images/gallery/_6-12.jpg"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Дорога к отелю Яковка в Белокурихе"
         breadcrumbs={[{ label: 'Как добраться' }]}
       />

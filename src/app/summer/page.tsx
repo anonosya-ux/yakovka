@@ -66,7 +66,7 @@ export default function SummerPage() {
         title="Лето на Алтае"
         subtitle="Горные походы, экскурсии, рыбалка и релакс на свежем воздухе — летний отдых для всей семьи в Белокурихе"
         badge="☀️ Июнь — Сентябрь"
-        imageSrc="/images/gallery/image-28-09-23-05-05.jpeg"
+        imageSrc="/optimized/Виды/Природа/Природа-03.webp"
         imageAlt="Летний отдых в отеле Яковка Белокуриха"
         breadcrumbs={[{ label: 'Летний отдых' }]}
       />

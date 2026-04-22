@@ -67,7 +67,7 @@ export default function GalleryClient() {
         title="Фотогалерея"
         subtitle="Загородный отель «Яковка» в Белокурихе — красота Горного Алтая в каждом кадре"
         badge="📸 Более 80 фотографий"
-        imageSrc="/images/gallery/_6-57.jpg"
+        imageSrc="/optimized/Виды/Природа/Природа-02.webp"
         imageAlt="Фотогалерея отеля Яковка"
         breadcrumbs={[{ label: 'Галерея' }]}
       />

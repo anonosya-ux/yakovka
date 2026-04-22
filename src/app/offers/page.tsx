@@ -114,7 +114,7 @@ export default function OffersPage() {
         title="Спецпредложения"
         subtitle="Актуальные акции и выгодные пакеты для отдыха в загородном отеле «Яковка» — Белокуриха, Алтай"
         badge="🔥 Горячие предложения"
-        imageSrc="/images/gallery/image-28-09-23-05-16-4.jpeg"
+        imageSrc="/optimized/Виды/Фасады/Фасады-02.webp"
         imageAlt="Спецпредложения отеля Яковка в Белокурихе"
         breadcrumbs={[{ label: 'Спецпредложения' }]}
       />

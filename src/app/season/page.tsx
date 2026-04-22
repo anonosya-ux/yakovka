@@ -56,7 +56,7 @@ export default function SeasonPage() {
         title="Горнолыжный сезон"
         subtitle="Трассы у подножия горы Яковка — катание на лыжах и сноуборде в Белокурихе для всей семьи"
         badge="❄️ Сезон: декабрь — март"
-        imageSrc="/images/gallery/_6-12.jpg"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Горнолыжные трассы горы Яковка в Белокурихе"
         breadcrumbs={[{ label: 'Горнолыжный сезон' }]}
       />

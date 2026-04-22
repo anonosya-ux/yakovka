@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: 'Загородный отель у подножия горы Яковка. Горнолыжные трассы, ресторан, баня, комфортные номера. Семейный отдых на Алтае.',
     images: [
       {
-        url: '/images/gallery/_6-12.jpg',
+        url: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp',
         width: 1200,
         height: 630,
         alt: 'Загородный отель «Яковка» в Белокурихе — вид на горы Алтая',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Загородный отель «Яковка» — Белокуриха, Алтай',
     description: 'Горнолыжный курорт и семейный отдых у подножия горы. Номера от 5 800 ₽.',
-    images: ['/images/gallery/_6-12.jpg'],
+    images: ['/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp'],
   },
   alternates: {
     canonical: 'https://yakovka.ru',
@@ -122,8 +122,8 @@ export default function RootLayout({
                   { "@type": "LocationFeatureSpecification", "name": "Детская площадка", "value": true }
                 ],
                 "image": [
-                  "https://yakovka.ru/images/gallery/_6-12.jpg",
-                  "https://yakovka.ru/images/gallery/image-14-03-24-11-18.jpeg"
+                  "https://yakovka.ru/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp",
+                  "https://yakovka.ru/optimized/Виды/Природа/Природа-01.webp"
                 ],
                 "sameAs": [
                   "https://yandex.ru/maps/org/yakovka/1062999531/"

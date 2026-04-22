@@ -67,7 +67,7 @@ export default function ReviewsPage() {
         title="Отзывы гостей"
         subtitle="Узнайте, почему наши гости возвращаются снова и снова — реальные отзывы о загородном отеле «Яковка»"
         badge="⭐ 4.5 на Яндекс.Картах"
-        imageSrc="/images/gallery/image-28-09-23-05-05.jpeg"
+        imageSrc="/optimized/Виды/Природа/Природа-03.webp"
         imageAlt="Загородный отель Яковка — отзывы гостей"
         breadcrumbs={[{ label: 'Отзывы' }]}
       />

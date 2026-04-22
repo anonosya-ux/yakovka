@@ -51,7 +51,7 @@ export default function ContactsClient() {
         title="Контакты"
         subtitle="Свяжитесь с нами для бронирования или по любым вопросам. Мы находимся у подножия горы Яковка и всегда рады гостям!"
         badge="📞 На связи 24/7"
-        imageSrc="/images/gallery/image-28-09-23-05-16-4.jpeg"
+        imageSrc="/optimized/Виды/Фасады/Фасады-02.webp"
         imageAlt="Контакты отеля Яковка"
         breadcrumbs={[{ label: 'Контакты' }]}
       />

@@ -47,12 +47,12 @@ export default function ServicesSection() {
   }, []);
 
   const galleryImages = [
-    '/images/gallery/IMG_4547-30-09-20-06-14.JPG',
-    '/images/gallery/image-14-03-24-11-18.jpeg',
-    '/images/gallery/DSC_6043.jpg',
-    '/images/gallery/Красивые Девычки (1).jpg',
-    '/images/gallery/FullSizeRender (10).jpeg',
-    '/images/gallery/_6-59.jpg',
+    '/optimized/Виды/Фасады/Фасады-01.webp',
+    '/optimized/Виды/Природа/Природа-01.webp',
+    '/optimized/Виды/Кухня/Кухня-01.webp',
+    '/optimized/Номера/Семейный+/Семейный+-01.webp',
+    '/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp',
+    '/optimized/Виды/Бассейн/Бассейн-01.webp',
   ];
 
   return (
@@ -76,7 +76,7 @@ export default function ServicesSection() {
           <div className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-default">
             <div className="absolute inset-0 z-0">
               <Image 
-                src="/images/gallery/winter_season.png" 
+                src="/optimized/Мероприятия/Горные лыжи/Горные лыжи-04.webp" 
                 alt="Зимний сезон" 
                 fill 
                 className="bento-img object-cover scale-110 object-center" 

@@ -26,7 +26,7 @@ const premiumExcursions = [
     priceAdult: '4 500 ₽',
     priceChild: '4 000 ₽',
     note: 'Цена при наборе группы от 4 чел. Стоимость для другого количества — 18 000 руб. за весь автомобиль.',
-    img: '/images/gallery/image-28-09-23-05-16-4.jpeg',
+    img: '/optimized/Виды/Фасады/Фасады-02.webp',
     icon: Route
   },
   {
@@ -44,7 +44,7 @@ const premiumExcursions = [
     priceAdult: '5 000 ₽',
     priceChild: '4 700 ₽',
     note: 'Цена от 4 чел. Индивидуально — 20 000 руб./авто. Внимание: доставка до водопада (~1000 руб.) и питание оплачиваются отдельно.',
-    img: '/images/gallery/_6-12.jpg',
+    img: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp',
     icon: Mountain
   },
   {
@@ -62,15 +62,15 @@ const premiumExcursions = [
     priceAdult: '2 000 ₽',
     priceChild: '1 500 ₽',
     note: 'Цена от 4 чел. Индивидуально — 8 000 руб./авто. Внимание: вход в Андреевскую слободу (150 руб.) и канатная дорога (700 руб.) оплачиваются отдельно.',
-    img: '/images/gallery/_6-59.jpg',
+    img: '/optimized/Виды/Бассейн/Бассейн-01.webp',
     icon: Map
   }
 ];
 
 const additionalExcursions = [
-  { id: 4, title: 'Скала «Четыре брата»', duration: '3-4 часа', level: 'Средний', category: 'Пешие', icon: TreePine, img: '/images/gallery/image-14-03-24-11-18.jpeg' },
-  { id: 5, title: 'Конные прогулки', duration: 'от 1 часа', level: 'Для всех', category: 'Конные', icon: Users, img: '/images/gallery/image-28-09-23-05-05.jpeg' },
-  { id: 6, title: 'Алтайский Аил (Этно-тур)', duration: '3-4 часа', level: 'Легкий', category: 'Этно', icon: Users, img: '/images/gallery/FullSizeRender (10).jpeg' },
+  { id: 4, title: 'Скала «Четыре брата»', duration: '3-4 часа', level: 'Средний', category: 'Пешие', icon: TreePine, img: '/optimized/Виды/Природа/Природа-01.webp' },
+  { id: 5, title: 'Конные прогулки', duration: 'от 1 часа', level: 'Для всех', category: 'Конные', icon: Users, img: '/optimized/Виды/Природа/Природа-03.webp' },
+  { id: 6, title: 'Алтайский Аил (Этно-тур)', duration: '3-4 часа', level: 'Легкий', category: 'Этно', icon: Users, img: '/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp' },
 ];
 
 export default function ExcursionsPage() {
@@ -119,7 +119,7 @@ export default function ExcursionsPage() {
         title="Авторские Экскурсии"
         subtitle="Откройте для себя настоящий Алтай. Эксклюзивные маршруты в комфортабельных мини-группах с выездом прямо от дверей отеля."
         badge="⛰️ Познакомьтесь с Алтаем"
-        imageSrc="/images/gallery/_6-12.jpg"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Экскурсии отеля Яковка"
         breadcrumbs={[{ label: 'Экскурсии' }]}
       />
@@ -172,7 +172,7 @@ export default function ExcursionsPage() {
               <div className="absolute inset-0 bg-gradient-to-tr from-stone-200 to-stone-50 rounded-[3rem] transform rotate-3" />
               <div className="absolute inset-0 rounded-[3rem] overflow-hidden shadow-2xl transform -rotate-2 transition-transform hover:rotate-0 duration-500">
                 <Image
-                  src="/images/gallery/image-28-09-23-05-16-4.jpeg"
+                  src="/optimized/Виды/Фасады/Фасады-02.webp"
                   alt="Автомобиль для экскурсий на фоне гор Алтая"
                   fill
                   className="object-cover"

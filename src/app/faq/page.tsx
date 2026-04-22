@@ -97,7 +97,7 @@ export default function FAQPage() {
         title="Вопросы и ответы"
         subtitle="Всё, что нужно знать перед отдыхом в загородном отеле «Яковка» в Белокурихе"
         badge="FAQ"
-        imageSrc="/images/gallery/_6-12.jpg"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Загородный отель Яковка — часто задаваемые вопросы"
         breadcrumbs={[{ label: 'FAQ' }]}
       />

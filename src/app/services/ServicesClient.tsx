@@ -107,7 +107,7 @@ export default function ServicesClient() {
         title="Услуги и сервис"
         subtitle="Мы позаботились обо всем, чтобы ваш отдых был беззаботным. Изучите инфраструктуру нашего загородного комплекса."
         badge="✨ Премиальный комфорт"
-        imageSrc="/images/gallery/_6-59.jpg"
+        imageSrc="/optimized/Виды/Бассейн/Бассейн-01.webp"
         imageAlt="Услуги отеля Яковка"
         breadcrumbs={[{ label: 'Услуги' }]}
       />

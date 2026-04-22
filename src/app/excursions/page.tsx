@@ -122,7 +122,6 @@ export default function ExcursionsPage() {
         imageSrc="/images/gallery/_6-12.jpg"
         imageAlt="Экскурсии отеля Яковка"
         breadcrumbs={[{ label: 'Экскурсии' }]}
-        variant="primary"
       />
 
       <section className="py-20 md:py-28">

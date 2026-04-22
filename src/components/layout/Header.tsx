@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MobileMenu } from '@/components/MobileMenu';
+import { YakovkaLogo } from '@/components/Logo';
 
 const navLinks = [
   { href: '/rooms', label: 'Номера и цены' },
@@ -14,12 +15,12 @@ const navLinks = [
     href: '/infrastructure/ski',
     label: 'Отдых',
     children: [
-      { href: '/season', label: '❄️ Горнолыжный сезон' },
-      { href: '/summer', label: '☀️ Летний отдых' },
-      { href: '/infrastructure/ski', label: '⛷️ Трассы и прокат' },
-      { href: '/infrastructure/restaurant', label: '🍽️ Ресторан' },
-      { href: '/infrastructure/banya', label: '🔥 Русская баня' },
-      { href: '/gallery', label: '📸 Фотогалерея' },
+      { href: '/winter', label: 'Зимний отдых' },
+      { href: '/summer', label: 'Летний отдых' },
+      { href: '/infrastructure/ski', label: 'Трассы и прокат' },
+      { href: '/infrastructure/restaurant', label: 'Заказное меню' },
+      { href: '/infrastructure/banya', label: 'Русская баня' },
+      { href: '/gallery', label: 'Фотогалерея' },
     ],
   },
   { href: '/offers', label: 'Акции' },
@@ -60,14 +61,8 @@ export function Header() {
           : 'bg-white/60 backdrop-blur-xl border-b border-white/40 shadow-[0_4px_30px_rgba(41,37,36,0.05)]'
       } text-stone-800`}>
         <div className="container mx-auto flex h-[72px] items-center justify-between px-6">
-          <Link href="/" className="flex items-center gap-2 group">
-            <Image 
-              src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Logo-yakovka-1.webp" 
-              alt="Яковка Логотип" 
-              width={54} 
-              height={54}
-              className="object-cover rounded-full mix-blend-multiply group-hover:scale-105 transition-transform"
-            />
+          <Link href="/" className="flex items-center gap-3 group">
+            <YakovkaLogo className="w-[54px] h-[54px] group-hover:scale-105 transition-transform" />
             <span className="font-heading font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-stone-900 to-stone-600 hidden md:inline-block">Яковка</span>
           </Link>
 
@@ -117,13 +112,22 @@ export function Header() {
 
           <div className="flex items-center gap-3">
             {/* Phone number (desktop) */}
-            <a 
-              href="tel:+79609552100" 
-              className="hidden xl:flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-primary transition-colors"
-            >
-              <Phone size={16} />
-              +7 (960) 955-21-00
-            </a>
+            {/* Phone numbers (desktop) */}
+            <div className="hidden xl:flex flex-col items-end gap-0.5">
+              <a 
+                href="tel:+79609552100" 
+                className="flex items-center gap-1.5 text-sm font-bold text-stone-700 hover:text-primary transition-colors"
+              >
+                <Phone size={14} className="text-primary" />
+                +7 (960) 955-21-00
+              </a>
+              <a 
+                href="tel:+79090975209" 
+                className="flex items-center gap-1.5 text-[13px] font-medium text-stone-500 hover:text-primary transition-colors"
+              >
+                +7 (909) 097-52-09
+              </a>
+            </div>
             
             <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center bg-primary/95 backdrop-blur-md hover:bg-primary text-white shadow-[0_10px_20px_rgba(34,85,34,0.2)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.3)] rounded-full px-7 py-5 font-semibold transition-all hover:-translate-y-0.5">
               Забронировать

@@ -26,7 +26,7 @@ const rooms = [
     title: 'Стандарт',
     size: 'от 12 м²',
     guests: 'до 2 гостей',
-    price: 'от 3000 ₽',
+    price: 'от 5 800 ₽',
     img: '/images/gallery/image-14-03-24-11-18.jpeg',
     features: ['Двуспальная кровать', 'Wi-Fi', 'Телевизор', 'Душ'],
   },
@@ -34,7 +34,7 @@ const rooms = [
     title: 'Стандарт +',
     size: 'от 16 м²',
     guests: 'до 3 гостей',
-    price: 'от 4000 ₽',
+    price: 'от 6 800 ₽',
     img: '/images/gallery/image-28-09-23-05-16-4.jpeg',
     features: ['Двуспальная кровать', 'Диван', 'Телевизор', 'Душ'],
   },
@@ -42,7 +42,7 @@ const rooms = [
     title: 'Семейный',
     size: 'от 20 м²',
     guests: 'до 4 гостей',
-    price: 'от 5500 ₽',
+    price: 'от 5 800 ₽',
     img: '/images/gallery/image-28-09-23-05-05.jpeg',
     features: ['Двуспальная кровать', 'Раскладной диван', 'Холодильник', 'Завтрак включен'],
   },
@@ -50,7 +50,7 @@ const rooms = [
     title: 'Семейный ++',
     size: 'от 30 м²',
     guests: 'до 6 гостей',
-    price: 'от 7500 ₽',
+    price: 'от 9 500 ₽',
     img: '/images/gallery/FullSizeRender (10).jpeg',
     features: ['2 Кондиционера', '2 Телевизора', 'Теплые полы', 'Завтрак включен'],
   },
@@ -152,12 +152,13 @@ export default function Home() {
       <section ref={heroRef} className="relative min-h-[100svh] w-full flex items-center justify-center overflow-hidden">
         
         <div className="absolute inset-0 z-0 hero-bg bg-stone-900 origin-center scale-110">
-          <Image
-            src="/images/gallery/_6-12.jpg"
-            alt="Загородный отель Яковка — горнолыжный курорт в Белокурихе, Алтай"
-            fill
+          <video
+            src="/videos/hero-yakovka.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
-            priority
           />
           <div className="hero-overlay absolute inset-0 bg-stone-950/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />

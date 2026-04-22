@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Montserrat, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from '@/components/layout/Header';
@@ -7,6 +8,7 @@ import SmoothScroll from '@/components/ui/SmoothScroll';
 import CustomCursor from '@/components/ui/CustomCursor';
 import FloatingCTA from '@/components/FloatingCTA';
 import { KonturWidgetMobileButton } from '@/components/KonturWidget';
+import { YandexMetrica } from '@/components/YandexMetrica';
 
 const montserrat = Montserrat({
   variable: "--font-heading",
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     default: 'Загородный отель «Яковка» — горнолыжный курорт в Белокурихе, Алтай',
     template: '%s | Отель «Яковка» — Белокуриха, Алтай',
   },
-  description: 'Загородный отель «Яковка» у подножия горы — горнолыжный курорт в Белокурихе. Комфортные номера от 3000 ₽, ресторан, баня, 2 горнолыжные трассы. Семейный отдых на Алтае круглый год.',
+  description: 'Загородный отель «Яковка» у подножия горы — горнолыжный курорт в Белокурихе. Комфортные номера от 5 800 ₽, ресторан, баня, 2 горнолыжные трассы. Семейный отдых на Алтае круглый год.',
   keywords: ['отель Белокуриха', 'горнолыжный курорт Алтай', 'Яковка', 'отдых в горах Алтая', 'загородный отель', 'горнолыжный сезон Белокуриха', 'семейный отдых Алтай', 'отель у подножия горы'],
   openGraph: {
     type: 'website',
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Загородный отель «Яковка» — Белокуриха, Алтай',
-    description: 'Горнолыжный курорт и семейный отдых у подножия горы. Номера от 3000 ₽.',
+    description: 'Горнолыжный курорт и семейный отдых у подножия горы. Номера от 5 800 ₽.',
     images: ['/images/gallery/_6-12.jpg'],
   },
   alternates: {
@@ -145,6 +147,9 @@ export default function RootLayout({
             }}
           />
 
+          <Suspense fallback={null}>
+            <YandexMetrica ymid="YOUR_YANDEX_METRICA_ID" />
+          </Suspense>
           <Header />
           <main className="min-h-screen pt-[72px]">
             {children}

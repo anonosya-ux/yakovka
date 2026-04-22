@@ -8,53 +8,49 @@ import CTABanner from '@/components/CTABanner';
 const filters = ['Все', 'Зима', 'Лето', 'Номера', 'Территория', 'Природа'];
 
 const images = [
-  // Зима / горы
-  { src: '/images/gallery/_6-12.jpg', alt: 'Панорама зимних гор Белокурихи', category: 'Зима', aspect: 'tall' },
-  { src: '/images/gallery/_6-57.jpg', alt: 'Снежные вершины Алтая', category: 'Зима', aspect: 'wide' },
-  { src: '/images/gallery/_6-14.jpg', alt: 'Горнолыжная трасса горы Яковка', category: 'Зима', aspect: 'square' },
-  { src: '/images/gallery/_6-78.jpg', alt: 'Зимний лес у подножия горы', category: 'Зима', aspect: 'tall' },
-  { src: '/images/gallery/_6-85.jpg', alt: 'Заснеженные горы Белокурихи', category: 'Зима', aspect: 'wide' },
-  { src: '/images/gallery/_6-90.jpg', alt: 'Зимний пейзаж курорта', category: 'Зима', aspect: 'square' },
-  { src: '/images/gallery/IMG_20230103_165134.jpg', alt: 'Новогодний отдых в горах', category: 'Зима', aspect: 'wide' },
+  // Зима / Горные лыжи
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-01.webp', alt: 'Горнолыжный спуск Яковка', category: 'Зима', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp', alt: 'Катание на лыжах', category: 'Зима', aspect: 'square' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-03.webp', alt: 'Склоны Белокурихи', category: 'Зима', aspect: 'tall' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-04.webp', alt: 'Подъемник', category: 'Зима', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-05.webp', alt: 'Зимние пейзажи', category: 'Зима', aspect: 'square' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-06.webp', alt: 'Сноубордисты', category: 'Зима', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-07.webp', alt: 'Горнолыжка Алтай', category: 'Зима', aspect: 'tall' },
+
+  // Лето
+  { src: '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-01.webp', alt: 'Прогулки на лошадях', category: 'Лето', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-02.webp', alt: 'Конные прогулки Алтай', category: 'Лето', aspect: 'square' },
+  { src: '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-03.webp', alt: 'Лето в Белокурихе', category: 'Лето', aspect: 'tall' },
+  { src: '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-04.webp', alt: 'Верховая езда', category: 'Лето', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-05.webp', alt: 'Отдых на природе', category: 'Лето', aspect: 'square' },
 
   // Номера
-  { src: '/images/gallery/image-14-03-24-11-18.jpeg', alt: 'Номер Стандарт — уютный интерьер', category: 'Номера', aspect: 'wide' },
-  { src: '/images/gallery/image-28-09-23-05-16-4.jpeg', alt: 'Номер Стандарт+ — просторная комната', category: 'Номера', aspect: 'square' },
-  { src: '/images/gallery/image-28-09-23-05-05.jpeg', alt: 'Семейный номер с двумя кроватями', category: 'Номера', aspect: 'wide' },
-  { src: '/images/gallery/FullSizeRender (10).jpeg', alt: 'Семейный++ — теплые полы', category: 'Номера', aspect: 'tall' },
-  { src: '/images/gallery/FullSizeRender (11).jpeg', alt: 'Интерьер семейного номера', category: 'Номера', aspect: 'square' },
-  { src: '/images/gallery/FullSizeRender (3).jpeg', alt: 'Спальня с видом на горы', category: 'Номера', aspect: 'wide' },
-  { src: '/images/gallery/FullSizeRender (5).jpeg', alt: 'Кровать и гладильный столик', category: 'Номера', aspect: 'tall' },
-  { src: '/images/gallery/FullSizeRender (7).jpeg', alt: 'Ванная комната в номере', category: 'Номера', aspect: 'square' },
-  { src: '/images/gallery/FullSizeRender (8).jpeg', alt: 'Гостиная зона в семейном номере', category: 'Номера', aspect: 'wide' },
+  { src: '/optimized/Номера/Семейный/Семейный-01.webp', alt: 'Семейный номер', category: 'Номера', aspect: 'wide' },
+  { src: '/optimized/Номера/Семейный+/Семейный+-01.webp', alt: 'Семейный + номер', category: 'Номера', aspect: 'square' },
+  { src: '/optimized/Номера/Семейный+/Семейный+-02.webp', alt: 'Интерьер семейного', category: 'Номера', aspect: 'wide' },
+  { src: '/optimized/Номера/Семейный++/Семейный++-01.webp', alt: 'Коттедж (Семейный ++)', category: 'Номера', aspect: 'tall' },
+  { src: '/optimized/Номера/Стандарт/Стандарт-01.webp', alt: 'Стандартный номер', category: 'Номера', aspect: 'wide' },
+  { src: '/optimized/Номера/Стандарт+/Стандарт+-01.webp', alt: 'Стандарт+', category: 'Номера', aspect: 'square' },
 
-  // Территория
-  { src: '/images/gallery/DSC06763.jpg', alt: 'Территория отеля — фасад здания', category: 'Территория', aspect: 'wide' },
-  { src: '/images/gallery/DSC06766.jpg', alt: 'Вход в отель Яковка', category: 'Территория', aspect: 'square' },
-  { src: '/images/gallery/DSC06775.jpg', alt: 'Парковая зона отеля', category: 'Территория', aspect: 'tall' },
-  { src: '/images/gallery/DSC06801.jpg', alt: 'Детская площадка на территории', category: 'Территория', aspect: 'wide' },
-  { src: '/images/gallery/DSC07162.jpg', alt: 'Зона барбекю и мангал', category: 'Территория', aspect: 'square' },
-  { src: '/images/gallery/DSC07186.jpg', alt: 'Беседка для отдыха', category: 'Территория', aspect: 'wide' },
-  { src: '/images/gallery/IMG_4498.JPG', alt: 'Территория зимой — освещение', category: 'Территория', aspect: 'tall' },
-  { src: '/images/gallery/IMG_4532.JPG', alt: 'Корпус отеля зимой', category: 'Территория', aspect: 'square' },
-
-  // Лето / Природа
-  { src: '/images/gallery/DSC07904.jpg', alt: 'Летний Алтай — зелёные горы', category: 'Лето', aspect: 'wide' },
-  { src: '/images/gallery/DSC07916.jpg', alt: 'Горная река Белокурихи', category: 'Лето', aspect: 'tall' },
-  { src: '/images/gallery/DSC08301.jpg', alt: 'Панорама летних гор', category: 'Лето', aspect: 'square' },
-  { src: '/images/gallery/DSC_5250.jpg', alt: 'Алтайские цветы и луга', category: 'Лето', aspect: 'wide' },
-  { src: '/images/gallery/DSC_6022.jpg', alt: 'Горная тропа — пешие маршруты', category: 'Лето', aspect: 'tall' },
-  { src: '/images/gallery/DSC_6043.jpg', alt: 'Лесная дорога к горе', category: 'Лето', aspect: 'wide' },
+  // Территория (Бассейн, Кухня, Фасады)
+  { src: '/optimized/Виды/Бассейн/Бассейн-01.webp', alt: 'Летний бассейн отеля', category: 'Территория', aspect: 'wide' },
+  { src: '/optimized/Виды/Бассейн/Бассейн-02.webp', alt: 'Зона отдыха у бассейна', category: 'Территория', aspect: 'tall' },
+  { src: '/optimized/Виды/Бассейн/Бассейн-03.webp', alt: 'Подогреваемый бассейн', category: 'Территория', aspect: 'square' },
+  { src: '/optimized/Виды/Бассейн/Бассейн-04.webp', alt: 'Шезлонги', category: 'Территория', aspect: 'wide' },
+  { src: '/optimized/Виды/Фасады/Фасады-01.webp', alt: 'Фасад отеля Яковка', category: 'Территория', aspect: 'square' },
+  { src: '/optimized/Виды/Фасады/Фасады-02.webp', alt: 'Отель у подножия горы', category: 'Территория', aspect: 'tall' },
+  { src: '/optimized/Виды/Фасады/Фасады-03.webp', alt: 'Территория базы отдыха', category: 'Территория', aspect: 'wide' },
+  { src: '/optimized/Виды/Фасады/Фасады-04.webp', alt: 'Домики для отдыха', category: 'Территория', aspect: 'square' },
+  { src: '/optimized/Виды/Кухня/Кухня-01.webp', alt: 'Заказное меню', category: 'Территория', aspect: 'tall' },
+  { src: '/optimized/Виды/Кухня/Кухня-02.webp', alt: 'Кафе и кухня', category: 'Территория', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp', alt: 'Свадьбы и банкеты', category: 'Территория', aspect: 'wide' },
+  { src: '/optimized/Мероприятия/Свадьбы/Свадьбы-02.webp', alt: 'Мероприятия в отеле', category: 'Территория', aspect: 'square' },
 
   // Природа
-  { src: '/images/gallery/_6-1.jpg', alt: 'Восход в горах Алтая', category: 'Природа', aspect: 'wide' },
-  { src: '/images/gallery/_6-5.jpg', alt: 'Закат над Чергинским хребтом', category: 'Природа', aspect: 'tall' },
-  { src: '/images/gallery/_6-59.jpg', alt: 'Туман в горной долине', category: 'Природа', aspect: 'square' },
-  { src: '/images/gallery/_ (103).jpg', alt: 'Панорама горного Алтая', category: 'Природа', aspect: 'wide' },
-  { src: '/images/gallery/_ (83).jpg', alt: 'Хвойный лес Белокурихи', category: 'Природа', aspect: 'tall' },
-  { src: '/images/gallery/IMG_7822.jpg', alt: 'Вид на долину с горы Яковка', category: 'Природа', aspect: 'wide' },
-  { src: '/images/gallery/DSC_9733.JPG', alt: 'Горная панорама на рассвете', category: 'Природа', aspect: 'square' },
-  { src: '/images/gallery/DSC_0054.JPG', alt: 'Дикая природа Горного Алтая', category: 'Природа', aspect: 'tall' },
+  { src: '/optimized/Виды/Природа/Природа-01.webp', alt: 'Горы Алтая', category: 'Природа', aspect: 'tall' },
+  { src: '/optimized/Виды/Природа/Природа-02.webp', alt: 'Лесной пейзаж', category: 'Природа', aspect: 'wide' },
+  { src: '/optimized/Виды/Женщины/Женщины-01.webp', alt: 'Отдых и релакс', category: 'Природа', aspect: 'square' },
+  { src: '/optimized/Виды/Женщины/Женщины-02.webp', alt: 'Гармония с природой', category: 'Природа', aspect: 'wide' },
 ];
 
 export default function GalleryPage() {

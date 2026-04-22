@@ -58,8 +58,9 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         <ul ref={linksRef} className="space-y-6 text-[32px] font-extrabold tracking-tight text-slate-900" aria-label="Mobile navigation">
           {[
             { href: '/rooms', label: 'Номера и цены' },
-            { href: '/infrastructure/ski', label: 'Горнолыжный сезон' },
-            { href: '/events', label: 'Мероприятия' },
+            { href: '/winter', label: 'Зимний отдых' },
+            { href: '/summer', label: 'Летний отдых' },
+            { href: '/gallery', label: 'Фотогалерея' },
             { href: '/contacts', label: 'Контакты' }
           ].map(link => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -86,9 +87,19 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
 
       <div className="px-8 pb-12 opacity-80">
         <div className="flex flex-col gap-4 text-slate-700 font-medium">
-          <div className="flex items-center gap-3">
-            <Phone className="text-primary" size={20} />
-            <a href="tel:+79609552100">+7 (960) 955-21-00</a>
+          <div className="flex flex-col gap-2 mb-3">
+            <div className="flex items-center gap-3">
+              <Phone className="text-primary" size={20} />
+              <a href="tel:+79609552100" className="text-lg">+7 (960) 955-21-00</a>
+            </div>
+            <div className="flex items-center gap-3 mt-1">
+              <Phone className="text-stone-400" size={20} />
+              <a href="tel:+79090975209" className="text-lg">+7 (909) 097-52-09</a>
+            </div>
+            <div className="flex items-center gap-3 mt-1">
+              <Mail className="text-primary" size={20} />
+              <a href="mailto:valynkina.44@mail.ru" className="text-lg">valynkina.44@mail.ru</a>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <MapPin className="text-primary" size={20} />

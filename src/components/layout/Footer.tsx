@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin, Mail } from 'lucide-react';
+import { YakovkaLogo } from '@/components/Logo';
 
 export function Footer() {
   return (
@@ -13,13 +14,7 @@ export function Footer() {
       <div className="container relative z-10 mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-10">
         {/* Brand Column */}
         <div className="lg:col-span-2">
-          <Image 
-            src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Logo-yakovka-1.webp" 
-            alt="Яковка Логотип" 
-            width={72} 
-            height={72}
-            className="mb-6 opacity-90 brightness-200 grayscale"
-          />
+          <YakovkaLogo className="w-[72px] h-[72px] mb-6 opacity-90" />
           <p className="text-stone-400 text-sm leading-relaxed max-w-xs mb-6">
             Загородный отель «Яковка» — семейный горнолыжный курорт у подножия горы в Белокурихе, Алтайский край.
           </p>
@@ -31,6 +26,10 @@ export function Footer() {
             <a href="tel:+79090975209" className="flex items-center gap-3 text-lg text-stone-300 hover:text-primary transition-colors">
               <Phone size={16} className="text-stone-500" />
               +7 (909) 097-52-09
+            </a>
+            <a href="mailto:valynkina.44@mail.ru" className="flex items-center gap-3 text-lg text-stone-300 hover:text-primary transition-colors mt-2">
+              <Mail size={16} className="text-stone-500" />
+              valynkina.44@mail.ru
             </a>
           </div>
           <div className="flex items-start gap-3 mt-4 text-stone-400 text-sm">
@@ -61,6 +60,7 @@ export function Footer() {
             <li><Link href="/infrastructure/banya" className="hover:text-white transition-colors">Русская баня</Link></li>
             <li><Link href="/infrastructure/ski" className="hover:text-white transition-colors">Горнолыжные трассы</Link></li>
             <li><Link href="/services" className="hover:text-white transition-colors">Доп. услуги</Link></li>
+            <li><Link href="/excursions" className="hover:text-white transition-colors">Экскурсии</Link></li>
             <li><Link href="/offers" className="hover:text-white transition-colors">Спецпредложения</Link></li>
             <li><Link href="/events" className="hover:text-white transition-colors">Мероприятия</Link></li>
           </ul>

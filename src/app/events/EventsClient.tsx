@@ -102,6 +102,13 @@ export default function EventsPage() {
                   <p className="text-white/60">Вместимость до 50 гостей. Уютная атмосфера и меню от шеф-повара.</p>
                 </div>
               </div>
+              <div className="flex gap-4">
+                <div className="mt-1"><PartyPopper className="text-amber-500" size={24} /></div>
+                <div>
+                  <h4 className="font-heading font-bold text-xl mb-1">Зеленая зона для регистраций</h4>
+                  <p className="text-white/60">Живописная лужайка на фоне хвойного леса, идеально для выездной регистрации.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

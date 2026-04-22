@@ -47,6 +47,40 @@ export default function ContactsPage() {
            </div>
         </div>
 
+        {/* Route Block */}
+        <div className="mt-16 bg-white p-10 md:p-12 rounded-[3xl] shadow-sm border border-stone-100 relative overflow-hidden">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-[80px] -mr-20 -mt-20 pointer-events-none" />
+           <h2 className="text-3xl font-bold text-stone-900 mb-8 border-b border-stone-100 pb-6">Как добраться</h2>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+             <div>
+               <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-stone-800">
+                 <span className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 text-sm">🚗</span>
+                 На автомобиле
+               </h3>
+               <p className="text-stone-600 leading-relaxed">
+                 Двигайтесь по улице Академика Мясникова до поворота на улицу Угрюмова. Далее следуйте вверх по указателям отеля «Яковка». 
+                 <br/><br/>
+                 <strong className="text-amber-600 font-bold flex items-center gap-2 mt-2">
+                   ⚠️ Важно знать о дороге:
+                 </strong>
+                 <span className="text-sm mt-1 block">Последний участок пути (около 500 метров) — это крутой подъем в гору по гравийной дороге. В зависимости от погодных условий, в зимнее время для проезда может потребоваться уверенный навык вождения или полноприводный автомобиль. Мы всегда готовы организовать для вас трансфер от нижней площадки.</span>
+               </p>
+             </div>
+             <div>
+               <h3 className="flex items-center gap-2 font-bold text-lg mb-4 text-stone-800">
+                 <span className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 text-sm">🚌</span>
+                 Общественным транспортом
+               </h3>
+               <p className="text-stone-600 leading-relaxed mb-4">
+                 До автовокзала г. Белокуриха регулярно ходят комфортабельные межгородские автобусы из Новосибирска (около 7 ч.), Барнаула (4 ч.), Бийска (1.5 ч.).
+               </p>
+               <p className="text-stone-600 leading-relaxed">
+                 По прибытии на автовокзал Белокурихи рекомендуем воспользоваться местным такси (Яндекс.Такси/Местные службы) — время в пути до подножия горы Яковка составит примерно 10 минут.
+               </p>
+             </div>
+           </div>
+        </div>
+
         {/* Company Requisites Block */}
         <div className="mt-16 bg-slate-900 text-slate-300 p-10 md:p-16 rounded-[3rem] shadow-xl">
            <h2 className="text-3xl font-bold text-white mb-8">Реквизиты</h2>

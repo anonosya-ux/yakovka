@@ -151,17 +151,17 @@ export default function Home() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-[100svh] w-full flex items-center justify-center overflow-hidden">
         
-        <div className="absolute inset-0 z-0 hero-bg bg-stone-900 origin-center scale-110">
+        <div className="absolute inset-0 z-0 hero-bg origin-center scale-110">
           <video
             src="/videos/hero-yakovka.mp4"
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover object-center opacity-80 mix-blend-overlay"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="hero-overlay absolute inset-0 bg-stone-950/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/20" />
+          <div className="hero-overlay absolute inset-0 bg-stone-950/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/10" />
         </div>
 
         <div className="container relative z-10 mx-auto px-4 text-center text-white pb-12 pt-32 flex flex-col items-center justify-center h-full">

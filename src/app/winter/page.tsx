@@ -32,9 +32,11 @@ export default function WinterPage() {
     for (let i = 0; i < totalFrames; i++) {
         const img = new Image();
         img.src = currentFrame(i);
-        img.onload = () => {
-            setLoadedFrames((prev) => prev + 1);
-        };
+        
+        const markLoaded = () => setLoadedFrames((prev) => prev + 1);
+        img.onload = markLoaded;
+        img.onerror = markLoaded;
+        
         images.push(img);
     }
 

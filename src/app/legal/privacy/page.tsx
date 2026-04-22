@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Политика конфиденциальности — Отель «Яковка»',
+  description: 'Политика конфиденциальности загородного отеля «Яковка» — правила обработки и защиты персональных данных пользователей.',
+  alternates: { canonical: '/legal/privacy' },
+};
 
 export default function PrivacyPage() {
   return (

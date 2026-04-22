@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import Link from 'next/link';
 import gsap from 'gsap';
 
 interface CallbackModalProps {
@@ -12,6 +13,8 @@ interface CallbackModalProps {
 
 export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   const [isBrowser, setIsBrowser] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -45,11 +48,37 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
     };
   }, [isOpen, onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Dummy submit logic for UI
-    alert('Заявка успешно отправлена! Мы свяжемся с вами в течение 15 минут.');
-    onClose();
+    setIsSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+
+    try {
+      const res = await fetch('/api/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Ошибка отправки');
+      }
+
+      setIsSuccess(true);
+      
+      // Автозакрытие через 4 секунды
+      setTimeout(() => {
+        if (isOpen) onClose();
+        setTimeout(() => setIsSuccess(false), 500);
+      }, 4000);
+    } catch (err) {
+      alert('Не удалось отправить заявку. Пожалуйста, позвоните нам: +7 (960) 955-21-00');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isBrowser || !isOpen) return null;
@@ -58,7 +87,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-overlay overflow-y-auto">
       {/* Background Dim */}
       <div 
-        className="absolute inset-0 bg-slate-900/40"
+        className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm"
         onClick={onClose}
         aria-label="Закрыть модальное окно"
       />
@@ -72,52 +101,89 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
       >
         <button 
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition-colors focus:ring-2 focus:ring-blue-500 outline-none"
+          className="absolute top-6 right-6 p-2 rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-800 transition-colors focus:ring-2 focus:ring-primary outline-none"
           aria-label="Закрыть"
         >
           <X size={20} />
         </button>
 
-        <h2 id="modal-title" className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Заказать звонок</h2>
-        <p className="text-slate-500 text-sm mb-8">
-          Оставьте свои контакты, и администратор комплекса «Яковка» перезвонит вам в ближайшее время.
-        </p>
+        {!isSuccess && (
+          <>
+            <h2 id="modal-title" className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">Заказать звонок</h2>
+            <p className="text-stone-500 text-sm mb-8">
+              Оставьте свои контакты, и администратор комплекса «Яковка» перезвонит вам в ближайшее время.
+            </p>
+          </>
+        )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              Ваше имя
-            </label>
-            <input 
-              id="name"
-              type="text" 
-              required
-              placeholder="Иван Иванов"
-              className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400 font-medium text-slate-800"
-            />
+        {!isSuccess ? (
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-xs font-bold text-stone-700 uppercase tracking-wider">
+                Ваше имя
+              </label>
+              <input 
+                id="name"
+                type="text" 
+                required
+                disabled={isSubmitting}
+                placeholder="Иван Иванов"
+                className="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-stone-400 font-medium text-stone-800 disabled:opacity-50"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="phone" className="text-xs font-bold text-stone-700 uppercase tracking-wider">
+                Телефон
+              </label>
+              <input 
+                id="phone"
+                type="tel" 
+                required
+                disabled={isSubmitting}
+                placeholder="+7 (___) ___-__-__"
+                maxLength={18}
+                onInput={(e) => {
+                  const input = e.currentTarget;
+                  let digits = input.value.replace(/\D/g, '');
+                  if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+                  if (!digits.startsWith('7')) digits = '7' + digits;
+                  digits = digits.slice(0, 11);
+                  
+                  let formatted = '+7';
+                  if (digits.length > 1) formatted += ' (' + digits.slice(1, 4);
+                  if (digits.length > 4) formatted += ') ' + digits.slice(4, 7);
+                  if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
+                  if (digits.length > 9) formatted += '-' + digits.slice(9, 11);
+                  
+                  input.value = formatted;
+                }}
+                className="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-stone-400 font-medium text-stone-800 disabled:opacity-50"
+              />
+            </div>
+
+            <Button disabled={isSubmitting} type="submit" size="lg" className="w-full rounded-xl bg-primary text-white hover:bg-stone-900 font-semibold py-6 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all mt-4">
+              {isSubmitting ? 'Отправка...' : 'Жду звонка'}
+            </Button>
+
+            <p className="text-center text-xs text-stone-400 mt-4">
+              Нажимая кнопку, вы соглашаетесь с <Link href="/legal/privacy" className="underline hover:text-stone-600">политикой конфиденциальности</Link>.
+            </p>
+          </form>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-500">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-stone-900 mb-2">Заявка принята!</h3>
+            <p className="text-stone-500">Администратор свяжется с вами в течение 10 минут по указанному номеру.</p>
+            <Button onClick={onClose} variant="outline" className="mt-8 w-full rounded-xl py-6 font-semibold border-stone-200">
+              Закрыть окно
+            </Button>
           </div>
-
-          <div className="space-y-2">
-            <label htmlFor="phone" className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              Телефон
-            </label>
-            <input 
-              id="phone"
-              type="tel" 
-              required
-              placeholder="+7 (999) 000-00-00"
-              className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400 font-medium text-slate-800"
-            />
-          </div>
-
-          <Button type="submit" size="lg" className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 shadow-lg shadow-blue-600/20 active:scale-[0.98] transition-all mt-4">
-            Жду звонка
-          </Button>
-
-          <p className="text-center text-xs text-slate-400 mt-4">
-            Нажимая кнопку, вы соглашаетесь с <a href="#" className="underline hover:text-slate-600">политикой конфиденциальности</a>.
-          </p>
-        </form>
+        )}
       </div>
     </div>
   );

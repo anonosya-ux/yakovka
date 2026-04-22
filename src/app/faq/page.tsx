@@ -73,8 +73,26 @@ const faqItems = [
 ];
 
 export default function FAQPage() {
+  // FAQPage JSON-LD for rich snippets
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="flex flex-col bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <PageHero
         title="Вопросы и ответы"
         subtitle="Всё, что нужно знать перед отдыхом в загородном отеле «Яковка» в Белокурихе"

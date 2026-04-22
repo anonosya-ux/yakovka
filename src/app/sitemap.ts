@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yakovka-next.vercel.app';
+  const baseUrl = 'https://yakovka.ru';
 
   // Core pages (Highest priority)
   const coreRoutes = [
@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/rooms',
     '/season',
+    '/winter',
     '/summer',
     '/offers',
     '/gallery',
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services',
     '/events',
     '/contacts',
+    '/excursions',
     '/invest',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
@@ -41,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Room subpages
   const roomRoutes = [
     '/rooms/standart',
+    '/rooms/standart-plus',
     '/rooms/family',
     '/rooms/family-plus',
     '/rooms/cottage',

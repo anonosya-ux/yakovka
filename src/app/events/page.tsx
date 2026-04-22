@@ -9,5 +9,36 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
-  return <EventsClient />;
+  const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "Банкетный зал отеля «Яковка»",
+    "description": "Организация корпоративов, свадеб, юбилеев и ретритов в загородном отеле на Алтае. Банкетный зал до 80 человек.",
+    "url": "https://yakovka.ru/events",
+    "telephone": "+7 (960) 955-21-00",
+    "maximumAttendeeCapacity": 80,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Угрюмова, д. 4",
+      "addressLocality": "Белокуриха",
+      "addressRegion": "Алтайский край",
+      "postalCode": "659900",
+      "addressCountry": "RU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.993,
+      "longitude": 84.983
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
+      <EventsClient />
+    </>
+  );
 }

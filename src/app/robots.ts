@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://yakovka-next.vercel.app';
+  const baseUrl = 'https://yakovka.vercel.app';
 
   return {
     rules: [

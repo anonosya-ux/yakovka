@@ -112,11 +112,6 @@ export default function Home() {
         .to('.hero-subtitle', { yPercent: -350, opacity: 0, ease: 'power2.inOut' }, 0.1)
         .to('.hero-btn', { yPercent: -400, opacity: 0, ease: 'power2.inOut' }, 0.15);
 
-      // Removed Widget disappearance code since widget is no longer here
-
-      // Wait, there's no widget proxy anymore, so I'll just remove this part
-      // ...
-
       // Room cards sticky effect
       if (cardsRef.current) {
         const cards = cardsRef.current.children;
@@ -153,13 +148,16 @@ export default function Home() {
         
         <div className="absolute inset-0 z-0 hero-bg origin-center scale-110">
           <video
-            src="/videos/hero-yakovka.mp4"
             autoPlay
             loop
             muted
             playsInline
+            poster="/images/gallery/_6-12.jpg"
             className="w-full h-full object-cover object-center"
-          />
+          >
+            <source src="/videos/hero-yakovka.webm" type="video/webm" />
+            <source src="/videos/hero-yakovka.mp4" type="video/mp4" />
+          </video>
           <div className="hero-overlay absolute inset-0 bg-stone-950/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-stone-900/10" />
         </div>
@@ -185,7 +183,7 @@ export default function Home() {
               Загородный отель «Яковка» — это величественная природа Алтая и первоклассный уют.
             </p>
 
-            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center hero-btn bg-white text-stone-900 text-lg md:text-xl rounded-full px-12 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all font-bold group">
+            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" aria-label="Найти шале и забронировать" className="inline-flex items-center justify-center hero-btn bg-white text-stone-900 text-lg md:text-xl rounded-full px-12 py-8 shadow-[0_20px_40px_rgba(255,255,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all font-bold group">
               Найти шале
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -365,6 +363,23 @@ export default function Home() {
 
       {/* FAQ Section (for GEO/AI optimization) */}
       <section className="py-24 md:py-32">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": homeFAQ.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
+            })
+          }}
+        />
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Вопросы</span>

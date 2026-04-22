@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
-import { Marquee } from '@/components/ui/3d-testimonails';
+import { Marquee } from '@/components/ui/marquee';
 
 const testimonials = [
     {

@@ -105,7 +105,7 @@ export default function ServicesSection() {
           <div className="bento-item relative rounded-[3rem] overflow-hidden group">
             <div className="absolute inset-0 z-0">
                <Image 
-                src="/images/gallery/pets_friendly.png" 
+                src="/optimized/Виды/Природа/Природа-01.webp" 
                 alt="Можно с питомцами" 
                 fill 
                 className="bento-img object-cover scale-125 object-center" 
@@ -126,7 +126,7 @@ export default function ServicesSection() {
               <p className="text-stone-700 font-light text-lg">Открытый подогреваемый бассейн, батут для спортсменов, спортивная площадка и увлекательные экскурсии по Алтаю.</p>
             </div>
             <div className="hidden lg:flex w-40 h-40 relative rounded-full overflow-hidden flex-shrink-0 shadow-xl border-4 border-white">
-               <Image src="/images/gallery/summer_season.png" alt="Лето" fill className="object-cover" />
+               <Image src="/optimized/Виды/Природа/Природа-02.webp" alt="Лето" fill className="object-cover" />
             </div>
           </div>
 

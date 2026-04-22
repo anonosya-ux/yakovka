@@ -1,0 +1,19 @@
+{
+  "name": "Загородный отель «Яковка»",
+  "short_name": "Яковка",
+  "description": "Горнолыжный курорт и семейный отель у подножия горы в Белокурихе, Алтай",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafaf8",
+  "theme_color": "#1a3a1a",
+  "orientation": "portrait-primary",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["travel", "hotels"]
+}

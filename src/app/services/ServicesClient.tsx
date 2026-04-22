@@ -3,101 +3,189 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { ArrowUpRight, Flame, ChefHat, Sparkles, Building, Car, Mountain } from 'lucide-react';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight, Flame, ChefHat, Sparkles, Building, Car, Mountain, Bus, Wifi, ShieldCheck } from 'lucide-react';
+import PageHero from '@/components/PageHero';
+import { PriceTable } from '@/components/PriceTable';
 
-export default function ServicesPage() {
+gsap.registerPlugin(ScrollTrigger);
+
+const services = [
+  {
+    icon: ChefHat,
+    title: 'Ресторан и Завтраки',
+    desc: 'Авторская сибирская кухня. Вкуснейшие завтраки для гостей отеля, фермерские продукты и уютная атмосфера шале.',
+    link: '/infrastructure/restaurant',
+    color: 'text-orange-500',
+    bg: 'group-hover:bg-orange-50'
+  },
+  {
+    icon: Flame,
+    title: 'Русская баня на дровах',
+    desc: 'Настоящая парная, ледяная купель и целебные алтайские веники. Идеальное восстановление после активного дня в горах.',
+    link: '/infrastructure/banya',
+    color: 'text-red-500',
+    bg: 'group-hover:bg-red-50'
+  },
+  {
+    icon: Mountain,
+    title: 'Горнолыжный склон',
+    desc: 'Формат Ski-in / Ski-out. Свой бугельный подъемник, прокат инвентаря и трассы разного уровня сложности.',
+    link: '/infrastructure/ski',
+    color: 'text-blue-500',
+    bg: 'group-hover:bg-blue-50'
+  },
+  {
+    icon: Bus,
+    title: 'Трансфер для гостей',
+    desc: 'Встретим в аэропорту или на вокзале. Комфортабельные микроавтобусы от нашего партнера «Як и Панты».',
+    link: '/contacts',
+    color: 'text-primary',
+    bg: 'group-hover:bg-primary/10'
+  },
+  {
+    icon: Sparkles,
+    title: 'Мангальные зоны',
+    desc: 'Оборудованные беседки с освещением, решетками и шампурами для идеального барбекю на свежем воздухе.',
+    link: null,
+    color: 'text-purple-500',
+    bg: 'group-hover:bg-purple-50'
+  },
+  {
+    icon: Wifi,
+    title: 'Высокоскоростной Wi-Fi',
+    desc: 'Бесплатный интернет на всей территории отеля: в номерах, ресторане и на улице.',
+    link: null,
+    color: 'text-cyan-500',
+    bg: 'group-hover:bg-cyan-50'
+  },
+  {
+    icon: Car,
+    title: 'Охраняемая парковка',
+    desc: 'Бесплатная стоянка с видеонаблюдением для автомобилей гостей на закрытой территории отеля.',
+    link: null,
+    color: 'text-stone-500',
+    bg: 'group-hover:bg-stone-100'
+  },
+  {
+    icon: Building,
+    title: 'Мероприятия',
+    desc: 'Организация корпоративов, свадеб и дней рождения под ключ на фоне потрясающей природы Алтая.',
+    link: '/events',
+    color: 'text-rose-500',
+    bg: 'group-hover:bg-rose-50'
+  }
+];
+
+export default function ServicesClient() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
       gsap.fromTo('.svc-card', 
-        { y: 40, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power2.out' }
+        { y: 50, opacity: 0 }, 
+        { 
+          y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '.svc-grid', start: 'top 85%' }
+        }
+      );
+      
+      gsap.fromTo('.price-section', 
+        { y: 50, opacity: 0 }, 
+        { 
+          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '.price-section', start: 'top 85%' }
+        }
       );
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-24" ref={containerRef}>
-      <div className="container mx-auto px-6">
-        <Breadcrumbs variant="light" />
-        <div className="mb-20">
-          <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-6">Услуги</h1>
-          <p className="text-xl text-slate-600 max-w-2xl font-light leading-relaxed">
-            Мы позаботились о том, чтобы ваш отдых был максимально комфортным и разнообразным. Откройте для себя всю инфраструктуру курорта.
-          </p>
-        </div>
+    <div className="flex flex-col min-h-screen bg-stone-50" ref={containerRef}>
+      <PageHero
+        title="Услуги и сервис"
+        subtitle="Мы позаботились обо всем, чтобы ваш отдых был беззаботным. Изучите инфраструктуру нашего загородного комплекса."
+        badge="✨ Премиальный комфорт"
+        imageSrc="/images/gallery/_6-59.jpg"
+        imageAlt="Услуги отеля Яковка"
+        breadcrumbs={[{ label: 'Услуги' }]}
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <Link href="/infrastructure/restaurant" className="svc-card group block relative p-10 bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300">
-            <div className="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <ChefHat size={40} className="text-orange-500 mb-8" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Ресторан</h2>
-              <p className="text-slate-600 mb-8">Авторская сибирская кухня, банкеты и завтраки. Фермерские продукты и уютная атмосфера.</p>
-              <div className="mt-auto flex items-center gap-2 text-orange-600 font-bold group-hover:gap-4 transition-all">
-                Подробнее <ArrowUpRight size={20} />
-              </div>
-            </div>
-          </Link>
-
-          <Link href="/infrastructure/banya" className="svc-card group block relative p-10 bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300">
-            <div className="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <Flame size={40} className="text-red-500 mb-8" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Русская баня</h2>
-              <p className="text-slate-600 mb-8">Настоящая парная на дровах, купель с ледяной водой и целебные алтайские веники для вашего здоровья.</p>
-              <div className="mt-auto flex items-center gap-2 text-red-600 font-bold group-hover:gap-4 transition-all">
-                Подробнее <ArrowUpRight size={20} />
-              </div>
-            </div>
-          </Link>
-
-          <Link href="/infrastructure/ski" className="svc-card group block relative p-10 bg-white rounded-[2.5rem] shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300">
-            <div className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <Mountain size={40} className="text-blue-500 mb-8" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Горнолыжный склон</h2>
-              <p className="text-slate-600 mb-8">Ski-in / Ski-out. Прокат инвентаря, услуги инструкторов и подготовленные трассы для всех уровней.</p>
-              <div className="mt-auto flex items-center gap-2 text-blue-600 font-bold group-hover:gap-4 transition-all">
-                Подробнее <ArrowUpRight size={20} />
-              </div>
-            </div>
-          </Link>
-
-          <div className="svc-card group block relative p-10 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
-            <div className="relative z-10 flex flex-col h-full">
-              <Sparkles size={40} className="text-purple-500 mb-8" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Мангальные зоны</h2>
-              <p className="text-slate-600 mb-8">Специально оборудованные беседки с электричеством и всем необходимым для BBQ на свежем воздухе.</p>
-            </div>
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900 mb-4">Вся инфраструктура</h2>
+            <p className="text-stone-500 text-lg">Вам не нужно никуда ехать — всё самое лучшее уже здесь.</p>
           </div>
 
-          <div className="svc-card group block relative p-10 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
-            <div className="relative z-10 flex flex-col h-full">
-              <Car size={40} className="text-slate-500 mb-8" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Бесплатная парковка</h2>
-              <p className="text-slate-600 mb-8">Круглосуточно охраняемая парковка с видеонаблюдением на территории отеля для всех гостей.</p>
-            </div>
+          <div className="svc-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {services.map((svc, idx) => {
+              const CardWrapper = svc.link ? Link : 'div';
+              return (
+                <CardWrapper 
+                  key={idx} 
+                  href={svc.link || '#'}
+                  className={`svc-card group relative p-8 bg-white rounded-[2rem] shadow-sm border border-stone-100 overflow-hidden transition-all duration-300 flex flex-col h-full ${svc.link ? 'cursor-pointer hover:shadow-premium hover:-translate-y-1' : ''}`}
+                >
+                  <div className={`absolute inset-0 ${svc.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-14 h-14 bg-stone-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                      <svc.icon className={`w-7 h-7 ${svc.color}`} />
+                    </div>
+                    
+                    <h3 className="font-heading text-xl font-bold text-stone-900 mb-3">{svc.title}</h3>
+                    <p className="text-stone-500 text-sm leading-relaxed mb-6 flex-grow">{svc.desc}</p>
+                    
+                    {svc.link && (
+                      <div className="mt-auto flex items-center gap-2 text-stone-900 font-bold text-sm group-hover:gap-3 transition-all">
+                        Подробнее <ArrowUpRight size={16} />
+                      </div>
+                    )}
+                  </div>
+                </CardWrapper>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Прайс-лист секция */}
+      <section className="price-section py-24 bg-white border-t border-stone-100">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">Цены</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900 mb-4">Популярные услуги</h2>
           </div>
 
-          <Link href="/events" className="svc-card group block relative p-10 bg-zinc-900 rounded-[2.5rem] shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300">
-            <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10 flex flex-col h-full text-white">
-              <Building size={40} className="text-blue-400 mb-8" />
-              <h2 className="text-2xl font-bold text-white mb-4">Проведение мероприятий</h2>
-              <p className="text-slate-400 mb-8">Корпоративы, свадьбы, ретриты и дни рождения под ключ в загородной атмосфере.</p>
-              <div className="mt-auto flex items-center gap-2 text-blue-400 font-bold group-hover:gap-4 transition-all">
-                Перейти в раздел <ArrowUpRight size={20} />
-              </div>
-            </div>
-          </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <PriceTable 
+              title="Русская баня" 
+              subtitle="Аренда комплекса (до 6 человек)"
+              items={[
+                { name: 'Первые 2 часа', price: 4000, description: 'Минимальное время бронирования', highlighted: true },
+                { name: 'Каждый последующий час', price: 1500 },
+                { name: 'Березовый веник', price: 350 },
+                { name: 'Дубовый веник', price: 450 },
+                { name: 'Алтайский фиточай', price: 'В подарок' }
+              ]} 
+            />
 
+            <PriceTable 
+              title="Дополнительный сервис" 
+              subtitle="Комфорт и логистика"
+              items={[
+                { name: 'Трансфер от аэропорта', price: 'от 3 000', description: 'Горно-Алтайск → Яковка (до 4 чел.)' },
+                { name: 'Дрова для мангала', price: 300, description: 'Связка дров для барбекю' },
+                { name: 'Уголь и розжиг', price: 500, description: 'Комплект для розжига мангала' },
+                { name: 'Размещение питомца', price: 1000, description: 'Единоразовый сбор за уборку', highlighted: true },
+                { name: 'Ранний заезд / Поздний выезд', price: 'По запросу', description: 'Зависит от наличия свободных номеров' }
+              ]} 
+            />
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

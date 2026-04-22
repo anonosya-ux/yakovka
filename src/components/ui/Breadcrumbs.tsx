@@ -45,7 +45,7 @@ export default function Breadcrumbs({ variant = 'dark' }: BreadcrumbsProps) {
       '@type': 'ListItem',
       position: 1,
       name: 'Главная',
-      item: 'https://yakovka-next.vercel.app/',
+      item: 'https://yakovka.ru/',
     },
   ];
 
@@ -56,7 +56,7 @@ export default function Breadcrumbs({ variant = 'dark' }: BreadcrumbsProps) {
       '@type': 'ListItem',
       position: index + 2,
       name: pathNames[segment] || segment,
-      item: `https://yakovka-next.vercel.app${currentLink}`,
+      item: `https://yakovka.ru${currentLink}`,
     });
   });
 

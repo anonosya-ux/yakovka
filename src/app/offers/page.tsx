@@ -79,8 +79,37 @@ const offers = [
 ];
 
 export default function OffersPage() {
+  // Generate Offer JSON-LD for each offer
+  const offersSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Спецпредложения отеля «Яковка»",
+    "url": "https://yakovka.ru/offers",
+    "numberOfItems": offers.length,
+    "itemListElement": offers.map((offer, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "Offer",
+        "name": offer.title,
+        "description": offer.description,
+        "price": offer.newPrice,
+        "priceCurrency": "RUB",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Hotel",
+          "name": "Загородный отель «Яковка»"
+        }
+      }
+    }))
+  };
+
   return (
     <div className="flex flex-col bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(offersSchema) }}
+      />
       <PageHero
         title="Спецпредложения"
         subtitle="Актуальные акции и выгодные пакеты для отдыха в загородном отеле «Яковка» — Белокуриха, Алтай"

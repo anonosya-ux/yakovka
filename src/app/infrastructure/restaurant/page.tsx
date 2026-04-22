@@ -22,6 +22,50 @@ export default function RestaurantPage() {
 
   return (
     <div className="bg-background" ref={heroRef}>
+      {/* Restaurant JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          "name": "Ресторан «Яковка»",
+          "description": "Авторская алтайская кухня из натуральных местных продуктов. Фермерские эко-продукты, стейк из марала, горный мёд.",
+          "url": "https://yakovka.ru/infrastructure/restaurant",
+          "telephone": "+7 (960) 955-21-00",
+          "servesCuisine": ["Алтайская", "Русская", "Европейская"],
+          "priceRange": "₽₽",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:30",
+            "closes": "22:00"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Угрюмова, д. 4",
+            "addressLocality": "Белокуриха",
+            "addressRegion": "Алтайский край",
+            "postalCode": "659900",
+            "addressCountry": "RU"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.993,
+            "longitude": 84.983
+          },
+          "hasMenu": {
+            "@type": "Menu",
+            "hasMenuSection": [
+              { "@type": "MenuSection", "name": "Горячие блюда", "hasMenuItem": [
+                { "@type": "MenuItem", "name": "Стейк из марала", "description": "С ягодным соусом и печёным картофелем" }
+              ]},
+              { "@type": "MenuSection", "name": "Десерты", "hasMenuItem": [
+                { "@type": "MenuItem", "name": "Медовая панакота", "description": "С горным мёдом и кедровыми орехами" }
+              ]}
+            ]
+          }
+        }) }}
+      />
       <div className="relative h-[65vh] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-stone-900 z-0">
           <Image 

@@ -60,7 +60,12 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             { href: '/rooms', label: 'Номера и цены' },
             { href: '/winter', label: 'Зимний отдых' },
             { href: '/summer', label: 'Летний отдых' },
+            { href: '/offers', label: 'Акции' },
+            { href: '/excursions', label: 'Экскурсии' },
+            { href: '/services', label: 'Услуги' },
             { href: '/gallery', label: 'Фотогалерея' },
+            { href: '/about', label: 'О курорте' },
+            { href: '/invest', label: 'Инвесторам' },
             { href: '/contacts', label: 'Контакты' }
           ].map(link => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);

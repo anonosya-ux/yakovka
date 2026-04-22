@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Публичная оферта — Отель «Яковка»',
+  description: 'Публичная оферта ООО «Яковка» — условия договора на оказание гостиничных услуг в загородном отеле Белокурихи.',
+  alternates: { canonical: '/legal/offer' },
+};
 
 export default function OfferPage() {
   return (

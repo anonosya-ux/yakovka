@@ -2,160 +2,130 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Users, PartyPopper, HeartHandshake, Tent, Award, Building, Phone } from 'lucide-react';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PartyPopper, Users, Gift, ChefHat, ArrowUpRight, Phone, CheckCircle2 } from 'lucide-react';
+import PageHero from '@/components/PageHero';
 import { Button } from '@/components/ui/button';
 import CallbackModal from '@/components/CallbackModal';
-import gsap from 'gsap';
 
-export default function EventsPage() {
-  const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
+gsap.registerPlugin(ScrollTrigger);
+
+const events = [
+  {
+    title: 'Свадьбы на Алтае',
+    desc: 'Отпразднуйте создание новой семьи вдали от городской суеты, на фоне потрясающих горных пейзажей. Летняя веранда на 60 гостей, банкетный зал кафе и зеленая зона для выездных регистраций. Мы организуем банкет, декор и размещение ваших гостей.',
+    icon: PartyPopper,
+    image: '/optimized/Мероприятия/Свадьбы/Свадьбы-02.webp',
+    features: ['Площадка для регистрации', 'Летняя веранда', 'Праздничный банкет'],
+    reverse: false
+  },
+  {
+    title: 'Корпоративы и Тимбилдинг',
+    desc: 'Выездные корпоративы на базе ГЛК «Яковка» — это идеальный баланс работы и активного отдыха. Спортивные состязания, горные лыжи зимой и походы летом. Для официальной части есть пространство с проектором и Wi-Fi.',
+    icon: Users,
+    image: '/optimized/Мероприятия/Горные лыжи/Горные лыжи-03.webp',
+    features: ['Активный отдых', 'Пространство для тренингов', 'Организация питания'],
+    reverse: true
+  },
+  {
+    title: 'Дни Рождения и Юбилеи',
+    desc: 'Проведите свой особенный день в кругу близких. Арендуйте шале или коттедж, закажите праздничный ужин в ресторане или устройте барбекю в оборудованной мангальной зоне. Именинникам предоставляются специальные скидки.',
+    icon: Gift,
+    image: '/optimized/Мероприятия/Свадьбы/Свадьбы-05.webp',
+    features: ['Скидки именинникам', 'Аренда коттеджа', 'Мангальные зоны'],
+    reverse: false
+  }
+];
+
+export default function EventsClient() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.fromTo('.anim-fade', 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: 'power3.out' }
-      );
+      gsap.utils.toArray('.event-block').forEach((block: any) => {
+        gsap.fromTo(block, 
+          { y: 50, opacity: 0 }, 
+          { 
+            y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: block, start: 'top 85%' }
+          }
+        );
+      });
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-24" ref={containerRef}>
-      <div className="container mx-auto px-6">
-        <Breadcrumbs variant="light" />
-        
-        <div className="mb-16 mt-8 max-w-4xl mx-auto text-center anim-fade">
-          <h1 className="font-heading text-4xl md:text-6xl font-bold text-stone-900 mb-6 tracking-tight">Проведение мероприятий</h1>
-          <p className="text-lg text-stone-600 mb-8 leading-relaxed font-light">
-            Шикарная природа, чистейший горный воздух и развитая инфраструктура: Загородный отель «Яковка» 
-            — это идеальное место для вашего торжества, выездного корпоратива или спортивных сборов.
-          </p>
-        </div>
+    <div className="min-h-screen bg-stone-50 pb-24" ref={containerRef}>
+      <PageHero
+        title="Мероприятия"
+        subtitle="Свадьбы, корпоративы, дни рождения и тимбилдинги на фоне потрясающей природы Алтая. Мы организуем ваше идеальное событие."
+        badge="🎉 Праздник в горах"
+        imageSrc="/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp"
+        imageAlt="Свадьбы и Мероприятия Яковка"
+        breadcrumbs={[{ label: 'Мероприятия' }]}
+      />
 
-        {/* Corporate Section */}
-        <div className="max-w-6xl mx-auto bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-stone-200/50 mb-16 anim-fade flex flex-col md:flex-row border border-stone-200/60">
-          <div className="md:w-1/2 relative h-64 md:h-auto">
-            <Image 
-              src="/images/gallery/IMG_4760.jpg" 
-              alt="Корпоративы"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
-            <div className="bg-primary/5 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-              <Building size={24} />
+      <div className="container mx-auto px-6 mt-24">
+        {events.map((ev, idx) => (
+          <div key={idx} className={`event-block max-w-6xl mx-auto bg-white rounded-[3rem] overflow-hidden shadow-sm border border-stone-100 hover:shadow-premium transition-shadow mb-16 flex flex-col ${ev.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+            <div className="lg:w-1/2 relative h-80 lg:h-auto">
+              <Image 
+                src={ev.image} 
+                alt={ev.title}
+                fill
+                className="object-cover"
+              />
             </div>
-            <h2 className="font-heading text-3xl font-bold text-stone-900 mb-4">Корпоративы</h2>
-            <p className="text-stone-600 mb-6 leading-relaxed font-light">
-              Около 80% компаний — это компании, деятельность которых основана на командной работе. Известный всем
-              Тимбилдинг на сплочение коллектива как правило проводят в формате выездного мероприятия.
-            </p>
-            <p className="text-stone-600 mb-8 leading-relaxed font-light">
-              У ГЛК «Яковка» есть огромный опыт и подходящая площадка для проведения летних и зимних корпоративов на природе. 
-              Корпоративное мероприятие на нашей базе — это отличный шанс совместить приятное с полезным.
-            </p>
-            <div className="bg-stone-50 p-6 rounded-2xl border border-stone-100">
-              <span className="block text-sm font-bold text-stone-400 uppercase tracking-widest mb-3">Нам доверяют</span>
-              <p className="font-semibold text-stone-800">
-                «Алтайская Бурёнка», «Барнаульский пивоваренный завод», «Курорт Белокуриха», Санаторий «Россия» и многие другие.
+            <div className="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white">
+              <div className="w-14 h-14 bg-stone-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-stone-100">
+                <ev.icon className="w-7 h-7 text-primary" />
+              </div>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-900 mb-6">{ev.title}</h2>
+              <p className="text-stone-500 leading-relaxed font-light mb-8 text-lg">
+                {ev.desc}
               </p>
+              <ul className="space-y-4 mb-10">
+                {ev.features.map((feat, i) => (
+                  <li key={i} className="flex items-center gap-3 text-stone-700 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <Button onClick={() => setIsCallbackModalOpen(true)} className="self-start px-8 py-6 rounded-2xl bg-stone-900 text-white hover:bg-primary text-lg font-bold shadow-xl transition-colors">
+                Оставить заявку
+              </Button>
             </div>
           </div>
-        </div>
+        ))}
 
-        {/* Weddings Section */}
-        <div className="max-w-6xl mx-auto bg-stone-900 text-stone-50 rounded-[2.5rem] overflow-hidden shadow-2xl mb-16 anim-fade flex flex-col md:flex-row-reverse border border-stone-800">
-          <div className="md:w-1/2 relative h-64 md:h-auto">
+        {/* Банкетное меню (Ссылка на ресторан) */}
+        <div className="event-block max-w-6xl mx-auto mt-24">
+          <Link href="/infrastructure/restaurant" className="group block relative rounded-[3rem] overflow-hidden shadow-xl shadow-stone-200/50 border border-stone-100 h-[400px]">
             <Image 
-              src="/images/gallery/_6-1.jpg" 
-              alt="Свадьбы на Алтае"
+              src="/optimized/Виды/Кухня/Кухня-01.webp" 
+              alt="Банкетное меню ресторана Яковка"
               fill
-              className="object-cover opacity-80 mix-blend-screen"
+              className="object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
             />
-          </div>
-          <div className="md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
-            <div className="bg-white/10 text-amber-500 w-12 h-12 rounded-xl flex items-center justify-center mb-6 border border-white/20">
-              <PartyPopper size={24} />
-            </div>
-            <h2 className="font-heading text-3xl font-bold text-white mb-4">Свадьбы на Алтае</h2>
-            <p className="text-stone-300 mb-8 leading-relaxed tracking-wide font-light">
-              Отпразднуйте создание новой семьи в кругу самых близких людей вдали от городской суеты, 
-              на фоне потрясающих горных пейзажей. Наш комплекс предлагает две живописные площадки:
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="mt-1"><Tent className="text-amber-500" size={24} /></div>
-                <div>
-                  <h4 className="font-heading font-bold text-xl mb-1">Летняя веранда</h4>
-                  <p className="text-white/60">Вместимость до 60 гостей. Потрясающий вид на горы и свежий воздух.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="mt-1"><Building className="text-amber-500" size={24} /></div>
-                <div>
-                  <h4 className="font-heading font-bold text-xl mb-1">Банкетный зал кафе</h4>
-                  <p className="text-white/60">Вместимость до 50 гостей. Уютная атмосфера и меню от шеф-повара.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="mt-1"><PartyPopper className="text-amber-500" size={24} /></div>
-                <div>
-                  <h4 className="font-heading font-bold text-xl mb-1">Зеленая зона для регистраций</h4>
-                  <p className="text-white/60">Живописная лужайка на фоне хвойного леса, идеально для выездной регистрации.</p>
-                </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/60 to-transparent" />
+            <div className="absolute inset-0 p-10 md:p-16 flex flex-col justify-center w-full md:w-2/3">
+              <ChefHat className="w-12 h-12 text-primary mb-6" />
+              <h3 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">Банкетное меню</h3>
+              <p className="text-stone-300 text-lg md:text-xl font-light leading-relaxed mb-8">
+                Наш шеф-повар подготовил специальное банкетное меню с блюдами алтайской кухни из свежайших фермерских продуктов. Мы учтем все ваши пожелания и вкусовые предпочтения.
+              </p>
+              <div className="flex items-center gap-3 text-white font-bold text-lg group-hover:text-primary transition-colors">
+                Посмотреть меню ресторана <ArrowUpRight className="w-6 h-6" />
               </div>
             </div>
-          </div>
+          </Link>
         </div>
 
-        {/* Sports camps & New Year */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 anim-fade mb-16">
-          <div className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col h-full">
-            <div className="bg-primary/5 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-              <Award size={24} />
-            </div>
-            <h3 className="font-heading text-2xl font-bold text-stone-900 mb-4">Спортивные сборы</h3>
-            <p className="text-stone-600 leading-relaxed mb-6 font-light flex-grow">
-              Приглашаем команды по горнолыжным и другим видам спорта на сборы (летом, зимой и в межсезонье). 
-              Мы организуем проживание в номерах различной категории, 3х-разовое питание и предоставляем доступ 
-              к нашей инфраструктуре.
-            </p>
-            <Button onClick={() => setIsCallbackModalOpen(true)} variant="outline" className="w-full border-stone-200 text-stone-700 hover:text-primary hover:border-primary sm:w-auto self-start rounded-xl font-medium shadow-sm">Узнать условия для групп</Button>
-          </div>
-
-          <div className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col h-full">
-            <div className="bg-primary/5 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-              <HeartHandshake size={24} />
-            </div>
-            <h3 className="font-heading text-2xl font-bold text-stone-900 mb-4">Новогодние праздники</h3>
-            <p className="text-stone-600 leading-relaxed font-light mb-6 flex-grow">
-              Встречайте Новый Год в настоящей зимней сказке! Бронирование на новогодние каникулы лучше 
-              планировать заранее — мы готовим специальную программу, праздничный ужин и, конечно, 
-              ежедневное катание по свежему снегу.
-            </p>
-            <Button onClick={() => setIsCallbackModalOpen(true)} variant="outline" className="w-full border-stone-200 text-stone-700 hover:text-primary hover:border-primary sm:w-auto self-start rounded-xl font-medium shadow-sm">Связаться с нами</Button>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="max-w-4xl mx-auto text-center anim-fade bg-primary text-primary-foreground rounded-[2.5rem] p-10 md:p-16 shadow-2xl shadow-primary/30 relative overflow-hidden">
-          <div className="absolute inset-0 bg-stone-900/10" />
-          <div className="relative z-10">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">Запланируйте ваше событие</h2>
-            <p className="text-primary-foreground/90 mb-10 text-lg font-light">
-              Оставьте заявку, и мы подготовим для вас индивидуальное коммерческое предложение, ответим на все вопросы и поможем организовать идеальное мероприятие.
-            </p>
-            <Button onClick={() => setIsCallbackModalOpen(true)} size="lg" className="bg-white text-primary hover:bg-stone-50 px-8 py-6 rounded-xl text-lg font-bold w-full sm:w-auto shadow-xl transition-transform hover:-translate-y-1">
-              <Phone className="mr-2" />
-              Оставить заявку
-            </Button>
-          </div>
-        </div>
       </div>
 
       <CallbackModal isOpen={isCallbackModalOpen} onClose={() => setIsCallbackModalOpen(false)} />

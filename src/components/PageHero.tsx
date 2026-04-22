@@ -8,6 +8,7 @@ interface PageHeroProps {
   badge?: string;
   imageSrc: string;
   imageAlt: string;
+  videoSrc?: string;
   breadcrumbs?: { label: string; href?: string }[];
   children?: React.ReactNode;
   overlay?: 'light' | 'dark' | 'gradient';
@@ -19,6 +20,7 @@ export default function PageHero({
   badge,
   imageSrc,
   imageAlt,
+  videoSrc,
   breadcrumbs,
   children,
   overlay = 'gradient',
@@ -31,15 +33,28 @@ export default function PageHero({
 
   return (
     <section className="relative h-[60vh] md:h-[70vh] min-h-[400px] w-full overflow-hidden flex items-end">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          className="object-cover object-center"
-          priority
-        />
+      {/* Background Media */}
+      <div className="absolute inset-0 z-0 bg-stone-900">
+        {videoSrc ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={imageSrc}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        )}
         <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />
       </div>
 

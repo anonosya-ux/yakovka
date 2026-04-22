@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Правила проживания — Отель «Яковка»',
+  description: 'Правила проживания в загородном отеле «Яковка» — заезд, выезд, тишина, проживание с животными, дети.',
+  alternates: { canonical: '/legal/rules' },
+};
 
 export default function RulesPage() {
   return (

@@ -1,6 +1,13 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { CreditCard, Banknote, Building2 } from 'lucide-react';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Способы оплаты — Отель «Яковка»',
+  description: 'Оплата проживания в загородном отеле «Яковка»: наличные, банковские карты, онлайн-оплата. Безопасные способы оплаты.',
+  alternates: { canonical: '/legal/payment' },
+};
 
 export default function PaymentPage() {
   return (

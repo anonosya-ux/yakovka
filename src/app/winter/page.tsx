@@ -129,22 +129,7 @@ export default function WinterPage() {
 
   return (
     <div className="relative bg-black text-white min-h-screen">
-      {loadedFrames < totalFrames && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white">
-          <div className="text-center">
-            <div className="mb-4 text-2xl font-heading tracking-widest text-white/90">ЗАГРУЗКА ЗИМЫ...</div>
-            <div className="w-64 h-1 bg-stone-800 rounded-full overflow-hidden mx-auto">
-                <div 
-                  className="h-full bg-white transition-all duration-300"
-                  style={{ width: `${(loadedFrames / totalFrames) * 100}%` }}
-                ></div>
-            </div>
-            <div className="mt-4 text-stone-500 font-mono text-sm max-w-sm px-6">
-                Подождите, пока мы прогружаем {totalFrames} кадров для максимальной плавности
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Loader removed for instant access */}
 
       {/* Canvas Layer */}
       <canvas 

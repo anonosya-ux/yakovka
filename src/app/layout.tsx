@@ -11,12 +11,12 @@ import { KonturWidgetMobileButton } from '@/components/KonturWidget';
 import { YandexMetrica } from '@/components/YandexMetrica';
 
 const montserrat = Montserrat({
-  variable: "--font-heading",
+  variable: "--font-montserrat",
   subsets: ["latin", "cyrillic"],
 });
 
 const manrope = Manrope({
-  variable: "--font-sans",
+  variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
 });
 

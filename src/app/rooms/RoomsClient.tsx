@@ -3,9 +3,8 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Users, Maximize, Check, Filter } from 'lucide-react';
+import { Users, Maximize, Check, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
-import { Button } from '@/components/ui/button';
 import gsap from 'gsap';
 
 const rooms = [
@@ -17,7 +16,13 @@ const rooms = [
     maxGuests: 2,
     priceText: 'от 5 800 ₽',
     priceNum: 5800,
-    img: '/optimized/Номера/Стандарт/Стандарт-01.webp',
+    images: [
+      '/optimized/Номера/Стандарт/Стандарт-01.webp',
+      '/optimized/Номера/Стандарт/Стандарт-02.webp',
+      '/optimized/Номера/Стандарт/Стандарт-03.webp',
+      '/optimized/Номера/Стандарт/Стандарт-04.webp',
+      '/optimized/Номера/Стандарт/Стандарт-05.webp',
+    ],
     description: 'Уютный однокомнатный номер, идеальный для комфортного размещения одного или двух гостей. Оснащен всем необходимым для отдыха после активного дня в горах.',
     features: ['Двуспальная кровать', 'Wi-Fi', 'Телевизор', 'Душ', 'Чайник', 'Панорамные окна'],
   },
@@ -29,7 +34,13 @@ const rooms = [
     maxGuests: 3,
     priceText: 'от 6 800 ₽',
     priceNum: 6800,
-    img: '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
+    images: [
+      '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-02.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-03.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-04.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-05.webp',
+    ],
     description: 'Просторный однокомнатный номер с дополнительным местом (диван), отлично подходящий для небольшой семьи или компании друзей.',
     features: ['Двуспальная кровать', 'Раскладной диван', 'Wi-Fi', 'Телевизор', 'Душ', 'Чайник'],
   },
@@ -41,7 +52,13 @@ const rooms = [
     maxGuests: 4,
     priceText: 'от 5 800 ₽',
     priceNum: 5800,
-    img: '/optimized/Номера/Семейный/Семейный-01.webp',
+    images: [
+      '/optimized/Номера/Семейный/Семейный-01.webp',
+      '/optimized/Номера/Семейный/Семейный-02.webp',
+      '/optimized/Номера/Семейный/Семейный-03.webp',
+      '/optimized/Номера/Семейный/Семейный-04.webp',
+      '/optimized/Номера/Семейный/Семейный-05.webp',
+    ],
     description: 'Увеличенный номер для комфортного семейного отдыха. Пространство разделено таким образом, чтобы каждому члену семьи было уютно.',
     features: ['Двуспальная кровать', 'Раскладной диван', 'Холодильник', 'Завтрак включен', 'Чайная станция', 'Душ и санузел'],
   },
@@ -53,7 +70,13 @@ const rooms = [
     maxGuests: 5,
     priceText: 'от 7 500 ₽',
     priceNum: 7500,
-    img: '/optimized/Номера/Семейный+/Семейный+-01.webp',
+    images: [
+      '/optimized/Номера/Семейный+/Семейный+-01.webp',
+      '/optimized/Номера/Семейный+/Семейный+-02.webp',
+      '/optimized/Номера/Семейный+/Семейный+-03.webp',
+      '/optimized/Номера/Семейный+/Семейный+-04.webp',
+      '/optimized/Номера/Семейный+/Семейный+-05.webp',
+    ],
     description: 'Семейный номер улучшенной планировки. Больше пространства для комфортного размещения вашей семьи.',
     features: ['Двуспальная кровать', 'Большой диван', 'Телевизор', 'Завтрак включен', 'Холодильник', 'Зона отдыха'],
   },
@@ -65,11 +88,61 @@ const rooms = [
     maxGuests: 8,
     priceText: '10 000 ₽',
     priceNum: 10000,
-    img: '/optimized/Номера/Семейный++/Семейный++-01.webp',
+    images: [
+      '/optimized/Номера/Семейный++/Семейный++-01.webp',
+      '/optimized/Номера/Семейный++/Семейный++-02.webp',
+      '/optimized/Номера/Семейный++/Семейный++-03.webp',
+      '/optimized/Номера/Семейный++/Семейный++-04.webp',
+      '/optimized/Номера/Семейный++/Семейный++-05.webp',
+    ],
     description: 'Отдельно стоящий двухэтажный коттедж для большой компании. Собственная мангальная зона, кухня и большая гостиная.',
     features: ['2 Этажа', 'Своя кухня', 'Несколько спален', 'Мангальная зона', 'Холодильник', 'Своя парковка'],
   }
 ];
+
+const RoomImageSlider = ({ images, title }: { images: string[], title: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-full group/slider">
+      <Image 
+        src={images[currentIndex]} 
+        alt={`${title} - Фото ${currentIndex + 1}`}
+        fill
+        className="object-cover transition-transform duration-700 group-hover/slider:scale-105"
+      />
+      <div className="absolute inset-0 bg-stone-900/10 group-hover/slider:bg-transparent transition-colors duration-500 pointer-events-none" />
+      
+      {images.length > 1 && (
+        <>
+          <button onClick={prev} aria-label="Предыдущее фото" className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all z-20">
+            <ChevronLeft size={24} className="text-stone-900" />
+          </button>
+          <button onClick={next} aria-label="Следующее фото" className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-all z-20">
+            <ChevronRight size={24} className="text-stone-900" />
+          </button>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+            {images.map((_, i) => (
+              <div key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-white scale-125' : 'bg-white/50'}`} />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 export default function RoomsClient() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,7 +175,7 @@ export default function RoomsClient() {
       );
     }, containerRef);
     return () => ctx.revert();
-  }, [filter, sort]); // Re-animate on filter change
+  }, [filter, sort]);
 
   return (
     <div className="min-h-screen bg-stone-50 pb-24" ref={containerRef}>
@@ -190,16 +263,10 @@ export default function RoomsClient() {
             </div>
           ) : (
             filteredRooms.map((room) => (
-              <div key={room.slug} className="anim-room flex flex-col md:flex-row bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-stone-100 hover:shadow-premium transition-all duration-500 group">
+              <div key={room.slug} className="anim-room flex flex-col md:flex-row bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-stone-100 hover:shadow-premium transition-all duration-500">
                 <Link href={`/rooms/${room.slug}`} className="relative w-full md:w-5/12 h-72 md:h-auto overflow-hidden block">
-                  <Image 
-                    src={room.img} 
-                    alt={room.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
-                  />
-                  <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full font-bold text-sm text-stone-900 flex items-center gap-2 shadow-sm">
+                  <RoomImageSlider images={room.images} title={room.title} />
+                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full font-bold text-sm text-stone-900 flex items-center gap-2 shadow-sm z-30 pointer-events-none">
                     <Maximize size={16} className="text-primary"/> {room.size}
                   </div>
                 </Link>

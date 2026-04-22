@@ -8,7 +8,7 @@ export default function WinterPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [loadedFrames, setLoadedFrames] = useState(0);
-  const totalFrames = 300;
+  const totalFrames = 208;
   
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

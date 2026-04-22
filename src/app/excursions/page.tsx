@@ -71,6 +71,7 @@ const additionalExcursions = [
   { id: 4, title: 'Скала «Четыре брата»', duration: '3-4 часа', level: 'Средний', category: 'Пешие', icon: TreePine, img: '/optimized/Виды/Природа/Природа-01.webp' },
   { id: 5, title: 'Конные прогулки', duration: 'от 1 часа', level: 'Для всех', category: 'Конные', icon: Users, img: '/optimized/Виды/Природа/Природа-03.webp' },
   { id: 6, title: 'Алтайский Аил (Этно-тур)', duration: '3-4 часа', level: 'Легкий', category: 'Этно', icon: Users, img: '/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp' },
+  { id: 7, title: 'Прокат Квадроциклов', duration: 'от 1 часа', level: 'Активный', category: 'Мото', icon: Route, img: '/optimized/Виды/Природа/Природа-02.webp' },
 ];
 
 export default function ExcursionsPage() {

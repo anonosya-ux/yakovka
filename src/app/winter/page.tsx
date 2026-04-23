@@ -128,8 +128,8 @@ export default function WinterPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-premium-lg">
               <Image 
-                src="/optimized/Виды/Бассейн/Бассейн-01.webp" 
-                alt="Русская баня" 
+                src="/optimized/Виды/Кухня/Кухня-01.webp" 
+                alt="Уют и тепло после гор" 
                 fill 
                 className="object-cover"
               />

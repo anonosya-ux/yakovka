@@ -26,7 +26,7 @@ export default function BanyaPage() {
         title="Русская баня"
         subtitle="Настоящая баня на берёзовых дровах с купелью и вениками — оздоровление после горнолыжного дня"
         badge="🔥 На дровах"
-        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
+        imageSrc="/optimized/Виды/Женщины/Женщины-01.webp"
         imageAlt="Русская баня на дровах — загородный отель Яковка"
         breadcrumbs={[
           { label: 'Инфраструктура', href: '/infrastructure/ski' },

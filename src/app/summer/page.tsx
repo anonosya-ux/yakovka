@@ -144,8 +144,8 @@ export default function SummerPage() {
 
       <CTABanner 
         title="Забронируйте летний отдых" 
-        subtitle="Пакет «Летний релакс» — номер + завтрак + экскурсия на Церковку от 3 200 ₽"
-        variant="primary"
+        subtitle="Забронируйте от 5 ночей и получите скидку 20% на проживание. Номера от 5 800 ₽/сутки."
+        variant="nature"
       />
     </div>
   );

@@ -69,7 +69,7 @@ export default function RestaurantPage() {
       <div className="relative h-[65vh] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-stone-900 z-0">
           <Image 
-            src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Ресторан-1.webp" 
+            src="/optimized/Виды/Кухня/Кухня-01.webp" 
             alt="Ресторан Яковка" 
             fill
             className="object-cover opacity-60 mix-blend-overlay"
@@ -121,7 +121,7 @@ export default function RestaurantPage() {
           
           <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-premium-lg reveal-el">
             <Image 
-              src="https://xn--80adxbs4h.xn--p1ai/wp-content/uploads/2024/02/Ресторан-1.webp" 
+              src="/optimized/Виды/Кухня/Кухня-02.webp" 
               alt="Интерьер ресторана" 
               fill
               className="object-cover"

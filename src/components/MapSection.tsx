@@ -11,7 +11,7 @@ export default function MapSection() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 px-4">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-2 flex items-center gap-3">
-                <MapPin className="text-blue-500" />
+                <MapPin className="text-primary" />
                 Как до нас добраться
               </h2>
               <p className="text-slate-500 font-medium">Белокуриха, ул. Угрюмова, д. 20</p>
@@ -33,7 +33,7 @@ export default function MapSection() {
           <div className="w-full h-[400px] md:h-[500px] rounded-[1.5rem] overflow-hidden relative shadow-inner bg-slate-100">
              {/* Map lazy loading mask */}
              <div className="absolute inset-0 flex items-center justify-center -z-10">
-               <div className="w-8 h-8 rounded-full border-4 border-slate-200 border-t-blue-500 animate-spin"></div>
+               <div className="w-8 h-8 rounded-full border-4 border-slate-200 border-t-primary animate-spin"></div>
              </div>
              
              <iframe 

@@ -73,7 +73,7 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[350px] bento-grid mb-32">
           
           {/* Winter Box - spans 2 cols, 2 rows */}
-          <div className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-default">
+          <Link href="/winter" className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-pointer block">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="/optimized/Мероприятия/Горные лыжи/Горные лыжи-04.webp" 
@@ -88,18 +88,20 @@ export default function ServicesSection() {
                 <Mountain size={28} />
               </span>
               <h3 className="font-heading text-3xl md:text-5xl font-bold mb-4">Зимний сезон</h3>
-              <p className="text-lg text-white/80 font-light max-w-md">Полный комплекс услуг для активного горнолыжного отдыха. Широкие склоны северной экспозиции держат снег дольше всех в Белокурихе.</p>
+              <p className="text-lg text-white/80 font-light max-w-md mb-4">Полный комплекс услуг для активного горнолыжного отдыха. Широкие склоны северной экспозиции держат снег дольше всех в Белокурихе.</p>
+              <span className="text-sm font-bold tracking-widest uppercase flex items-center gap-2 group-hover:text-primary transition-colors">Подробнее <span className="text-xl">→</span></span>
             </div>
-          </div>
+          </Link>
 
           {/* Food Box */}
-          <div className="bento-item bg-stone-100 rounded-[3rem] overflow-hidden p-10 flex flex-col justify-between group hover:bg-stone-200 transition-colors">
+          <Link href="/infrastructure/restaurant" className="bento-item bg-stone-100 rounded-[3rem] overflow-hidden p-10 flex flex-col justify-between group hover:bg-stone-200 transition-colors cursor-pointer">
             <Utensils size={32} className="text-secondary" />
             <div>
               <h3 className="font-heading text-2xl font-bold text-stone-900 mb-2">Любимые блюда</h3>
-              <p className="text-stone-600 font-light">Домашняя кухня с заказными обедами и исполнением ваших кулинарных желаний.</p>
+              <p className="text-stone-600 font-light mb-4">Домашняя кухня с заказными обедами и исполнением ваших кулинарных желаний.</p>
+              <span className="text-xs font-bold tracking-widest uppercase text-stone-400 group-hover:text-stone-900 transition-colors">Меню ресторана →</span>
             </div>
-          </div>
+          </Link>
 
           {/* Dogs Box */}
           <div className="bento-item relative rounded-[3rem] overflow-hidden group">
@@ -120,15 +122,16 @@ export default function ServicesSection() {
           </div>
 
           {/* Summer Box - spans 2 cols */}
-          <div className="bento-item md:col-span-2 relative rounded-[3rem] overflow-hidden p-10 flex items-center justify-between group bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
+          <Link href="/summer" className="bento-item md:col-span-2 relative rounded-[3rem] overflow-hidden p-10 flex items-center justify-between group bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors cursor-pointer">
             <div className="max-w-sm">
               <h3 className="font-heading text-3xl font-bold text-stone-900 mb-4">Летний период</h3>
-              <p className="text-stone-700 font-light text-lg">Открытый подогреваемый бассейн, батут для спортсменов, спортивная площадка и увлекательные экскурсии по Алтаю.</p>
+              <p className="text-stone-700 font-light text-lg mb-6">Открытый подогреваемый бассейн, батут для спортсменов, спортивная площадка и увлекательные экскурсии по Алтаю.</p>
+              <span className="inline-flex items-center justify-center px-6 py-2 border border-stone-900 rounded-full font-bold text-sm text-stone-900 group-hover:bg-stone-900 group-hover:text-white transition-colors">Посмотреть активности</span>
             </div>
-            <div className="hidden lg:flex w-40 h-40 relative rounded-full overflow-hidden flex-shrink-0 shadow-xl border-4 border-white">
+            <div className="hidden lg:flex w-40 h-40 relative rounded-full overflow-hidden flex-shrink-0 shadow-xl border-4 border-white group-hover:scale-105 transition-transform duration-500">
                <Image src="/optimized/Виды/Природа/Природа-02.webp" alt="Лето" fill className="object-cover" />
             </div>
-          </div>
+          </Link>
 
           {/* Security & Relax Box */}
           <div className="bento-item bg-stone-900 rounded-[3rem] overflow-hidden p-10 flex flex-col justify-between text-white">

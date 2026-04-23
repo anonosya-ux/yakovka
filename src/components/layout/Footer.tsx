@@ -81,7 +81,10 @@ export function Footer() {
       </div>
       
       <div className="container relative z-10 mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-[13px] text-stone-500">
-        <p>© {new Date().getFullYear()} Загородный отель «Яковка». Белокуриха, Алтайский край.</p>
+        <p>
+          © {new Date().getFullYear()} Загородный отель «Яковка». Белокуриха, Алтайский край.
+          <Link href="/lost-route" className="ml-2 text-[10px] text-stone-700/50 hover:text-primary hover:text-stone-300 transition-all inline-flex items-center gap-1 uppercase tracking-widest opacity-0 hover:opacity-100 focus:opacity-100">маршрут вне карты ↗</Link>
+        </p>
         <div className="flex items-center gap-6 mt-4 md:mt-0">
           {/* Social Links */}
           <a href="https://t.me/yakovka_hotel" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">

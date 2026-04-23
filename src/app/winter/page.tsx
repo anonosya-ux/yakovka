@@ -1,191 +1,150 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Snowflake, ThermometerSnowflake, Coffee, Mountain } from 'lucide-react';
+import PageHero from '@/components/PageHero';
+import CTABanner from '@/components/CTABanner';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function WinterPage() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [loadedFrames, setLoadedFrames] = useState(0);
-  const totalFrames = 208;
-  
+
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext('2d');
-    if (!context) return;
-
-    // Set canvas dimensions
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const images: HTMLImageElement[] = [];
-    const imageInfo = { frame: 0 };
-
-    const currentFrame = (index: number) =>
-      `/assets/sequence/${(index + 1).toString().padStart(3, '0')}.webp`;
-
-    // Preload
-    for (let i = 0; i < totalFrames; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        
-        const markLoaded = () => setLoadedFrames((prev) => prev + 1);
-        img.onload = markLoaded;
-        img.onerror = markLoaded;
-        
-        images.push(img);
-    }
-
-    let ctx = gsap.context(() => {
-        // Render function
-        const render = () => {
-            if (!images[Math.round(imageInfo.frame)]) return;
-            const img = images[Math.round(imageInfo.frame)];
-            if (!img.complete) return;
-
-            // Ensure canvas matches screen dimensions
-            if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-
-            // Draw image centered and scaled to cover
-            const hRatio = canvas.width / img.width;
-            const vRatio = canvas.height / img.height;
-            const ratio = Math.max(hRatio, vRatio);
-            const centerShift_x = (canvas.width - img.width * ratio) / 2;
-            const centerShift_y = (canvas.height - img.height * ratio) / 2;
-
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(
-                img,
-                0,
-                0,
-                img.width,
-                img.height,
-                centerShift_x,
-                centerShift_y,
-                img.width * ratio,
-                img.height * ratio
-            );
-        };
-
-        images[0].onload = render;
-
-        // Render on first tick just in case
-        gsap.ticker.add(render);
-
-        // Canvas GSAP sequence
-        gsap.to(imageInfo, {
-            frame: totalFrames - 1,
-            snap: "frame",
-            ease: "none",
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 0.5,
-            },
-            onUpdate: render,
-        });
-
-        // Animate text sections
-        const sections = gsap.utils.toArray('.anim-section');
-        sections.forEach((section: any) => {
-            const content = section.querySelector('.anim-content');
-            gsap.set(content, { opacity: 0, y: 50 });
-            
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 70%",
-                    end: "bottom 30%",
-                    scrub: 1,
-                }
-            });
-
-            tl.to(content, { opacity: 1, y: 0, duration: 1, ease: "power1.out" })
-              .to(content, { opacity: 1, duration: 2 }) // hold
-              .to(content, { opacity: 0, y: -50, duration: 1, ease: "power1.in" });
-        });
-    });
-
-    const handleResize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-        window.removeEventListener('resize', handleResize);
-        gsap.ticker.remove(() => {});
-        ctx.revert();
-    };
+    // Simple, lightweight fade-in animations instead of heavy canvas
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.anim-fade-up', 
+        { y: 40, opacity: 0 }, 
+        { 
+          y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '.features-grid', start: 'top 80%' }
+        }
+      );
+      
+      gsap.fromTo('.image-reveal', 
+        { scale: 1.05, opacity: 0 }, 
+        { 
+          scale: 1, opacity: 1, duration: 1.2, ease: 'power2.out',
+          scrollTrigger: { trigger: '.content-section', start: 'top 75%' }
+        }
+      );
+    }, containerRef);
+    
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="relative bg-black text-white min-h-screen">
-      {/* Loader removed for instant access */}
-
-      {/* Canvas Layer */}
-      <canvas 
-        ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-screen z-0 object-cover pointer-events-none"
+    <div className="bg-stone-50 min-h-screen" ref={containerRef}>
+      <PageHero
+        title="Зимняя Яковка"
+        subtitle="Погрузитесь в атмосферу сказки. Заснеженные вершины, чистый горный воздух и идеальные трассы прямо у порога вашего номера."
+        badge="❄️ Ski-in / Ski-out"
+        imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
+        imageAlt="Зимний отдых в отеле Яковка"
+        breadcrumbs={[{ label: 'Зимний отдых' }]}
       />
 
-      {/* Content Layer */}
-      <div ref={containerRef} className="relative z-10">
-        <section className="anim-section h-screen flex flex-col items-center justify-center relative">
-          <div className="anim-content text-center px-6 mt-32">
-            <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 drop-shadow-2xl text-white">
-              Зимняя Яковка
-            </h1>
-            <p className="text-lg md:text-2xl font-light opacity-90 max-w-2xl mx-auto drop-shadow-xl text-stone-200">
-              Погрузитесь в атмосферу сказки. Заснеженные вершины, чистый горный воздух и идеальные трассы.
+      {/* Intro Features */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900 mb-6">Идеальная зима на Алтае</h2>
+            <p className="text-stone-500 text-lg md:text-xl max-w-2xl mx-auto">
+              Мы создали все условия, чтобы ваш зимний отдых был не только активным, но и максимально комфортным.
             </p>
           </div>
-        </section>
 
-        <section className="anim-section h-screen flex flex-col items-center justify-center relative">
-          <div className="anim-content text-center px-6">
-            <h2 className="font-heading text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl text-white">
-              Катание для всех
-            </h2>
-            <p className="text-lg md:text-2xl font-light opacity-90 max-w-2xl mx-auto drop-shadow-xl text-stone-200">
-              Мы подготовили склоны как для новичков, так и для профи. Инструкторы помогут сделать первые снежные шаги.
-            </p>
+          <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Mountain, title: 'Трассы у отеля', desc: 'Свой бугельный подъемник и прокат снаряжения. Вышел из номера — и сразу на склон.' },
+              { icon: ThermometerSnowflake, title: 'Жаркая баня', desc: 'Настоящая русская баня на дровах с купелью для восстановления сил.' },
+              { icon: Snowflake, title: 'Чистый снег', desc: 'Ежедневная подготовка склонов ратраком и пушки для искусственного оснежения.' },
+              { icon: Coffee, title: 'Теплые вечера', desc: 'Авторская сибирская кухня и согревающие напитки в уютном ресторане с камином.' }
+            ].map((feature, idx) => (
+              <div key={idx} className="anim-fade-up bg-stone-50 p-8 rounded-[2rem] border border-stone-100 hover:shadow-premium transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm text-primary">
+                  <feature.icon size={28} />
+                </div>
+                <h3 className="font-heading font-bold text-xl text-stone-900 mb-3">{feature.title}</h3>
+                <p className="text-stone-500 text-sm leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="anim-section h-screen flex flex-col items-center justify-center relative">
-          <div className="anim-content text-center px-6">
-            <h2 className="font-heading text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl text-white">
-              После гор — баня
-            </h2>
-            <p className="text-lg md:text-2xl font-light opacity-90 max-w-2xl mx-auto drop-shadow-xl text-stone-200">
-              Настоящая русская баня на дровах, чтобы согреться и восстановить силы после активного дня на морозе.
-            </p>
+      {/* Content Section 1: Skiing */}
+      <section className="content-section py-24 bg-stone-950 text-white overflow-hidden relative">
+        <div className="container mx-auto px-6 max-w-6xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <span className="text-primary font-bold tracking-widest uppercase text-sm">Катание для всех</span>
+              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold">Снежные склоны Яковки</h2>
+              <p className="text-stone-300 text-lg leading-relaxed font-light">
+                Наши трассы идеально подходят как для уверенных райдеров, так и для тех, кто только встает на лыжи или сноуборд. Профессиональные инструкторы помогут сделать первые шаги безопасными и уверенными.
+              </p>
+              <ul className="space-y-4 mt-8">
+                <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /> Две трассы разного уровня сложности</li>
+                <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /> Бугельный подъемник</li>
+                <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /> Прокат современного снаряжения</li>
+              </ul>
+              <div className="pt-6">
+                <Link href="/infrastructure/ski" className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-white hover:text-stone-900 transition-colors">
+                  Узнать цены на подъемник
+                </Link>
+              </div>
+            </div>
+            <div className="image-reveal relative aspect-square rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <Image 
+                src="/optimized/Мероприятия/Горные лыжи/Горные лыжи-01.webp" 
+                alt="Горные лыжи" 
+                fill 
+                className="object-cover"
+              />
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="anim-section h-screen flex flex-col items-center justify-center relative">
-          <div className="anim-content text-center px-6">
-            <h2 className="font-heading text-4xl md:text-6xl font-bold mb-8 drop-shadow-2xl text-white">
-              В самое сердце зимы
-            </h2>
-            <p className="text-lg md:text-2xl font-light opacity-90 max-w-2xl mx-auto drop-shadow-xl mb-12 text-stone-200">
-              Откройте для себя зимнюю сказку в лучшем курорте Белокурихи.
-            </p>
-            <a href="/rooms" className="inline-flex items-center justify-center px-10 py-5 bg-white text-stone-900 font-bold rounded-full hover:scale-105 hover:bg-stone-100 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.3)]">
-              Выбрать номер
-            </a>
+      {/* Content Section 2: After Skiing */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row-reverse">
+            <div className="space-y-6">
+              <span className="text-orange-500 font-bold tracking-widest uppercase text-sm">Apres-Ski</span>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900">Уют и тепло после гор</h2>
+              <p className="text-stone-500 text-lg leading-relaxed">
+                Завершите активный день правильно. Настоящая русская баня на дровах поможет восстановить мышцы, а сытный ужин из алтайских фермерских продуктов в нашем ресторане восполнит запас энергии.
+              </p>
+              <div className="pt-6">
+                <Link href="/infrastructure/banya" className="inline-flex items-center justify-center px-8 py-4 bg-stone-100 text-stone-900 rounded-full font-bold hover:bg-stone-200 transition-colors">
+                  Забронировать баню
+                </Link>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-premium-lg">
+              <Image 
+                src="/optimized/Виды/Бассейн/Бассейн-01.webp" 
+                alt="Русская баня" 
+                fill 
+                className="object-cover"
+              />
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <CTABanner 
+        title="Зимняя сказка ждет вас"
+        subtitle="Выберите свой идеальный номер — от уютного стандарта до просторного семейного коттеджа."
+        buttonText="Смотреть номера"
+        buttonLink="/rooms"
+        variant="primary"
+      />
     </div>
   );
 }

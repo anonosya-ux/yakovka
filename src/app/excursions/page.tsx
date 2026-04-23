@@ -250,9 +250,9 @@ export default function ExcursionsPage() {
                     </p>
                   </div>
                   
-                  <button className="mt-8 bg-white text-stone-900 hover:bg-primary px-8 py-4 rounded-full font-bold transition-colors w-full md:w-auto text-lg">
+                  <a href="tel:+79609552100" className="mt-8 inline-block text-center bg-white text-stone-900 hover:bg-primary px-8 py-4 rounded-full font-bold transition-colors w-full md:w-auto text-lg">
                     Оставить заявку
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}

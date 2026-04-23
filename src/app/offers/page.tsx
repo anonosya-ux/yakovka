@@ -197,6 +197,8 @@ export default function OffersPage() {
         title="Не нашли подходящее предложение?" 
         subtitle="Свяжитесь с нами — мы подберём индивидуальный пакет под ваши пожелания и бюджет"
         variant="nature"
+        buttonText="Позвонить"
+        buttonLink="tel:+79609552100"
       />
     </div>
   );

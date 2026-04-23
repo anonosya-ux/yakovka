@@ -12,22 +12,19 @@ import { YakovkaLogo } from '@/components/Logo';
 const navLinks = [
   { href: '/rooms', label: 'Номера и цены' },
   {
-    href: '/infrastructure/ski',
+    href: '#',
     label: 'Отдых',
     children: [
-      { href: '/winter', label: 'Зимний отдых' },
       { href: '/summer', label: 'Летний отдых' },
-      { href: '/infrastructure/ski', label: 'Трассы и прокат' },
-      { href: '/infrastructure/restaurant', label: 'Заказное меню' },
+      { href: '/winter', label: 'Зимний отдых' },
+      { href: '/infrastructure/restaurant', label: 'Ресторан' },
       { href: '/infrastructure/banya', label: 'Русская баня' },
       { href: '/excursions', label: 'Экскурсии' },
-      { href: '/gallery', label: 'Фотогалерея' },
     ],
   },
   { href: '/offers', label: 'Акции' },
+  { href: '/gallery', label: 'Фотогалерея' },
   { href: '/about', label: 'О курорте' },
-  { href: '/invest', label: 'Инвесторам' },
-  { href: '/reviews', label: 'Отзывы' },
   { href: '/contacts', label: 'Контакты' },
 ];
 

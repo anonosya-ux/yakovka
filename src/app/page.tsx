@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Tag, Snowflake } from 'lucide-react';
+import { ArrowRight, Tag, Snowflake, ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -15,10 +15,53 @@ import CallbackModal from '@/components/CallbackModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const RoomSlider = ({ images, title }: { images: string[], title: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-full group/slider">
+      <Image 
+        src={images[currentIndex]} 
+        alt={`${title} - Фото ${currentIndex + 1}`}
+        fill
+        className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+      />
+      
+      {images.length > 1 && (
+        <>
+          <button onClick={prev} aria-label="Предыдущее фото" className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
+            <ChevronLeft size={28} className="text-stone-900" />
+          </button>
+          <button onClick={next} aria-label="Следующее фото" className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
+            <ChevronRight size={28} className="text-stone-900" />
+          </button>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 pointer-events-none">
+            {images.map((_, i) => (
+              <div key={i} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-white scale-125 shadow-[0_0_10px_rgba(255,255,255,0.8)]' : 'bg-white/50'}`} />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
 const offers = [
-  { id: 1, title: 'Раннее бронирование', desc: 'Скидка 15% при бронировании за 30 дней.', bg: '/optimized/Виды/Фасады/Фасады-01.webp' },
-  { id: 2, title: 'Длительное проживание', desc: 'От 5 ночей — баня в подарок.', bg: '/optimized/Виды/Бассейн/Бассейн-02.webp' },
-  { id: 3, title: 'Романтические выходные', desc: 'Специальный пакет для пар.', bg: '/optimized/Виды/Фасады/Фасады-03.webp' },
+  { id: 1, title: 'Раннее бронирование', desc: 'Забронируйте отдых за 30 дней и получите скидку 15% на проживание.', bg: '/optimized/Виды/Фасады/Фасады-01.webp' },
+  { id: 2, title: 'Семейный отдых', desc: 'Детская площадка, просторные шале и чистый горный воздух.', bg: '/optimized/Виды/Природа/Природа-01.webp' },
+  { id: 3, title: 'Банный релакс', desc: 'При бронировании от 5 ночей — 2 часа русской бани в подарок.', bg: '/optimized/Виды/Бассейн/Бассейн-02.webp' },
 ];
 
 export default function Home() {
@@ -38,6 +81,12 @@ export default function Home() {
           gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
           gsap.to(path, { strokeDashoffset: 0, duration: 3, ease: 'power3.inOut', delay: 0.5 });
         }
+
+        // Hero Content Fade In
+        gsap.fromTo('.animate-fade-in-up', 
+          { y: 30, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
+        );
 
         // Hero Parallax
         gsap.to('.hero-video', {
@@ -119,20 +168,34 @@ export default function Home() {
         </svg>
 
         <div className="relative z-20 flex flex-col items-center justify-center text-center px-6">
-          <h1 className="font-heading text-6xl md:text-8xl lg:text-[120px] font-bold text-white tracking-tighter drop-shadow-2xl mb-8 leading-none">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up">
+            <Tag size={16} className="text-primary" /> Выгодные предложения на лето
+          </div>
+          <h1 className="font-heading text-6xl md:text-8xl lg:text-[120px] font-bold text-white tracking-tighter drop-shadow-2xl mb-4 leading-none">
             ЯКОВКА<span className="text-primary block text-4xl md:text-6xl mt-2 tracking-normal font-light">RESORT</span>
           </h1>
+          <p className="text-lg md:text-2xl text-stone-200 font-light max-w-3xl mx-auto mb-12 drop-shadow-md">
+            Загородный эко-курорт в Белокурихе. Идеальное место для восстановления сил, семейного отдыха и погружения в природу Алтая.
+          </p>
           
-          <a 
-            href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="group relative inline-flex items-center justify-center px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-            style={{ willChange: 'transform' }}
-          >
-            Забронировать отдых
-            <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-6">
+            <a 
+              href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-primary text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)]"
+              style={{ willChange: 'transform' }}
+            >
+              Забронировать номер
+              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <Link 
+              href="/summer" 
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105"
+            >
+              Летний отдых
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -216,10 +279,17 @@ export default function Home() {
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             >
-              <Image src="/optimized/Номера/Стандарт+/Стандарт+-01.webp" alt="Стандартные номера" fill className="object-cover transition-transform duration-[1.5s] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-stone-900/30 group-hover:bg-stone-900/10 transition-colors duration-500" />
+              <RoomSlider 
+                title="Стандартные номера" 
+                images={[
+                  '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
+                  '/optimized/Номера/Стандарт+/Стандарт+-02.webp',
+                  '/optimized/Номера/Стандарт/Стандарт-03.webp',
+                ]} 
+              />
+              <div className="absolute inset-0 bg-stone-900/30 group-hover:bg-stone-900/10 transition-colors duration-500 pointer-events-none" />
               
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">НОМЕРА</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-white group-hover:text-stone-900 transition-colors">
                   от 3 600 ₽
@@ -234,10 +304,17 @@ export default function Home() {
               onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
               onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
             >
-              <Image src="/optimized/Номера/Семейный+/Семейный+-01.webp" alt="Семейные шале" fill className="object-cover transition-transform duration-[1.5s] group-hover:scale-105" />
-              <div className="absolute inset-0 bg-stone-900/30 group-hover:bg-stone-900/10 transition-colors duration-500" />
+              <RoomSlider 
+                title="Семейные шале" 
+                images={[
+                  '/optimized/Номера/Семейный+/Семейный+-01.webp',
+                  '/optimized/Номера/Семейный++/Семейный++-02.webp',
+                  '/optimized/Номера/Семейный/Семейный-03.webp',
+                ]} 
+              />
+              <div className="absolute inset-0 bg-stone-900/30 group-hover:bg-stone-900/10 transition-colors duration-500 pointer-events-none" />
               
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">ШАЛЕ</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-primary group-hover:border-primary transition-colors">
                   от 5 800 ₽
@@ -252,7 +329,13 @@ export default function Home() {
       {/* 5. ADDITIONAL BLOCKS (Footer-adjacent) */}
       <ServicesSection />
       <MapSection />
-      <CTABanner variant="nature" />
+      <CTABanner 
+        variant="nature" 
+        title="Остались вопросы по бронированию?"
+        subtitle="Оставьте свой номер телефона, и наш администратор свяжется с вами в течение 10 минут, чтобы подобрать идеальный номер для вашего отдыха."
+        buttonText="Заказать звонок"
+        onButtonClick={() => setIsCallbackModalOpen(true)}
+      />
       <CallbackModal isOpen={isCallbackModalOpen} onClose={() => setIsCallbackModalOpen(false)} />
     </div>
   );

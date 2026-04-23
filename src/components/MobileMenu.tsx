@@ -58,14 +58,12 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         <ul ref={linksRef} className="space-y-6 text-[32px] font-extrabold tracking-tight text-slate-900" aria-label="Mobile navigation">
           {[
             { href: '/rooms', label: 'Номера и цены' },
-            { href: '/winter', label: 'Зимний отдых' },
             { href: '/summer', label: 'Летний отдых' },
+            { href: '/winter', label: 'Зимний отдых' },
             { href: '/offers', label: 'Акции' },
             { href: '/excursions', label: 'Экскурсии' },
-            { href: '/services', label: 'Услуги' },
             { href: '/gallery', label: 'Фотогалерея' },
             { href: '/about', label: 'О курорте' },
-            { href: '/invest', label: 'Инвесторам' },
             { href: '/contacts', label: 'Контакты' }
           ].map(link => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);

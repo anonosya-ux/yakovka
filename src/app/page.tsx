@@ -200,26 +200,27 @@ export default function Home() {
       </section>
 
       {/* 2. ABOUT SECTION (Прозрачный фон природы + Лого + Текст) */}
-      <section className="about-section relative min-h-screen py-32 flex items-center justify-center overflow-hidden bg-stone-950">
+      <section className="about-section relative min-h-screen py-32 flex items-center justify-center overflow-hidden bg-stone-900">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image 
             src="/optimized/Виды/Природа/Природа-03.webp" 
             alt="Природа Алтая" 
             fill 
-            className="about-bg object-cover scale-125 opacity-40" 
+            className="about-bg object-cover scale-125 opacity-70" 
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/40" />
         </div>
         
         <div className="relative z-10 container mx-auto px-6">
-          <div className="glass-box max-w-4xl mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-[3rem] p-10 md:p-20 text-center shadow-[0_30px_60px_rgba(0,0,0,0.3)] will-change-transform">
-            <div className="mb-10 inline-flex items-center justify-center w-24 h-24 rounded-full bg-white/10 border border-white/20 text-white">
-              <Snowflake size={40} className="opacity-80" />
+          <div className="glass-box max-w-3xl mx-auto bg-stone-950/80 backdrop-blur-xl border border-white/10 rounded-[3rem] p-10 md:p-16 text-center shadow-[0_30px_60px_rgba(0,0,0,0.5)] will-change-transform">
+            <div className="mb-10 inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 border border-primary/20 text-primary">
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
             
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-8">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Эко-курорт у подножия легендарной горы
             </h2>
-            <div className="space-y-6 text-lg md:text-2xl text-stone-200 font-light leading-relaxed">
+            <div className="space-y-6 text-lg text-stone-300 font-light leading-relaxed max-w-2xl mx-auto mb-10">
               <p>
                 Отель расположен в курортной зоне города Белокуриха, в ущелье, 
                 по которому протекает ручей с кристально чистой водой.
@@ -229,6 +230,12 @@ export default function Home() {
                 сил, горнолыжного спорта зимой и захватывающих эко-маршрутов летом.
               </p>
             </div>
+            <Link 
+              href="/about" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 rounded-full font-bold text-lg transition-all hover:bg-primary hover:text-white"
+            >
+              Подробнее о курорте
+            </Link>
           </div>
         </div>
       </section>

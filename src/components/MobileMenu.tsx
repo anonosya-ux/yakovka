@@ -57,12 +57,12 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
       <div className="px-8 pb-10 flex-grow flex flex-col justify-center perspective-[1000px]">
         <ul ref={linksRef} className="space-y-6 text-[32px] font-extrabold tracking-tight text-slate-900" aria-label="Mobile navigation">
           {[
-            { href: '/rooms', label: 'Номера и цены' },
+            { href: '/rooms', label: 'Проживание' },
+            { href: '/winter', label: 'Зимний отдых и гора' },
             { href: '/summer', label: 'Летний отдых' },
-            { href: '/winter', label: 'Зимний отдых' },
-            { href: '/offers', label: 'Акции' },
             { href: '/excursions', label: 'Экскурсии' },
-            { href: '/gallery', label: 'Фотогалерея' },
+            { href: '/infrastructure/banya', label: 'Русская баня' },
+            { href: '/infrastructure/restaurant', label: 'Домашняя кухня' },
             { href: '/about', label: 'О курорте' },
             { href: '/contacts', label: 'Контакты' }
           ].map(link => {
@@ -81,8 +81,8 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             );
           })}
           <li style={{ transformStyle: 'preserve-3d' }} className="pt-6">
-            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" onClick={onClose} className="block w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
-              Забронировать
+            <a href="tel:+79609552100" onClick={onClose} className="block w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+              Позвонить
             </a>
           </li>
         </ul>

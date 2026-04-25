@@ -40,29 +40,28 @@ export function Footer() {
 
         {/* Курорт */}
         <div>
-          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Курорт</h4>
+          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">О курорте</h4>
           <ul className="space-y-3.5 text-sm text-stone-400">
-            <li><Link href="/about" className="hover:text-white transition-colors">О курорте</Link></li>
+            <li><Link href="/about" className="hover:text-white transition-colors">Об отеле</Link></li>
             <li><Link href="/rooms" className="hover:text-white transition-colors">Номера и цены</Link></li>
-            <li><Link href="/season" className="hover:text-white transition-colors">Горнолыжный сезон</Link></li>
-            <li><Link href="/summer" className="hover:text-white transition-colors">Летний отдых</Link></li>
+            <li><Link href="/about/history" className="hover:text-white transition-colors">История Яковки</Link></li>
             <li><Link href="/gallery" className="hover:text-white transition-colors">Фотогалерея</Link></li>
             <li><Link href="/reviews" className="hover:text-white transition-colors">Отзывы гостей</Link></li>
+            <li><Link href="/offers" className="hover:text-white transition-colors">Спецпредложения</Link></li>
             <li><Link href="/invest" className="hover:text-white transition-colors">Инвестиционный проект</Link></li>
           </ul>
         </div>
         
-        {/* Услуги */}
+        {/* Чем заняться */}
         <div>
-          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Услуги</h4>
+          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Чем заняться</h4>
           <ul className="space-y-3.5 text-sm text-stone-400">
-            <li><Link href="/infrastructure/restaurant" className="hover:text-white transition-colors">Домашняя кухня</Link></li>
+            <li><Link href="/winter" className="hover:text-white transition-colors">Зимний отдых и гора</Link></li>
+            <li><Link href="/summer" className="hover:text-white transition-colors">Летний отдых</Link></li>
             <li><Link href="/infrastructure/banya" className="hover:text-white transition-colors">Русская баня</Link></li>
-            <li><Link href="/infrastructure/ski" className="hover:text-white transition-colors">Горнолыжные трассы</Link></li>
-            <li><Link href="/services" className="hover:text-white transition-colors">Доп. услуги</Link></li>
-            <li><Link href="/excursions" className="hover:text-white transition-colors">Экскурсии</Link></li>
-            <li><Link href="/offers" className="hover:text-white transition-colors">Спецпредложения</Link></li>
-            <li><Link href="/events" className="hover:text-white transition-colors">Мероприятия</Link></li>
+            <li><Link href="/infrastructure/restaurant" className="hover:text-white transition-colors">Домашняя кухня</Link></li>
+            <li><Link href="/excursions" className="hover:text-white transition-colors">Экскурсии по Алтаю</Link></li>
+            <li><Link href="/events" className="hover:text-white transition-colors">События и корпоративы</Link></li>
           </ul>
         </div>
 

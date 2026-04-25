@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Snowflake, ThermometerSnowflake, Coffee, Mountain } from 'lucide-react';
+import { Snowflake, ThermometerSnowflake, Coffee, Mountain, Compass, Activity, Calendar, Info, Clock } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 
@@ -93,9 +93,9 @@ export default function WinterPage() {
                 <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-primary" /> Прокат современного снаряжения</li>
               </ul>
               <div className="pt-6">
-                <Link href="/infrastructure/ski" className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-white hover:text-stone-900 transition-colors">
-                  Узнать цены на подъемник
-                </Link>
+                <a href="#ski-prices" className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-white hover:text-stone-900 transition-colors">
+                  Смотреть цены на подъемники
+                </a>
               </div>
             </div>
             <div className="image-reveal relative aspect-square rounded-[3rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
@@ -105,6 +105,118 @@ export default function WinterPage() {
                 fill 
                 className="object-cover"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Info grid & Pricing Tables from Ski */}
+      <section id="ski-prices" className="py-24 bg-stone-50">
+        <div className="container mx-auto px-6">
+          <div className="mb-16 max-w-4xl mx-auto text-center">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900 mb-6 tracking-tight">Горнолыжный комплекс</h2>
+            <p className="text-lg text-stone-600 mb-8 leading-relaxed font-light">
+              Северный склон горы гарантирует продолжительный сезон качественного снежного покрова.
+            </p>
+          </div>
+
+          {/* Info grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 max-w-6xl mx-auto">
+            <div className="bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col items-center text-center">
+              <div className="bg-primary/5 text-primary p-4 rounded-full mb-4">
+                <Mountain size={28} />
+              </div>
+              <h3 className="font-heading font-bold text-stone-900 mb-2">4 Трассы</h3>
+              <p className="text-sm text-stone-500">Различного уровня сложности</p>
+            </div>
+            <div className="bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col items-center text-center">
+              <div className="bg-primary/5 text-primary p-4 rounded-full mb-4">
+                <Activity size={28} />
+              </div>
+              <h3 className="font-heading font-bold text-stone-900 mb-2">1000 метров</h3>
+              <p className="text-sm text-stone-500">Длина основных трасс</p>
+            </div>
+            <div className="bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col items-center text-center">
+              <div className="bg-primary/5 text-primary p-4 rounded-full mb-4">
+                <Compass size={28} />
+              </div>
+              <h3 className="font-heading font-bold text-stone-900 mb-2">Склоны</h3>
+              <p className="text-sm text-stone-500">Северный склон, перепад 200 м</p>
+            </div>
+            <div className="bg-white p-6 rounded-[1.5rem] shadow-sm hover:shadow-md transition-shadow border border-stone-200/60 flex flex-col items-center text-center">
+              <div className="bg-primary/5 text-primary p-4 rounded-full mb-4">
+                <Calendar size={28} />
+              </div>
+              <h3 className="font-heading font-bold text-stone-900 mb-2">Режим работы</h3>
+              <p className="text-sm text-stone-500">Вт-Вс: 10:00 - 18:00 (Пн - выходной)</p>
+            </div>
+          </div>
+
+          {/* Pricing Tables */}
+          <div className="max-w-5xl mx-auto mb-20">
+            <h2 className="font-heading text-3xl font-bold text-center text-stone-900 mb-10">Тарифы на подъемники</h2>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Бугельный подъемник */}
+              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-lg shadow-stone-200/50 border border-stone-200/60 relative overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-2 bg-primary"></div>
+                <h3 className="font-heading text-2xl font-bold text-stone-900 mb-6">Бугельный подъемник</h3>
+                <ul className="space-y-4">
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">1 подъем</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">100 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">1 час</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">700 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">2 часа</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">1000 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">3 часа</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">1200 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-2">
+                    <span className="text-stone-600 font-medium tracking-wide">Дневной абонемент</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">1500 ₽</span>
+                  </li>
+                </ul>
+                <p className="text-xs text-stone-400 mt-6">* Цены указаны для ознакомления, тарифы могут быть изменены.</p>
+              </div>
+
+              {/* Беби-лифт */}
+              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-lg shadow-stone-200/50 border border-stone-200/60 relative overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-2 bg-stone-800"></div>
+                <h3 className="font-heading text-2xl font-bold text-stone-900 mb-6">Беби-лифт (Учебный склон)</h3>
+                <ul className="space-y-4">
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">1 подъем</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">50 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">1 час</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">300 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">2 часа</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">500 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
+                    <span className="text-stone-600 font-medium tracking-wide">3 часа</span>
+                    <span className="font-heading text-lg font-bold text-stone-900">700 ₽</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-2">
+                    <span className="text-stone-600 font-medium tracking-wide">Полдня <span className="text-sm font-normal text-stone-400">(до/после 14:00)</span></span>
+                    <span className="font-heading text-lg font-bold text-stone-900">800 ₽</span>
+                  </li>
+                </ul>
+                <div className="mt-6 flex items-start gap-2 text-sm text-stone-700 bg-stone-50 p-3 rounded-lg border border-stone-200">
+                  <Info size={18} className="shrink-0 mt-0.5 text-stone-400" />
+                  <p>Экскурсионный подъем («банан» и «ватрушки» не предоставляются) — 150 ₽</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

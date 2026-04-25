@@ -10,28 +10,30 @@ import { MobileMenu } from '@/components/MobileMenu';
 import { YakovkaLogo } from '@/components/Logo';
 
 const navLinks = [
-  { href: '/rooms', label: 'Номера и цены' },
+  { href: '/rooms', label: 'Проживание' },
   {
     href: '#',
-    label: 'Отдых',
+    label: 'Чем заняться',
     children: [
+      { href: '/winter', label: 'Зимний отдых и гора' },
       { href: '/summer', label: 'Летний отдых' },
-      { href: '/winter', label: 'Зимний отдых' },
-      { href: '/infrastructure/restaurant', label: 'Домашняя кухня' },
       { href: '/infrastructure/banya', label: 'Русская баня' },
-      { href: '/excursions', label: 'Экскурсии' },
+      { href: '/infrastructure/restaurant', label: 'Домашняя кухня' },
+      { href: '/excursions', label: 'Экскурсии по Алтаю' },
     ],
   },
-  { href: '/offers', label: 'Акции' },
-  { href: '/gallery', label: 'Фотогалерея' },
   { 
     href: '/about', 
     label: 'О курорте',
     children: [
-      { href: '/about', label: 'О курорте' },
+      { href: '/about', label: 'Об отеле' },
+      { href: '/gallery', label: 'Фотогалерея' },
+      { href: '/offers', label: 'Спецпредложения' },
+      { href: '/reviews', label: 'Отзывы гостей' },
       { href: '/about/history', label: 'История Яковки' }
     ]
   },
+  { href: '/events', label: 'События' },
   { href: '/contacts', label: 'Контакты' },
 ];
 
@@ -148,8 +150,8 @@ export function Header() {
               </a>
             </div>
             
-            <a href="https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white shadow-[0_10px_20px_rgba(34,85,34,0.3)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.4)] rounded-full px-7 py-4 font-bold text-sm uppercase tracking-wide transition-all hover:-translate-y-0.5 border border-primary/20">
-              Забронировать
+            <a href="tel:+79609552100" className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white shadow-[0_10px_20px_rgba(34,85,34,0.3)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.4)] rounded-full px-7 py-4 font-bold text-sm uppercase tracking-wide transition-all hover:-translate-y-0.5 border border-primary/20">
+              Связаться
             </a>
             <button onClick={() => setIsMenuOpen(true)} className={`lg:hidden p-2 rounded-xl border transition-colors ${
               isScrolled 

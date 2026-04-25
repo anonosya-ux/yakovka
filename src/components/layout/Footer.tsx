@@ -56,7 +56,7 @@ export function Footer() {
         <div>
           <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Услуги</h4>
           <ul className="space-y-3.5 text-sm text-stone-400">
-            <li><Link href="/infrastructure/restaurant" className="hover:text-white transition-colors">Ресторан</Link></li>
+            <li><Link href="/infrastructure/restaurant" className="hover:text-white transition-colors">Домашняя кухня</Link></li>
             <li><Link href="/infrastructure/banya" className="hover:text-white transition-colors">Русская баня</Link></li>
             <li><Link href="/infrastructure/ski" className="hover:text-white transition-colors">Горнолыжные трассы</Link></li>
             <li><Link href="/services" className="hover:text-white transition-colors">Доп. услуги</Link></li>
@@ -81,10 +81,16 @@ export function Footer() {
       </div>
       
       <div className="container relative z-10 mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-[13px] text-stone-500">
-        <p>
-          © {new Date().getFullYear()} Загородный отель «Яковка». Белокуриха, Алтайский край.
-          <Link href="/lost-route" className="ml-2 text-[10px] text-stone-700/50 hover:text-primary hover:text-stone-300 transition-all inline-flex items-center gap-1 uppercase tracking-widest opacity-0 hover:opacity-100 focus:opacity-100">маршрут вне карты ↗</Link>
-        </p>
+        <div className="flex flex-col gap-2 mb-4 md:mb-0">
+          <p>
+            © {new Date().getFullYear()} Загородный отель «Яковка». Белокуриха, Алтайский край.
+            <Link href="/lost-route" className="ml-2 text-[10px] text-stone-700/50 hover:text-primary hover:text-stone-300 transition-all inline-flex items-center gap-1 uppercase tracking-widest opacity-0 hover:opacity-100 focus:opacity-100">маршрут вне карты ↗</Link>
+          </p>
+          <p className="text-stone-600 text-xs">
+            {/* TODO: Обновить после получения выписки */}
+            Сведения о средстве размещения: будет добавлен после получения выписки из реестра.
+          </p>
+        </div>
         <div className="flex items-center gap-6 mt-4 md:mt-0">
           {/* Social Links */}
           <a href="https://t.me/yakovka_hotel" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">

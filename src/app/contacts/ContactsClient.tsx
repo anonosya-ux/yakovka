@@ -198,30 +198,12 @@ export default function ContactsClient() {
           </div>
 
           {/* Company Requisites Block */}
+          {/* TODO: Обновить данные после предоставления карточки ИП */}
           <div className="mt-12 bg-stone-900 p-10 md:p-14 rounded-[3rem] shadow-2xl relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-             <h2 className="font-heading text-3xl font-bold text-white mb-10">Реквизиты компании</h2>
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-base">
-               <div className="flex justify-between border-b border-stone-800 pb-3">
-                 <span className="text-stone-500">Организация</span>
-                 <span className="text-white font-medium text-right">ООО «Яковка»</span>
-               </div>
-               <div className="flex justify-between border-b border-stone-800 pb-3">
-                 <span className="text-stone-500">ИНН</span>
-                 <span className="text-white font-medium text-right">2203006670</span>
-               </div>
-               <div className="flex justify-between border-b border-stone-800 pb-3">
-                 <span className="text-stone-500">КПП</span>
-                 <span className="text-white font-medium text-right">220301001</span>
-               </div>
-               <div className="flex justify-between border-b border-stone-800 pb-3">
-                 <span className="text-stone-500">ОГРН</span>
-                 <span className="text-white font-medium text-right">1022200534272</span>
-               </div>
-               <div className="flex flex-col md:col-span-2 border-b border-stone-800 pb-3 mt-4">
-                 <span className="text-stone-500 mb-2">Юридический адрес</span>
-                 <span className="text-white font-medium">659900, Алтайский край, город Белокуриха, улица Угрюмова, дом 4</span>
-               </div>
+             <h2 className="font-heading text-3xl font-bold text-white mb-6">Реквизиты организации</h2>
+             <div className="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
+               <p className="text-stone-400">Реквизиты организации будут добавлены после предоставления карточки ИП.</p>
              </div>
           </div>
 

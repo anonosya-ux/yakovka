@@ -100,7 +100,7 @@ export default function ServicesSection() {
             <div>
               <h3 className="font-heading text-2xl font-bold text-stone-900 mb-2">Любимые блюда</h3>
               <p className="text-stone-600 font-light mb-4">Домашняя кухня с заказными обедами и исполнением ваших кулинарных желаний.</p>
-              <span className="text-xs font-bold tracking-widest uppercase text-stone-400 group-hover:text-stone-900 transition-colors">Меню ресторана →</span>
+              <span className="text-xs font-bold tracking-widest uppercase text-stone-400 group-hover:text-stone-900 transition-colors">Меню домашняя кухняа →</span>
             </div>
           </Link>
 
@@ -139,7 +139,7 @@ export default function ServicesSection() {
             <ShieldCheck size={32} className="text-primary" />
             <div>
               <h3 className="font-heading text-2xl font-bold mb-2">Безопасность</h3>
-              <p className="text-stone-400 font-light">Собственная территория под наблюдением. Охраняемая парковка для вашего «железного коня».</p>
+              <p className="text-stone-400 font-light">Собственная территория под наблюдением. Парковка под видеонаблюдением для вашего «железного коня».</p>
             </div>
           </div>
 

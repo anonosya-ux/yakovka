@@ -17,14 +17,21 @@ const navLinks = [
     children: [
       { href: '/summer', label: 'Летний отдых' },
       { href: '/winter', label: 'Зимний отдых' },
-      { href: '/infrastructure/restaurant', label: 'Ресторан' },
+      { href: '/infrastructure/restaurant', label: 'Домашняя кухня' },
       { href: '/infrastructure/banya', label: 'Русская баня' },
       { href: '/excursions', label: 'Экскурсии' },
     ],
   },
   { href: '/offers', label: 'Акции' },
   { href: '/gallery', label: 'Фотогалерея' },
-  { href: '/about', label: 'О курорте' },
+  { 
+    href: '/about', 
+    label: 'О курорте',
+    children: [
+      { href: '/about', label: 'О курорте' },
+      { href: '/about/history', label: 'История Яковки' }
+    ]
+  },
   { href: '/contacts', label: 'Контакты' },
 ];
 

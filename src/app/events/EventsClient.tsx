@@ -31,7 +31,7 @@ const events = [
   },
   {
     title: 'Дни Рождения и Юбилеи',
-    desc: 'Проведите свой особенный день в кругу близких. Арендуйте шале или коттедж, закажите праздничный ужин в ресторане или устройте барбекю в оборудованной мангальной зоне. Именинникам предоставляются специальные скидки.',
+    desc: 'Проведите свой особенный день в кругу близких. Арендуйте шале или коттедж, закажите праздничный ужин в домашняя кухняе или устройте барбекю в оборудованной мангальной зоне. Именинникам предоставляются специальные скидки.',
     icon: Gift,
     image: '/optimized/Мероприятия/Свадьбы/Свадьбы-05.webp',
     features: ['Скидки именинникам', 'Аренда коттеджа', 'Мангальные зоны'],
@@ -103,12 +103,12 @@ export default function EventsClient() {
           </div>
         ))}
 
-        {/* Банкетное меню (Ссылка на ресторан) */}
+        {/* Банкетное меню (Ссылка на домашняя кухня) */}
         <div className="event-block max-w-6xl mx-auto mt-24">
           <Link href="/infrastructure/restaurant" className="group block relative rounded-[3rem] overflow-hidden shadow-xl shadow-stone-200/50 border border-stone-100 h-[400px]">
             <Image 
               src="/optimized/Виды/Кухня/Кухня-01.webp" 
-              alt="Банкетное меню ресторана Яковка"
+              alt="Банкетное меню домашняя кухняа Яковка"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-[1500ms]"
             />
@@ -120,7 +120,7 @@ export default function EventsClient() {
                 Наш шеф-повар подготовил специальное банкетное меню с блюдами алтайской кухни из свежайших фермерских продуктов. Мы учтем все ваши пожелания и вкусовые предпочтения.
               </p>
               <div className="flex items-center gap-3 text-white font-bold text-lg group-hover:text-primary transition-colors">
-                Посмотреть меню ресторана <ArrowUpRight className="w-6 h-6" />
+                Посмотреть меню домашняя кухняа <ArrowUpRight className="w-6 h-6" />
               </div>
             </div>
           </Link>

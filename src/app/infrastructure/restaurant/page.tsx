@@ -28,7 +28,7 @@ export default function RestaurantPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Restaurant",
-          "name": "Ресторан «Яковка»",
+          "name": "Домашняя кухня «Яковка»",
           "description": "Авторская алтайская кухня из натуральных местных продуктов. Фермерские эко-продукты, стейк из марала, горный мёд.",
           "url": "https://yakovka.ru/infrastructure/restaurant",
           "telephone": "+7 (960) 955-21-00",
@@ -70,7 +70,7 @@ export default function RestaurantPage() {
         <div className="absolute inset-0 bg-stone-900 z-0">
           <Image 
             src="/optimized/Виды/Кухня/Кухня-01.webp" 
-            alt="Ресторан Яковка" 
+            alt="Домашняя кухня Яковка" 
             fill
             className="object-cover opacity-60 mix-blend-overlay"
             priority
@@ -81,7 +81,7 @@ export default function RestaurantPage() {
           <div className="flex justify-center -mt-8"><Breadcrumbs variant="dark" /></div>
           <ChefHat size={64} className="mx-auto mb-8 text-primary opacity-90 drop-shadow-lg mt-8" />
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl font-heading">
-            Ресторан <span className="text-primary">«Яковка»</span>
+            Домашняя кухня <span className="text-primary">«Яковка»</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl mx-auto">
             Авторская алтайская кухня из натуральных местных продуктов с панорамным видом на горы.
@@ -95,7 +95,7 @@ export default function RestaurantPage() {
             <h2 className="font-heading text-4xl font-bold text-stone-900 tracking-tight">Домашняя кухня с алтайским характером</h2>
             <div className="w-16 h-1.5 bg-primary rounded-full" />
             <p className="text-lg text-stone-600 leading-relaxed">
-              Наш ресторан порадует вас заказными обедами и ужинами, а также индивидуальным исполнением ваших пожеланий нашими шеф-поварами. Мы гордимся тем, что используем экологически чистые, фермерские продукты от местных алтайских производителей.
+              Наш домашняя кухня порадует вас заказными обедами и ужинами, а также индивидуальным исполнением ваших пожеланий нашими шеф-поварами. Мы гордимся тем, что используем экологически чистые, фермерские продукты от местных алтайских производителей.
             </p>
             <p className="text-lg text-stone-600 leading-relaxed">
               Уютный зал с камином идеально подходит для теплых семейных посиделок после активного дня на склоне, романтических ужинов или торжественных банкетов.
@@ -122,7 +122,7 @@ export default function RestaurantPage() {
           <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-premium-lg reveal-el">
             <Image 
               src="/optimized/Виды/Кухня/Кухня-02.webp" 
-              alt="Интерьер ресторана" 
+              alt="Интерьер домашняя кухняа" 
               fill
               className="object-cover"
             />

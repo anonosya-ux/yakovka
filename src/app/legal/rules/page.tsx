@@ -15,7 +15,17 @@ export default function RulesPage() {
         <Breadcrumbs variant="light" />
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-10">Правила проживания</h1>
         
-        <div className="prose prose-lg prose-slate prose-blue max-w-none">
+        {/* TODO: Заменить на официальные правила отеля от клиента */}
+        <div className="bg-amber-50 border border-amber-200 text-amber-800 p-6 rounded-2xl mb-8">
+          <p className="font-bold flex items-center gap-2 mb-2">
+            ⚠️ Документ находится на стадии согласования
+          </p>
+          <p className="text-sm">
+            Ниже представлены базовые правила проживания. Официальный утвержденный документ будет опубликован в ближайшее время.
+          </p>
+        </div>
+
+        <div className="prose prose-lg prose-slate prose-blue max-w-none opacity-80">
           <p>
             Настоящие правила разработаны в соответствии с Законом РФ «О защите прав потребителей» и Правилами предоставления гостиничных услуг в РФ.
           </p>

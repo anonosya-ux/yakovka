@@ -61,9 +61,9 @@ export default function WinterPage() {
           <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { icon: Mountain, title: 'Трассы у отеля', desc: 'Свой бугельный подъемник и прокат снаряжения. Вышел из номера — и сразу на склон.' },
-              { icon: ThermometerSnowflake, title: 'Жаркая баня', desc: 'Настоящая русская баня на дровах с купелью для восстановления сил.' },
+              { icon: ThermometerSnowflake, title: 'Жаркая баня', desc: 'Настоящая русская баня на дровах с летний неподогреваемый бассейню для восстановления сил.' },
               { icon: Snowflake, title: 'Чистый снег', desc: 'Ежедневная подготовка склонов ратраком и пушки для искусственного оснежения.' },
-              { icon: Coffee, title: 'Теплые вечера', desc: 'Авторская сибирская кухня и согревающие напитки в уютном ресторане с камином.' }
+              { icon: Coffee, title: 'Теплые вечера', desc: 'Авторская сибирская кухня и согревающие напитки в уютном домашняя кухняе с камином.' }
             ].map((feature, idx) => (
               <div key={idx} className="anim-fade-up bg-stone-50 p-8 rounded-[2rem] border border-stone-100 hover:shadow-premium transition-shadow">
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm text-primary">
@@ -118,7 +118,7 @@ export default function WinterPage() {
               <span className="text-orange-500 font-bold tracking-widest uppercase text-sm">Apres-Ski</span>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-stone-900">Уют и тепло после гор</h2>
               <p className="text-stone-500 text-lg leading-relaxed">
-                Завершите активный день правильно. Настоящая русская баня на дровах поможет восстановить мышцы, а сытный ужин из алтайских фермерских продуктов в нашем ресторане восполнит запас энергии.
+                Завершите активный день правильно. Настоящая русская баня на дровах поможет восстановить мышцы, а сытный ужин из алтайских фермерских продуктов в нашем домашняя кухняе восполнит запас энергии.
               </p>
               <div className="pt-6">
                 <Link href="/infrastructure/banya" className="inline-flex items-center justify-center px-8 py-4 bg-stone-100 text-stone-900 rounded-full font-bold hover:bg-stone-200 transition-colors">

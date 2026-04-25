@@ -24,7 +24,7 @@ export default function PaymentPage() {
           <div className="p-8 border border-slate-100 rounded-3xl bg-slate-50 shadow-sm flex flex-col h-full">
             <CreditCard size={40} className="text-blue-600 mb-6" />
             <h3 className="text-xl font-bold text-slate-900 mb-4">Безналичный расчет</h3>
-            <p className="text-slate-600 flex-grow">К оплате принимаются банковские карты: Visa, MasterCard, Мир. Возможна оплата по QR-коду (СБП) на стойке регистрации.</p>
+            <p className="text-slate-600 flex-grow">К оплате принимаются банковские карты: Мир и другие банковские карты РФ. Возможна оплата по QR-коду (СБП) на стойке регистрации.</p>
           </div>
           <div className="p-8 border border-slate-100 rounded-3xl bg-slate-50 shadow-sm flex flex-col h-full">
             <Banknote size={40} className="text-emerald-500 mb-6" />

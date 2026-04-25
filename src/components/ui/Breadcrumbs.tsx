@@ -13,7 +13,7 @@ const pathNames: Record<string, string> = {
   'family-plus': 'Семейный ++',
   cottage: 'Коттедж',
   infrastructure: 'Инфраструктура',
-  restaurant: 'Ресторан "Рум Яковка"',
+  restaurant: 'Домашняя кухня "Рум Яковка"',
   banya: 'Русская баня',
   ski: 'Горнолыжный склон',
   legal: 'Юридическая информация',

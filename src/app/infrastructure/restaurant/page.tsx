@@ -95,7 +95,7 @@ export default function RestaurantPage() {
             <h2 className="font-heading text-4xl font-bold text-stone-900 tracking-tight">Домашняя кухня с алтайским характером</h2>
             <div className="w-16 h-1.5 bg-primary rounded-full" />
             <p className="text-lg text-stone-600 leading-relaxed">
-              Наш домашняя кухня порадует вас заказными обедами и ужинами, а также индивидуальным исполнением ваших пожеланий нашими шеф-поварами. Мы гордимся тем, что используем экологически чистые, фермерские продукты от местных алтайских производителей.
+              Наша домашняя кухня порадует вас заказными обедами и ужинами, а также индивидуальным исполнением ваших пожеланий нашими шеф-поварами. Мы гордимся тем, что используем экологически чистые, фермерские продукты от местных алтайских производителей.
             </p>
             <p className="text-lg text-stone-600 leading-relaxed">
               Уютный зал с камином идеально подходит для теплых семейных посиделок после активного дня на склоне, романтических ужинов или торжественных банкетов.
@@ -122,7 +122,7 @@ export default function RestaurantPage() {
           <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-premium-lg reveal-el">
             <Image 
               src="/optimized/Виды/Кухня/Кухня-02.webp" 
-              alt="Интерьер домашняя кухняа" 
+              alt="Интерьер домашней кухни" 
               fill
               className="object-cover"
             />
@@ -183,7 +183,7 @@ export default function RestaurantPage() {
               <Users className="text-primary shrink-0" size={24} />
               <div>
                 <h4 className="font-heading font-bold text-stone-900 mb-1">Банкетный зал</h4>
-                <p className="text-sm text-stone-500">До 80 человек для свадеб и корпоративов</p>
+                <p className="text-sm text-stone-500">До 50 человек для свадеб и корпоративов</p>
               </div>
             </div>
             <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">

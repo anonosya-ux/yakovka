@@ -166,9 +166,17 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
               {isSubmitting ? 'Отправка...' : 'Жду звонка'}
             </Button>
 
-            <p className="text-center text-xs text-stone-400 mt-4">
-              Нажимая кнопку, вы соглашаетесь с <Link href="/legal/privacy" className="underline hover:text-stone-600">политикой конфиденциальности</Link>.
-            </p>
+            <div className="flex items-start gap-3 mt-4">
+              <input 
+                type="checkbox" 
+                id="consent" 
+                required 
+                className="mt-0.5 w-4 h-4 rounded border-stone-300 text-primary focus:ring-primary cursor-pointer shrink-0"
+              />
+              <label htmlFor="consent" className="text-xs text-stone-500 leading-relaxed cursor-pointer select-none">
+                Я согласен на обработку персональных данных в соответствии с <Link href="/legal/privacy" className="underline hover:text-stone-800">политикой конфиденциальности</Link>
+              </label>
+            </div>
           </form>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-500">

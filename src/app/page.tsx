@@ -289,9 +289,9 @@ export default function Home() {
               <RoomSlider 
                 title="Стандартные номера" 
                 images={[
-                  '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
                   '/optimized/Номера/Стандарт+/Стандарт+-02.webp',
                   '/optimized/Номера/Стандарт/Стандарт-03.webp',
+                  '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
                 ]} 
               />
               <div className="absolute inset-0 bg-stone-900/30 group-hover:bg-stone-900/10 transition-colors duration-500 pointer-events-none" />

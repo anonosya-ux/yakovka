@@ -190,9 +190,9 @@ export default function RoomsClient() {
 
       <div className="container mx-auto px-6 mt-16">
         {/* Фильтры и сортировка */}
-        <div className="max-w-6xl mx-auto bg-white p-6 rounded-3xl shadow-sm border border-stone-100 mb-12 flex flex-col md:flex-row gap-6 items-center justify-between sticky top-24 z-30">
-          <div className="flex items-center gap-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
-            <span className="font-bold text-stone-900 flex items-center gap-2 mr-2">
+        <div className="max-w-6xl mx-auto bg-white p-6 rounded-3xl shadow-sm border border-stone-100 mb-12 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between sticky top-[80px] z-20">
+          <div className="flex flex-wrap items-center gap-2 md:gap-4 w-full md:w-auto">
+            <span className="font-bold text-stone-900 flex items-center gap-2 mr-2 w-full md:w-auto mb-2 md:mb-0">
               <Filter size={18} className="text-primary" /> Вместимость:
             </span>
             <button onClick={() => setFilter('all')} className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${filter === 'all' ? 'bg-primary text-white' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}>

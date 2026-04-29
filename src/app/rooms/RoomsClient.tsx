@@ -299,18 +299,12 @@ export default function RoomsClient() {
                   </ul>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <button 
-                      onClick={() => {
-                        if (typeof window !== 'undefined' && window.HotelWidget && typeof window.HotelWidget.open === 'function') {
-                          window.HotelWidget.open();
-                        } else {
-                          window.open('https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-                        }
-                      }} 
-                      className="flex-1 inline-flex items-center justify-center px-8 py-5 rounded-2xl text-lg font-bold bg-primary text-white hover:bg-stone-900 transition-colors shadow-lg shadow-primary/20 cursor-pointer"
+                    <Link 
+                      href="/booking"
+                      className="flex-1 inline-flex items-center justify-center px-8 py-5 rounded-2xl text-lg font-bold bg-primary text-white hover:bg-stone-900 transition-colors shadow-lg shadow-primary/20"
                     >
                       Забронировать
-                    </button>
+                    </Link>
                     <Link href={`/rooms/${room.slug}`} className="inline-flex items-center justify-center px-8 py-5 rounded-2xl text-lg font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition-colors">
                       Подробнее
                     </Link>

@@ -179,20 +179,14 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6">
-            <button 
-              onClick={() => {
-                if (typeof window !== 'undefined' && window.HotelWidget && typeof window.HotelWidget.open === 'function') {
-                  window.HotelWidget.open();
-                } else {
-                  window.open('https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-                }
-              }}
+            <Link 
+              href="/booking"
               className="group relative inline-flex items-center justify-center px-12 py-5 bg-primary text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)]"
               style={{ willChange: 'transform' }}
             >
               Забронировать номер
               <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <Link 
               href="/summer" 
               className="group relative inline-flex items-center justify-center px-12 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105"

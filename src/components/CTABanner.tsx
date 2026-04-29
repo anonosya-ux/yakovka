@@ -71,18 +71,12 @@ export default function CTABanner({
             </Link>
           ) : (
             <>
-              <button
-                onClick={() => {
-                  if (typeof window !== 'undefined' && window.HotelWidget && typeof window.HotelWidget.open === 'function') {
-                    window.HotelWidget.open();
-                  } else {
-                    window.open('https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
-                  }
-                }}
+              <Link
+                href="/booking"
                 className="inline-flex items-center justify-center bg-white text-stone-900 hover:bg-white/90 rounded-full px-10 py-5 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all w-full sm:w-auto group"
               >
                 Забронировать онлайн <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <a
                 href="tel:+79609552100"
                 className="inline-flex items-center justify-center bg-stone-800 text-white hover:bg-stone-700 border border-white/20 rounded-full px-10 py-5 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"

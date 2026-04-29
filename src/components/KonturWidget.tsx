@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const HOTEL_ID = '2774874f-1347-4c7d-a835-9791d5814751';
+const HOTEL_ID = '2774874f-1347-4950-8b1e-e722513f5664';
 const SCRIPT_URL = 'https://bookonline24.ru/widget.js';
 
 function ensureKonturScript(): Promise<void> {
@@ -53,13 +53,7 @@ function ensureInit() {
   
   window._konturInitialized = true;
   window.HotelWidget.init({
-    hotelId: HOTEL_ID,
-    version: '2',
-    hooks: {
-      onError: (e: any) => console.error('Kontur onError', e),
-      onInit: () => console.log('Kontur onInit OK'),
-      onBooking: (v: any) => console.log('Kontur onBooking', v),
-    },
+    id: HOTEL_ID,
   });
 }
 
@@ -125,7 +119,7 @@ function useKonturWidget(containerId: string, widgetConfig: Record<string, any>)
  * Поиск и бронирование номеров — вертикальный блок
  */
 export function KonturWidgetSearch({ containerId = 'WidgetVerticalBlockId' }: { containerId?: string }) {
-  const config = useRef({ type: 'bookingForm', inline: false });
+  const config = useRef({ type: 'bookingForm', inline: true });
   const { containerRef, added } = useKonturWidget(containerId, config.current);
 
   return (

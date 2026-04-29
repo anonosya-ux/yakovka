@@ -47,15 +47,12 @@ export default function CTABanner({
 
       <div className="container relative z-10 mx-auto px-6 text-center">
         <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-          {title === 'Готовы к отдыху в горах?' ? 'Как забронировать номер?' : title}
+          {title}
         </h2>
         <p className="text-lg md:text-xl text-white/75 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
-          {title === 'Готовы к отдыху в горах?' 
-            ? 'Онлайн-бронирование временно настраивается. Чтобы забронировать номер, свяжитесь с нами по телефону или напишите в MAX — администратор уточнит свободные даты, категорию номера и условия проживания.' 
-            : subtitle}
+          {subtitle}
         </p>
         
-        {/* TODO: проверить интеграцию с Контур.Отель; найти виджет онлайн-бронирования; после получения доступа подключить рабочую форму бронирования. */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           {onButtonClick ? (
             <button
@@ -74,18 +71,23 @@ export default function CTABanner({
             </Link>
           ) : (
             <>
+              <button
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.HotelWidget && typeof window.HotelWidget.open === 'function') {
+                    window.HotelWidget.open();
+                  } else {
+                    window.open('https://bookonline24.ru/?hotelId=2774874f-1347-4c7d-a835-9791d5814751', '_blank');
+                  }
+                }}
+                className="inline-flex items-center justify-center bg-white text-stone-900 hover:bg-white/90 rounded-full px-10 py-5 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all w-full sm:w-auto group"
+              >
+                Забронировать онлайн <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </button>
               <a
                 href="tel:+79609552100"
-                className="inline-flex items-center justify-center bg-white text-stone-900 hover:bg-white/90 rounded-full px-10 py-5 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
-              >
-                Позвонить
-              </a>
-              {/* TODO: добавить корректную deep-link ссылку MAX после уточнения */}
-              <a
-                href="tel:+79090975209"
                 className="inline-flex items-center justify-center bg-stone-800 text-white hover:bg-stone-700 border border-white/20 rounded-full px-10 py-5 text-lg font-bold shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
               >
-                Написать в MAX
+                Позвонить
               </a>
               <a
                 href="https://t.me/+79609552100"

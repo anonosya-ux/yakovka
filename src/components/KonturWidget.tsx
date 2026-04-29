@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const HOTEL_ID = '2774874f-1347-4950-8b1e-e722513f5664';
+const HOTEL_ID = '2774874f-1347-4c7d-a835-9791d5814751';
 const SCRIPT_URL = 'https://bookonline24.ru/widget.js';
 
 function ensureKonturScript(): Promise<void> {
@@ -53,7 +53,7 @@ function ensureInit() {
   
   window._konturInitialized = true;
   window.HotelWidget.init({
-    id: HOTEL_ID,
+    hotelId: HOTEL_ID,
   });
 }
 

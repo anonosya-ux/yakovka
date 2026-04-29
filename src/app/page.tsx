@@ -303,7 +303,7 @@ export default function Home() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">НОМЕРА</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-white group-hover:text-stone-900 transition-colors">
-                  от 3 600 ₽
+                  от 5 800 ₽
                 </span>
               </div>
             </Link>
@@ -328,7 +328,7 @@ export default function Home() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">ШАЛЕ</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-primary group-hover:border-primary transition-colors">
-                  от 5 800 ₽
+                  от 9 500 ₽
                 </span>
               </div>
             </Link>

@@ -50,8 +50,8 @@ const rooms = [
     size: '20 м²',
     guestsText: 'до 4 гостей',
     maxGuests: 4,
-    priceText: 'Стоимость уточняется',
-    priceNum: 0,
+    priceText: '5 800 ₽',
+    priceNum: 5800,
     images: [
       '/optimized/Номера/Семейный/Семейный-01.webp',
       '/optimized/Номера/Семейный/Семейный-02.webp',
@@ -68,8 +68,8 @@ const rooms = [
     size: '25 м²',
     guestsText: 'до 5 гостей',
     maxGuests: 5,
-    priceText: 'Стоимость уточняется',
-    priceNum: 0,
+    priceText: '9 500 ₽',
+    priceNum: 9500,
     images: [
       '/optimized/Номера/Семейный+/Семейный+-01.webp',
       '/optimized/Номера/Семейный+/Семейный+-02.webp',
@@ -86,8 +86,8 @@ const rooms = [
     size: '60 м²',
     guestsText: 'до 8 гостей',
     maxGuests: 8,
-    priceText: 'Стоимость уточняется',
-    priceNum: 0,
+    priceText: '12 000 ₽',
+    priceNum: 12000,
     images: [
       '/optimized/Номера/Семейный++/Семейный++-01.webp',
       '/optimized/Номера/Семейный++/Семейный++-02.webp',

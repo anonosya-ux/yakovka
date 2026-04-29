@@ -267,26 +267,42 @@
 }
 
 /* ─── Kontur.Hotel Widget Modal Override ─── */
-/* Ensure the booking modal sits above header (z-50) and all site elements */
-div[class*="hotel-widget-modal"],
-div[class*="hotel-widget-overlay"],
-div[class*="HotelWidget"],
-div[data-hotel-widget],
-.hotel-widget-popup,
-.bookonline-modal,
-.bookonline-overlay {
+/* Widget uses react-ui-* classes (Kontur's React UI kit) */
+
+/* Modal root and overlay — force on top of everything */
+[class*="react-ui-RenderContainer"],
+[class*="react-ui-Modal-root"],
+[class*="react-ui-Modal"],
+[class*="react-ui-ZIndex"] {
   z-index: 99999 !important;
 }
 
-/* The Kontur booking cart/form popup */
+/* Make the modal body scrollable when content overflows viewport */
+[class*="react-ui-Modal-root"] {
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+[class*="react-ui-Modal-body"],
+[class*="react-ui-Modal-content"] {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important;
+}
+
+/* Lock background scroll when Kontur modal is open */
+body:has([class*="react-ui-Modal-root"]) {
+  overflow: hidden !important;
+}
+
+/* Fallback: any fixed-positioned widget overlay */
 div[style*="position: fixed"][style*="z-index"] {
   z-index: 99999 !important;
-  overflow-y: auto !important;
-  max-height: 100vh !important;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Ensure any iframe from bookonline24 is on top */
 iframe[src*="bookonline24"] {
   z-index: 99999 !important;
 }
+

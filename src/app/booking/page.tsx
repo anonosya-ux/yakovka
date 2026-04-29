@@ -1,10 +1,56 @@
 'use client';
 
-import { KonturWidgetSearch, KonturWidgetRoomsList, KonturWidgetCalendarVertical } from '@/components/KonturWidget';
+import { useEffect } from 'react';
 import { ArrowLeft, ShieldCheck, CreditCard, CalendarCheck } from 'lucide-react';
 import Link from 'next/link';
 
 export default function BookingPage() {
+  useEffect(() => {
+    // Don't run on server
+    if (typeof window === 'undefined') return;
+
+    // Prevent double init
+    if ((window as any)._konturBookingReady) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://bookonline24.ru/widget.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    script.onload = () => {
+      const HW = (window as any).HotelWidget;
+      if (!HW) return;
+
+      (window as any)._konturBookingReady = true;
+
+      HW.init({
+        hotelId: '2774874f-1347-4c7d-a835-9791d5814751',
+      });
+
+      HW.add({
+        type: 'bookingForm',
+        inline: false,
+        appearance: { container: 'kontur-search' },
+      });
+
+      HW.add({
+        type: 'roomsList',
+        appearance: { container: 'kontur-rooms' },
+      });
+
+      HW.add({
+        type: 'availabilityCalendar',
+        appearance: { container: 'kontur-calendar' },
+      });
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup on unmount
+      (window as any)._konturBookingReady = false;
+      (window as any)._konturInitialized = false;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
       {/* Header */}
@@ -43,12 +89,12 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Booking Widget */}
+      {/* Booking Widget - прямая вставка кода Контур.Отеля */}
       <section className="pb-12">
         <div className="container mx-auto px-6">
           <div className="bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="text-xl font-bold text-stone-800 mb-6">Поиск свободных номеров</h2>
-            <KonturWidgetSearch containerId="BookingPageSearchWidget" />
+            <div id="kontur-search" />
           </div>
         </div>
       </section>
@@ -58,7 +104,7 @@ export default function BookingPage() {
         <div className="container mx-auto px-6">
           <div className="bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="text-xl font-bold text-stone-800 mb-6">Доступные номера</h2>
-            <KonturWidgetRoomsList containerId="BookingPageRoomsList" />
+            <div id="kontur-rooms" />
           </div>
         </div>
       </section>
@@ -68,7 +114,7 @@ export default function BookingPage() {
         <div className="container mx-auto px-6">
           <div className="bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="text-xl font-bold text-stone-800 mb-6">Календарь доступности</h2>
-            <KonturWidgetCalendarVertical containerId="BookingPageCalendar" />
+            <div id="kontur-calendar" />
           </div>
         </div>
       </section>

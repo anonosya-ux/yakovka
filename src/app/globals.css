@@ -265,3 +265,28 @@
     animation: floatBounce 3s ease-in-out infinite;
   }
 }
+
+/* ─── Kontur.Hotel Widget Modal Override ─── */
+/* Ensure the booking modal sits above header (z-50) and all site elements */
+div[class*="hotel-widget-modal"],
+div[class*="hotel-widget-overlay"],
+div[class*="HotelWidget"],
+div[data-hotel-widget],
+.hotel-widget-popup,
+.bookonline-modal,
+.bookonline-overlay {
+  z-index: 99999 !important;
+}
+
+/* The Kontur booking cart/form popup */
+div[style*="position: fixed"][style*="z-index"] {
+  z-index: 99999 !important;
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure any iframe from bookonline24 is on top */
+iframe[src*="bookonline24"] {
+  z-index: 99999 !important;
+}

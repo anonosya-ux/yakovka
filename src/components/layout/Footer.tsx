@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, MapPin, Mail, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Mail, MessageCircle, ShieldCheck } from 'lucide-react';
 import { YakovkaLogo } from '@/components/Logo';
 
 export function Footer() {
@@ -48,7 +48,6 @@ export function Footer() {
             <li><Link href="/gallery" className="hover:text-white transition-colors">Фотогалерея</Link></li>
             <li><Link href="/reviews" className="hover:text-white transition-colors">Отзывы гостей</Link></li>
             <li><Link href="/offers" className="hover:text-white transition-colors">Спецпредложения</Link></li>
-            <li><Link href="/invest" className="hover:text-white transition-colors">Инвестиционный проект</Link></li>
           </ul>
         </div>
         
@@ -65,34 +64,63 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Информация */}
+        {/* Правовая информация */}
         <div>
-          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Информация</h4>
+          <h4 className="text-white font-heading font-bold mb-6 text-lg tracking-wide">Правовая информация</h4>
           <ul className="space-y-3.5 text-sm text-stone-400">
-            <li><Link href="/faq" className="hover:text-white transition-colors">Вопросы и ответы</Link></li>
-            <li><Link href="/how-to-get" className="hover:text-white transition-colors">Как добраться</Link></li>
-            <li><Link href="/contacts" className="hover:text-white transition-colors">Контакты</Link></li>
-            <li><Link href="/legal/rules" className="hover:text-white transition-colors">Правила проживания</Link></li>
-            <li><Link href="/legal/payment" className="hover:text-white transition-colors">Способы оплаты</Link></li>
+            <li><Link href="/legal/rules" className="hover:text-white transition-colors">Правила размещения</Link></li>
+            <li><Link href="/legal/privacy" className="hover:text-white transition-colors">Политика конфиденциальности</Link></li>
             <li><Link href="/legal/offer" className="hover:text-white transition-colors">Публичная оферта</Link></li>
+            <li><Link href="/legal/payment" className="hover:text-white transition-colors">Способы оплаты</Link></li>
+            <li><Link href="/faq" className="hover:text-white transition-colors">Вопросы и ответы</Link></li>
+            <li><Link href="/contacts" className="hover:text-white transition-colors">Контакты</Link></li>
           </ul>
         </div>
       </div>
+
+      {/* Аккредитация и реквизиты */}
+      <div className="container relative z-10 mx-auto px-6 mt-12 pt-8 border-t border-white/10">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+          {/* Данные организации */}
+          <div className="flex-1 space-y-3 text-xs text-stone-500 leading-relaxed">
+            <div className="flex items-center gap-2 text-stone-400 font-bold text-sm mb-3">
+              <ShieldCheck size={16} className="text-primary" />
+              Сведения об организации
+            </div>
+            <p>ИП Валынкина Елена Васильевна</p>
+            <p>Адрес: 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4</p>
+            <p>Тел.: +7 (960) 955-21-00 &nbsp;|&nbsp; E-mail: valynkina.44@mail.ru</p>
+            <p>Режим работы: круглосуточно</p>
+          </div>
+
+          {/* Аккредитация */}
+          <div className="flex-shrink-0 bg-white/5 border border-white/10 rounded-2xl p-5 max-w-sm">
+            <p className="text-stone-400 text-xs font-bold uppercase tracking-wider mb-2">Аккредитация</p>
+            <p className="text-stone-300 text-sm mb-1">Объект прошёл классификацию</p>
+            <p className="text-stone-400 text-xs mb-2">Реестровая запись:</p>
+            <a 
+              href="https://tourism.fsa.gov.ru/ru/resorts/hotels/a9a801a0-c609-11ef-92da-25cf7d872c83/about-resort"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-bold text-sm hover:text-white transition-colors underline underline-offset-4"
+            >
+              С222024015126
+            </a>
+          </div>
+        </div>
+      </div>
       
-      <div className="container relative z-10 mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-[13px] text-stone-500">
-        <div className="flex flex-col gap-2 mb-4 md:mb-0">
+      {/* Нижняя полоска копирайт */}
+      <div className="container relative z-10 mx-auto px-6 mt-8 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-[13px] text-stone-500">
+        <div className="flex flex-col gap-1 mb-4 md:mb-0">
           <p>
             © {new Date().getFullYear()} Загородный отель «Яковка». Белокуриха, Алтайский край.
             <Link href="/lost-route" className="ml-2 text-[10px] text-stone-700/50 hover:text-primary hover:text-stone-300 transition-all inline-flex items-center gap-1 uppercase tracking-widest opacity-0 hover:opacity-100 focus:opacity-100">маршрут вне карты ↗</Link>
           </p>
-          <p className="text-stone-600 text-xs">
-            {/* TODO: Обновить после получения выписки */}
-            Сведения о средстве размещения: будет добавлен после получения выписки из реестра.
-          </p>
         </div>
         <div className="flex items-center gap-6 mt-4 md:mt-0">
           {/* Social Links */}
-          <a href="https://t.me/yakovka_hotel" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">
+          <a href="https://t.me/+79609552100" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           </a>
           <a href="tel:+79090975209" aria-label="MAX" className="hover:text-white transition-colors" title="MAX">
@@ -103,6 +131,8 @@ export function Footer() {
           </a>
           <span className="text-stone-700">|</span>
           <Link href="/legal/privacy" className="hover:text-stone-300 transition-colors">Политика конфиденциальности</Link>
+          <span className="text-stone-700 hidden md:inline">|</span>
+          <Link href="/legal/rules" className="hover:text-stone-300 transition-colors hidden md:inline">Правила размещения</Link>
         </div>
       </div>
     </footer>

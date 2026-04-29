@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, phone } = body;
+    const { name, phone, excursion } = body;
 
     // ─── Validate ───
     if (!name || !phone) {
@@ -85,14 +85,19 @@ export async function POST(request: NextRequest) {
     // ─── Format message (escape user input for Markdown safety) ───
     const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Barnaul' });
     const safeName = escapeMarkdown(name.trim());
-    const message = [
+    const safeExcursion = excursion ? escapeMarkdown(String(excursion).slice(0, 200)) : null;
+    const lines = [
       `🔔 *Новая заявка с сайта*`,
       ``,
       `👤 Имя: ${safeName}`,
       `📞 Телефон: ${cleanPhone}`,
-      `🕐 Время: ${now}`,
-      `🌐 Источник: yakovka\\.ru`,
-    ].join('\n');
+    ];
+    if (safeExcursion) {
+      lines.push(`🏔 Экскурсия: ${safeExcursion}`);
+    }
+    lines.push(`🕐 Время: ${now}`);
+    lines.push(`🌐 Источник: yakovka\\.ru`);
+    const message = lines.join('\n');
 
     // ─── Send to Telegram ───
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {

@@ -9,9 +9,10 @@ import gsap from 'gsap';
 interface CallbackModalProps {
   isOpen: boolean;
   onClose: () => void;
+  excursion?: string;
 }
 
-export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
+export default function CallbackModal({ isOpen, onClose, excursion }: CallbackModalProps) {
   const [isBrowser, setIsBrowser] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -60,7 +61,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
       const res = await fetch('/api/callback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ name, phone, excursion: excursion || undefined }),
       });
 
       if (!res.ok) {
@@ -109,9 +110,14 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
 
         {!isSuccess && (
           <>
-            <h2 id="modal-title" className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">Заказать звонок</h2>
+            <h2 id="modal-title" className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">
+              {excursion ? `Заявка на экскурсию` : 'Заказать звонок'}
+            </h2>
             <p className="text-stone-500 text-sm mb-8">
-              Оставьте свои контакты, и администратор комплекса «Яковка» перезвонит вам в ближайшее время.
+              {excursion 
+                ? <>Оставьте контакты, и мы свяжемся с вами для бронирования экскурсии <strong className="text-stone-700">«{excursion}»</strong>.</>
+                : 'Оставьте свои контакты, и администратор комплекса «Яковка» перезвонит вам в ближайшее время.'
+              }
             </p>
           </>
         )}

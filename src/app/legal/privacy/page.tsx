@@ -27,7 +27,8 @@ export default function PrivacyPage() {
           
           <h2>1. Оператор персональных данных</h2>
           <p>
-            <strong>Оператор:</strong> ИП Валынкина Елена Васильевна<br />
+            <strong>Оператор:</strong> ИП Валынкин Павел Николаевич<br />
+            <strong>ИНН:</strong> 220300170548 &nbsp;|&nbsp; <strong>ОГРНИП:</strong> 304220309000076<br />
             <strong>Адрес:</strong> 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4<br />
             <strong>Телефон:</strong> +7 (960) 955-21-00<br />
             <strong>E-mail:</strong> valynkina.44@mail.ru

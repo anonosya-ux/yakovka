@@ -14,7 +14,7 @@ export default function RulesPage() {
         <Breadcrumbs variant="light" />
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Правила размещения</h1>
         <p className="text-stone-500 mb-10 text-sm">
-          Утверждены ИП Валынкина Е.В. | Действуют с 01.03.2026
+          Утверждены ИП Валынкин П.Н. | Действуют с 01.03.2026
         </p>
 
         <div className="prose prose-lg prose-slate max-w-none">
@@ -40,7 +40,8 @@ export default function RulesPage() {
           {/* 2. Информация об Исполнителе */}
           <h2>2. Информация об Исполнителе</h2>
           <p>
-            2.1. <strong>Наименование:</strong> ИП Валынкина Елена Васильевна<br />
+            2.1. <strong>Наименование:</strong> ИП Валынкин Павел Николаевич<br />
+            <strong>ИНН:</strong> 220300170548 &nbsp;|&nbsp; <strong>ОГРНИП:</strong> 304220309000076<br />
             <strong>Адрес:</strong> 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4<br />
             <strong>Телефон:</strong> +7 (960) 955-21-00<br />
             <strong>E-mail:</strong> valynkina.44@mail.ru<br />

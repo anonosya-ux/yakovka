@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShieldCheck, CreditCard, CalendarCheck, Users, Maximize, Check, ChevronLeft, ChevronRight, Phone, ArrowRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
+import { KonturWidgetSearch, KonturWidgetRoomsList, KonturWidgetCalendarHorizontal } from '@/components/KonturWidget';
 import gsap from 'gsap';
 
 /* ── Room data (mirrors /rooms) ── */
@@ -118,78 +119,6 @@ const RoomImageSlider = ({ images, title }: { images: string[]; title: string })
 export default function BookingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if ((window as any)._konturBookingReady) return;
-
-    // Exact Kontur code from their support team
-    (function(k: () => void, o: number | null, t?: any, e?: any, l?: any) {
-      l = document.createElement("script");
-      l.type = "text/javascript";
-      l.src = "https://bookonline24.ru/widget.js";
-      l.async = true;
-      l.onload = l.onreadystatechange = function() {
-        e = (this as any).readyState;
-        if (!o && (!e || e === "complete")) {
-          o = 1;
-          k();
-        }
-      };
-      t = document.getElementsByTagName("script")[0];
-      t.parentNode.insertBefore(l, t);
-    })(function() {
-      const HW = (window as any).HotelWidget;
-      (window as any)._konturBookingReady = true;
-
-      HW.init({
-        hotelId: "2774874f-1347-4c7d-a835-9791d5814751",
-        version: "2",
-        hooks: {
-          onError: function(e: any) { console.error("onError", e); },
-          onInit: function() { console.log("onInit"); },
-          onBooking: function(v: any) { console.log("onBooking", v); }
-        }
-      });
-
-      // Поиск и бронирование номеров — вертикальный блок
-      HW.add({
-        type: "bookingForm",
-        inline: false,
-        appearance: {
-          container: "WidgetVerticalBlockId"
-        }
-      });
-
-      // Бронирование номеров
-      HW.add({
-        type: "roomsList",
-        appearance: {
-          container: "WidgetRoomsListId"
-        }
-      });
-
-      // Просмотр календаря доступности — горизонтальный блок
-      HW.add({
-        type: "availabilityCalendar",
-        months: 2,
-        appearance: {
-          container: "WidgetHorizontalAvailabilityCalendarId"
-        }
-      });
-
-      // Кнопка «Проверить наличие номеров» для мобильных устройств
-      HW.add({
-        type: "showCheckAvailabilityButtonForMobileDevices",
-        appearance: {
-          container: "WidgetShowCheckAvailabilityButtonForMobileDevicesId"
-        }
-      });
-    }, null);
-
-    return () => {
-      (window as any)._konturBookingReady = false;
-    };
-  }, []);
 
   /* GSAP entrance animations */
   useEffect(() => {
@@ -254,7 +183,7 @@ export default function BookingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Поиск свободных номеров</h2>
-            <div id="WidgetVerticalBlockId" />
+            <KonturWidgetSearch containerId="BookingPageSearch" />
           </div>
         </div>
       </section>
@@ -313,7 +242,7 @@ export default function BookingPage() {
                     href="#booking-widget"
                     onClick={(e) => {
                       e.preventDefault();
-                      const el = document.getElementById('WidgetRoomsListId');
+                      const el = document.getElementById('BookingPageRooms');
                       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                     className="self-start inline-flex items-center justify-center px-8 py-4 rounded-2xl text-base font-bold bg-primary text-white hover:bg-stone-900 transition-colors shadow-lg shadow-primary/20"
@@ -334,7 +263,7 @@ export default function BookingPage() {
           <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Доступные номера и цены</h2>
             <p className="text-stone-500 mb-8 font-light">Выберите даты и нажмите «Проверить наличие», чтобы увидеть актуальные цены и свободные номера.</p>
-            <div id="WidgetRoomsListId" />
+            <KonturWidgetRoomsList containerId="BookingPageRooms" />
           </div>
         </div>
       </section>
@@ -344,7 +273,7 @@ export default function BookingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] border border-stone-100 p-6 md:p-10">
             <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Календарь доступности</h2>
-            <div id="WidgetHorizontalAvailabilityCalendarId" />
+            <KonturWidgetCalendarHorizontal containerId="BookingPageCalendar" />
           </div>
         </div>
       </section>
@@ -385,8 +314,7 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Mobile Button */}
-      <div id="WidgetShowCheckAvailabilityButtonForMobileDevicesId" />
+      {/* Mobile button is already rendered globally in layout.tsx via KonturWidgetMobileButton */}
 
       {/* Contact fallback */}
       <section className="pb-20">

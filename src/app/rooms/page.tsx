@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import RoomsClient from './RoomsClient';
+import { fetchRooms } from '@/sanity/data';
 
 export const metadata: Metadata = {
   title: 'Номера и цены — Загородный отель «Яковка» в Белокурихе',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/rooms' },
 };
 
-export default function RoomsPage() {
-  return <RoomsClient />;
+export default async function RoomsPage() {
+  const rooms = await fetchRooms();
+  return <RoomsClient initialRooms={rooms} />;
 }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Users, Maximize, Check, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import gsap from 'gsap';
+import type { RoomData } from '@/sanity/data';
 
 const rooms = [
   {
@@ -144,13 +145,16 @@ const RoomImageSlider = ({ images, title }: { images: string[], title: string })
   );
 };
 
-export default function RoomsClient() {
+export default function RoomsClient({ initialRooms }: { initialRooms?: RoomData[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('price-asc');
 
+  // Use CMS data if provided, otherwise fall back to hardcoded rooms
+  const roomsData = initialRooms && initialRooms.length > 0 ? initialRooms : rooms;
+
   const filteredRooms = useMemo(() => {
-    let result = [...rooms];
+    let result = [...roomsData];
     
     // Filtering
     if (filter === '1-2') result = result.filter(r => r.maxGuests <= 2);
@@ -165,7 +169,7 @@ export default function RoomsClient() {
     });
     
     return result;
-  }, [filter, sort]);
+  }, [filter, sort, roomsData]);
 
   useEffect(() => {
     let ctx = gsap.context(() => {

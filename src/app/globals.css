@@ -273,27 +273,48 @@
 [class*="react-ui-RenderContainer"],
 [class*="react-ui-Modal-root"],
 [class*="react-ui-Modal"],
-[class*="react-ui-ZIndex"] {
+[class*="react-ui-ZIndex"],
+[class*="ModalStack"] {
   z-index: 99999 !important;
 }
 
-/* Make the modal body scrollable when content overflows viewport */
-[class*="react-ui-Modal-root"] {
+/* The modal container itself must be scrollable */
+[class*="react-ui-Modal-root"],
+[class*="react-ui-Modal-container"] {
+  position: fixed !important;
+  inset: 0 !important;
   max-height: 100vh !important;
+  max-height: 100dvh !important;
   overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  touch-action: pan-y !important;
 }
 
+/* Modal body — allow internal scroll, fill remaining space */
 [class*="react-ui-Modal-body"],
 [class*="react-ui-Modal-content"] {
   overflow-y: auto !important;
-  max-height: calc(100vh - 80px) !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: none !important;
+}
+
+/* The actual modal "window" centering wrapper */
+[class*="react-ui-Modal-centerContainer"],
+[class*="react-ui-Center-root"] {
+  min-height: auto !important;
+  align-items: flex-start !important;
+  padding: 24px 0 !important;
 }
 
 /* Lock background scroll when Kontur modal is open */
-body:has([class*="react-ui-Modal-root"]) {
+body:has([class*="react-ui-Modal-root"]),
+body:has([class*="react-ui-Modal"]),
+body:has([class*="ModalStack"]) {
   overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  touch-action: none !important;
 }
 
 /* Fallback: any fixed-positioned widget overlay */
@@ -304,5 +325,12 @@ div[style*="position: fixed"][style*="z-index"] {
 /* Ensure any iframe from bookonline24 is on top */
 iframe[src*="bookonline24"] {
   z-index: 99999 !important;
+}
+
+/* Kontur widget images — ensure proper sizing */
+[class*="react-ui-Modal"] img,
+[id*="Widget"] img {
+  max-width: 100%;
+  height: auto;
 }
 

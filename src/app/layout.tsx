@@ -9,6 +9,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import FloatingCTA from '@/components/FloatingCTA';
 import { KonturWidgetMobileButton } from '@/components/KonturWidget';
 import { YandexMetrica } from '@/components/YandexMetrica';
+import CookieBanner from '@/components/CookieBanner';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -161,6 +162,7 @@ export default function RootLayout({
           <Footer />
           <FloatingCTA />
           <KonturWidgetMobileButton />
+          <CookieBanner />
         </SmoothScroll>
       </body>
     </html>

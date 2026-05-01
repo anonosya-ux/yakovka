@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Standalone output for Beget VPS deployment
+  output: 'standalone',
+  
   images: {
     remotePatterns: [
       {
@@ -10,6 +13,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'randomuser.me',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io', // Sanity image CDN
       },
     ],
   },

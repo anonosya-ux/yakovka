@@ -54,6 +54,11 @@ function ensureInit() {
   window._konturInitialized = true;
   window.HotelWidget.init({
     hotelId: HOTEL_ID,
+    version: '2',
+    hooks: {
+      onError: function(e: any) { console.error('Kontur onError', e); },
+      onInit: function() { console.log('Kontur widget initialized'); },
+    },
   });
 }
 

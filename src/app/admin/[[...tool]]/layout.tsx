@@ -11,7 +11,21 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Чистый layout без Header/Footer сайта
-  // Вложенный layout — просто контейнер, parent layout (root) всё равно применяется
-  return <div id="sanity-studio-root" style={{ position: 'fixed', inset: 0, zIndex: 99999 }}>{children}</div>;
+  return (
+    <div
+      id="sanity-studio-root"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 999999,
+        background: '#101112',
+        overflow: 'auto',
+      }}
+    >
+      {children}
+    </div>
+  );
 }

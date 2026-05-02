@@ -1,5 +1,16 @@
 import { defineField, defineType } from 'sanity';
 
+const GALLERY_CATEGORIES = [
+  { title: '🏨 Номера — страница /rooms', value: 'rooms' },
+  { title: '🏔️ Территория — главная и /about', value: 'territory' },
+  { title: '🌿 Природа — главная, фоны разделов', value: 'nature' },
+  { title: '♨️ Баня & Бассейн — /infrastructure/banya', value: 'spa' },
+  { title: '🍽️ Ресторан — /infrastructure/restaurant', value: 'restaurant' },
+  { title: '🎉 Мероприятия — /events', value: 'events' },
+  { title: '❄️ Зима — /winter', value: 'winter' },
+  { title: '☀️ Лето — /summer', value: 'summer' },
+];
+
 export const galleryImageType = defineType({
   name: 'galleryImage',
   title: 'Фото галереи',
@@ -15,30 +26,24 @@ export const galleryImageType = defineType({
     }),
     defineField({
       name: 'alt',
-      title: 'Описание',
+      title: 'Что на фото',
       type: 'string',
-      description: 'Что изображено на фото',
+      description: 'Пример: "Вид на бассейн", "Фасад отеля зимой", "Интерьер ресторана"',
     }),
     defineField({
       name: 'category',
-      title: 'Категория',
+      title: 'Где используется на сайте',
       type: 'string',
+      description: 'Выберите раздел сайта, к которому относится это фото',
       options: {
-        list: [
-          { title: 'Номера', value: 'rooms' },
-          { title: 'Территория', value: 'territory' },
-          { title: 'Природа', value: 'nature' },
-          { title: 'Баня & Бассейн', value: 'spa' },
-          { title: 'Ресторан', value: 'restaurant' },
-          { title: 'Мероприятия', value: 'events' },
-          { title: 'Зима', value: 'winter' },
-          { title: 'Лето', value: 'summer' },
-        ],
+        list: GALLERY_CATEGORIES,
+        layout: 'dropdown',
       },
+      validation: (rule) => rule.required().error('Укажите раздел сайта'),
     }),
     defineField({
       name: 'order',
-      title: 'Порядок',
+      title: 'Порядок в галерее',
       type: 'number',
       initialValue: 0,
     }),
@@ -50,9 +55,10 @@ export const galleryImageType = defineType({
       media: 'image',
     },
     prepare({ alt, category, media }) {
+      const catLabel = GALLERY_CATEGORIES.find(c => c.value === category)?.title || category || 'Без раздела';
       return {
         title: alt || 'Без описания',
-        subtitle: category || '',
+        subtitle: catLabel,
         media,
       };
     },

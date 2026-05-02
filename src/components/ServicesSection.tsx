@@ -48,12 +48,15 @@ export default function ServicesSection() {
   }, []);
 
   const galleryImages = [
-    '/optimized/Виды/Фасады/Фасады-01.webp',
-    '/optimized/Виды/Природа/Природа-01.webp',
-    '/optimized/Виды/Кухня/Кухня-01.webp',
-    '/optimized/Номера/Семейный+/Семейный+-01.webp',
     '/optimized/Мероприятия/Свадьбы/Свадьбы-01.webp',
+    '/optimized/Виды/Женщины/Женщины-01.webp',
     '/optimized/Виды/Бассейн/Бассейн-01.webp',
+    '/optimized/Мероприятия/Свадьбы/Свадьбы-03.webp',
+    '/optimized/Виды/Женщины/Женщины-02.webp',
+    '/optimized/Виды/Бассейн/Бассейн-03.webp',
+    '/optimized/Мероприятия/Свадьбы/Свадьбы-05.webp',
+    '/optimized/Виды/Женщины/Женщины-03.webp',
+    '/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-01.webp',
   ];
 
   return (
@@ -108,7 +111,7 @@ export default function ServicesSection() {
           <div className="bento-item relative rounded-[3rem] overflow-hidden group">
             <div className="absolute inset-0 z-0">
                <Image 
-                src="/optimized/Виды/Природа/Природа-01.webp" 
+                src="/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-01.webp" 
                 alt="Можно с питомцами" 
                 fill 
                 className="bento-img object-cover scale-125 object-center" 

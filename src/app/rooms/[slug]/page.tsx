@@ -1,10 +1,9 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowLeft, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 // Mock DB since we will move to Strapi later
@@ -15,7 +14,13 @@ const roomsData: Record<string, any> = {
     size: '12 м²',
     guests: 'До 2-х человек',
     price: '5 800 ₽',
-    img: '/optimized/Номера/Стандарт/Стандарт-01.webp',
+    images: [
+      '/optimized/Номера/Стандарт/Стандарт-01.webp',
+      '/optimized/Номера/Стандарт/Стандарт-02.webp',
+      '/optimized/Номера/Стандарт/Стандарт-03.webp',
+      '/optimized/Номера/Стандарт/Стандарт-04.webp',
+      '/optimized/Номера/Стандарт/Стандарт-05.webp',
+    ],
     features: ['2 односпальные кровати', 'Санузел, душ в номере', 'Высокоскоростной Wi-Fi', 'ЖК Телевизор', 'Регулярная уборка']
   },
   'standart-plus': {
@@ -24,7 +29,12 @@ const roomsData: Record<string, any> = {
     size: '16 м²',
     guests: 'До 3-х человек',
     price: '6 800 ₽',
-    img: '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
+    images: [
+      '/optimized/Номера/Стандарт+/Стандарт+-01.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-02.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-03.webp',
+      '/optimized/Номера/Стандарт+/Стандарт+-04.webp',
+    ],
     features: ['2 односпальные кровати', 'Кресло-кровать', 'Санузел, душ в номере', 'Холодильник', 'Wi-Fi и ТВ']
   },
   'family': {
@@ -33,7 +43,12 @@ const roomsData: Record<string, any> = {
     size: '20 м²',
     guests: 'До 2-х человек',
     price: '5 800 ₽',
-    img: '/optimized/Номера/Семейный/Семейный-01.webp',
+    images: [
+      '/optimized/Номера/Семейный/Семейный-01.webp',
+      '/optimized/Номера/Семейный/Семейный-02.webp',
+      '/optimized/Номера/Семейный/Семейный-03.webp',
+      '/optimized/Номера/Семейный/Семейный-04.webp',
+    ],
     features: ['1 двуспальная кровать', 'Кресло-кровать', 'Санузел, душ в номере', 'Мини-бар']
   },
   'family-plus': {
@@ -42,7 +57,16 @@ const roomsData: Record<string, any> = {
     size: '25 м²',
     guests: 'До 5 человек',
     price: '9 500 ₽',
-    img: '/optimized/Номера/Семейный+/Семейный+-01.webp',
+    images: [
+      '/optimized/Номера/Семейный+/Семейный+-01.webp',
+      '/optimized/Номера/Семейный+/Семейный+-02.webp',
+      '/optimized/Номера/Семейный+/Семейный+-03.webp',
+      '/optimized/Номера/Семейный+/Семейный+-04.webp',
+      '/optimized/Номера/Семейный+/Семейный+-05.webp',
+      '/optimized/Номера/Семейный+/Семейный+-06.webp',
+      '/optimized/Номера/Семейный+/Семейный+-07.webp',
+      '/optimized/Номера/Семейный+/Семейный+-08.webp',
+    ],
     features: ['1 двуспальная кровать', 'Кресло-кровать', 'Комната отдыха', 'Санузел, душ в номере', 'Завтрак включен']
   },
   'cottage': {
@@ -51,7 +75,15 @@ const roomsData: Record<string, any> = {
     size: '60 м²',
     guests: 'До 8 человек',
     price: '12 000 ₽',
-    img: '/optimized/Номера/Семейный++/Семейный++-01.webp',
+    images: [
+      '/optimized/Номера/Семейный++/Семейный++-01.webp',
+      '/optimized/Номера/Семейный++/Семейный++-02.webp',
+      '/optimized/Номера/Семейный++/Семейный++-03.webp',
+      '/optimized/Номера/Семейный++/Семейный++-04.webp',
+      '/optimized/Номера/Семейный++/Семейный++-05.webp',
+      '/optimized/Номера/Семейный++/Семейный++-06.webp',
+      '/optimized/Номера/Семейный++/Семейный++-07.webp',
+    ],
     features: ['Несколько спален', 'Личная кухня', 'Ванная комната', 'Терасса', 'Зона BBQ']
   }
 };
@@ -60,6 +92,7 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
   const resolvedParams = use(params);
   const slug = resolvedParams.slug;
   const room = roomsData[slug];
+  const [currentImage, setCurrentImage] = useState(0);
 
   if (!room) {
     return (
@@ -72,6 +105,10 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
     );
   }
 
+  const images = room.images;
+  const prevImage = () => setCurrentImage((prev: number) => (prev === 0 ? images.length - 1 : prev - 1));
+  const nextImage = () => setCurrentImage((prev: number) => (prev === images.length - 1 ? 0 : prev + 1));
+
   return (
     <div className="min-h-screen bg-white pt-24 pb-32">
       <div className="container mx-auto px-6">
@@ -81,24 +118,70 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Gallery Side */}
-          <div className="space-y-6">
-            <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100">
+          <div className="space-y-4">
+            {/* Main image with navigation */}
+            <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 group">
               <Image 
-                src={room.img} 
-                alt={room.title}
+                src={images[currentImage]} 
+                alt={`${room.title} — фото ${currentImage + 1}`}
                 fill
-                className="object-cover"
+                className="object-cover transition-opacity duration-300"
                 priority
               />
+              
+              {/* Navigation arrows */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                aria-label="Предыдущее фото"
+              >
+                <ChevronLeft size={20} className="text-stone-800" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                aria-label="Следующее фото"
+              >
+                <ChevronRight size={20} className="text-stone-800" />
+              </button>
+
+              {/* Dots */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {images.map((_: string, idx: number) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImage(idx)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      idx === currentImage
+                        ? 'bg-white w-6'
+                        : 'bg-white/50 hover:bg-white/80'
+                    }`}
+                    aria-label={`Фото ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Counter */}
+              <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md text-white text-sm px-3 py-1.5 rounded-full font-medium">
+                {currentImage + 1} / {images.length}
+              </div>
             </div>
-            {/* TODO: заменить на фото от Михаила — общий вид и душевая */}
-            <div className="grid grid-cols-2 gap-4">
-               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center">
-                 <p className="text-stone-400 text-sm font-medium">Общий вид</p>
-               </div>
-               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center">
-                 <p className="text-stone-400 text-sm font-medium">Душевая</p>
-               </div>
+
+            {/* Thumbnails */}
+            <div className="grid grid-cols-4 md:grid-cols-5 gap-2">
+              {images.map((img: string, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImage(idx)}
+                  className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                    idx === currentImage
+                      ? 'border-primary ring-2 ring-primary/20'
+                      : 'border-transparent opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <Image src={img} alt={`Миниатюра ${idx + 1}`} fill className="object-cover" />
+                </button>
+              ))}
             </div>
           </div>
 
@@ -141,10 +224,9 @@ export default function RoomDetailsPage({ params }: { params: Promise<{ slug: st
                  <p className="text-slate-400 text-sm font-medium mb-1 uppercase tracking-wider">За сутки</p>
                  <p className="text-4xl font-extrabold">{room.price}</p>
                </div>
-               {/* TODO: заменить после починки модуля бронирования */}
-               <a href="tel:89609552100" className="inline-flex items-center justify-center w-full md:w-auto bg-primary hover:bg-stone-800 text-white rounded-full px-8 py-6 text-lg font-bold shadow-[0_10px_25px_rgba(40,100,50,0.4)] hover:-translate-y-1 transition-all z-10 relative">
-                 Связаться для бронирования
-               </a>
+               <Link href="/booking" className="inline-flex items-center justify-center w-full md:w-auto bg-primary hover:bg-stone-800 text-white rounded-full px-8 py-6 text-lg font-bold shadow-[0_10px_25px_rgba(40,100,50,0.4)] hover:-translate-y-1 transition-all z-10 relative">
+                 Забронировать
+               </Link>
             </div>
 
             <Link href="/rooms" className="inline-flex items-center gap-2 mt-8 text-slate-500 hover:text-primary transition-colors font-medium">

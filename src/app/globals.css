@@ -278,14 +278,13 @@
   z-index: 99999 !important;
 }
 
-/* The modal container itself must be scrollable */
+/* The modal scrollable overlay — this is the element that should scroll */
 [class*="react-ui-Modal-root"],
 [class*="react-ui-Modal-container"] {
   position: fixed !important;
   inset: 0 !important;
-  max-height: 100vh !important;
-  max-height: 100dvh !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch !important;
   overscroll-behavior: contain !important;
   touch-action: pan-y !important;
@@ -297,6 +296,7 @@
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
   max-height: none !important;
+  overscroll-behavior: contain !important;
 }
 
 /* The actual modal "window" centering wrapper */
@@ -307,14 +307,18 @@
   padding: 24px 0 !important;
 }
 
-/* Lock background scroll when Kontur modal is open */
+/* Lock background scroll when Kontur modal is open.
+   IMPORTANT: do NOT set touch-action:none on body — that kills
+   scrolling INSIDE the modal on touch devices. */
 body:has([class*="react-ui-Modal-root"]),
 body:has([class*="react-ui-Modal"]),
 body:has([class*="ModalStack"]) {
   overflow: hidden !important;
   position: fixed !important;
   width: 100% !important;
-  touch-action: none !important;
+  /* touch-action is intentionally NOT set to 'none' here —
+     the modal overlay itself handles scroll containment via
+     overscroll-behavior: contain */
 }
 
 /* Fallback: any fixed-positioned widget overlay */

@@ -60,9 +60,10 @@ export default function WinterPage() {
 
           <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Mountain, title: 'Трассы у отеля', desc: 'Свой бугельный подъемник и прокат снаряжения. Вышел из номера — и сразу на склон.' },
+              { icon: Mountain, title: 'Горнолыжный склон у подножья горы', desc: 'Свой бугельный подъемник и прокат снаряжения. Вышел из номера — и сразу на склон.' },
               { icon: ThermometerSnowflake, title: 'Жаркая баня', desc: 'Настоящая русская баня на дровах с летним неподогреваемым бассейном для восстановления сил.' },
               { icon: Snowflake, title: 'Чистый снег', desc: 'Ежедневная подготовка склонов ратраком и пушки для искусственного оснежения.' },
+              { icon: Compass, title: 'Прокат снегоходов', desc: 'Захватывающие прогулки на снегоходах по живописным маршрутам среди заснеженных гор Алтая.' },
               { icon: Coffee, title: 'Теплые вечера', desc: 'Авторская сибирская кухня и согревающие напитки в уютной домашней кухне с камином.' }
             ].map((feature, idx) => (
               <div key={idx} className="anim-fade-up bg-stone-50 p-8 rounded-[2rem] border border-stone-100 hover:shadow-premium transition-shadow">

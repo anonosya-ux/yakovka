@@ -60,8 +60,8 @@ const RoomSlider = ({ images, title }: { images: string[], title: string }) => {
 
 const offers = [
   { id: 1, title: 'Раннее бронирование', desc: 'Забронируйте отдых за 30 дней и получите скидку 15% на проживание.', bg: '/optimized/Виды/Фасады/Фасады-01.webp' },
-  { id: 2, title: 'Семейный отдых', desc: 'Детская площадка, просторные шале и чистый горный воздух.', bg: '/optimized/Виды/Природа/Природа-01.webp' },
-  { id: 3, title: 'Банный релакс', desc: 'При бронировании от 5 ночей — 2 часа русской бани в подарок.', bg: '/optimized/Виды/Бассейн/Бассейн-02.webp' },
+  { id: 2, title: 'Семейный отдых', desc: 'Детская площадка, просторные шале и чистый горный воздух.', bg: '/optimized/Мероприятия/Свадьбы/Свадьбы-06.webp' },
+  { id: 3, title: 'Банный релакс', desc: 'При бронировании от 5 ночей — 2 часа русской бани в подарок.', bg: '/optimized/Виды/Женщины/СПА.jpg' },
 ];
 
 export default function Home() {
@@ -167,7 +167,7 @@ export default function Home() {
           />
         </svg>
 
-        <div className="relative z-20 flex flex-col items-center justify-center text-center px-6">
+        <div className="relative z-20 flex flex-col items-center justify-center md:justify-center text-center px-6 pt-16 md:pt-0">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up">
             <Tag size={16} className="text-primary" /> Выгодные предложения на лето
           </div>
@@ -297,7 +297,7 @@ export default function Home() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">НОМЕРА</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-white group-hover:text-stone-900 transition-colors">
-                  от 5 800 ₽
+                  5 800 ₽
                 </span>
               </div>
             </Link>
@@ -322,7 +322,7 @@ export default function Home() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none z-10">
                 <h3 className="font-heading text-4xl md:text-6xl font-bold drop-shadow-lg mb-4">ШАЛЕ</h3>
                 <span className="px-6 py-2 border border-white/50 rounded-full backdrop-blur-md text-sm uppercase tracking-widest group-hover:bg-primary group-hover:border-primary transition-colors">
-                  от 9 500 ₽
+                  9 500 ₽
                 </span>
               </div>
             </Link>

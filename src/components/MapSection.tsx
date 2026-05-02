@@ -37,7 +37,7 @@ export default function MapSection() {
              </div>
              
              <iframe 
-               src="https://yandex.ru/map-widget/v1/?um=constructor%3A7a195e267b14068593ccf9d1469be43c3d5a498dc7170a7d90391d1eaff80b1e&amp;source=constructor" 
+               src="https://yandex.ru/map-widget/v1/?ll=84.984%2C51.996&z=15&l=map&pt=84.984%2C51.996%2Cpm2gnm" 
                width="100%" 
                height="100%" 
                frameBorder="0"

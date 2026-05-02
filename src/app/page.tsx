@@ -155,17 +155,26 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-transparent" />
         </div>
 
-        {/* Mountain Contour SVG */}
-        <svg viewBox="0 0 1000 300" className="absolute bottom-0 left-0 w-full h-auto z-10 pointer-events-none drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]" preserveAspectRatio="none">
-          <path 
-            className="mountain-path"
-            d="M0,300 L0,200 L120,160 L240,210 L380,90 L520,150 L680,60 L850,130 L1000,80 L1000,300 Z" 
-            fill="rgba(255,255,255,0.02)" 
-            stroke="rgba(255,255,255,0.8)" 
-            strokeWidth="2" 
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
+        {/* Mountain Silhouette Transition */}
+        <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none translate-y-[1px]">
+          <svg viewBox="0 0 1000 300" className="w-full h-[12vh] md:h-[20vh]" preserveAspectRatio="none">
+            {/* Solid mask that merges seamlessly with the next section */}
+            <path 
+              d="M0,300 L0,200 L120,160 L240,210 L380,90 L520,150 L680,60 L850,130 L1000,80 L1000,300 Z" 
+              className="fill-background" 
+            />
+            {/* Animated edge tracing the mountains */}
+            <path 
+              className="mountain-path"
+              d="M0,200 L120,160 L240,210 L380,90 L520,150 L680,60 L850,130 L1000,80" 
+              fill="none" 
+              stroke="rgba(255,255,255,0.5)" 
+              strokeWidth="2" 
+              vectorEffect="non-scaling-stroke"
+              style={{ filter: 'drop-shadow(0 -5px 10px rgba(255,255,255,0.4))' }}
+            />
+          </svg>
+        </div>
 
         <div className="relative z-20 flex flex-col items-center justify-center md:justify-center text-center px-6 pt-16 md:pt-0">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up">

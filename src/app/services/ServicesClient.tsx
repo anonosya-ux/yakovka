@@ -176,7 +176,7 @@ export default function ServicesClient() {
               title="Дополнительный сервис" 
               subtitle="Комфорт и логистика"
               items={[
-                { name: 'Трансфер от аэропорта', price: 'от 3 000', description: 'Горно-Алтайск → Яковка (до 4 чел.)' },
+                { name: 'Трансфер от аэропорта', price: '3 000 руб.', description: 'Горно-Алтайск → Яковка (до 4 чел.)' },
                 { name: 'Дрова для мангала', price: 300, description: 'Связка дров для барбекю' },
                 { name: 'Уголь и розжиг', price: 500, description: 'Комплект для розжига мангала' },
                 { name: 'Размещение питомца', price: 1000, description: 'Единоразовый сбор за уборку', highlighted: true },

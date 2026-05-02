@@ -123,7 +123,7 @@ export default function SummerPage() {
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
                 <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">💰 Доступные цены</h3>
-                <p className="text-stone-500 leading-relaxed">Летние цены на проживание от 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 20% при бронировании от 5 ночей.</p>
+                <p className="text-stone-500 leading-relaxed">Летние цены на проживание — 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 20% при бронировании от 5 ночей.</p>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function SummerPage() {
 
       <CTABanner 
         title="Забронируйте летний отдых" 
-        subtitle="Забронируйте от 5 ночей и получите скидку 20% на проживание. Номера от 5 800 ₽/сутки."
+        subtitle="Забронируйте от 5 ночей и получите скидку 20% на проживание. Номера — 5 800 ₽/сутки."
         variant="nature"
       />
     </div>

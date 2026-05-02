@@ -111,7 +111,7 @@ export default function ServicesSection() {
           <div className="bento-item relative rounded-[3rem] overflow-hidden group">
             <div className="absolute inset-0 z-0">
                <Image 
-                src="/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-01.webp" 
+                src="/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-06.webp" 
                 alt="Можно с питомцами" 
                 fill 
                 className="bento-img object-cover scale-125 object-center" 

@@ -11,9 +11,7 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="ru">
-      <body style={{ margin: 0, padding: 0 }}>{children}</body>
-    </html>
-  );
+  // Чистый layout без Header/Footer сайта
+  // Вложенный layout — просто контейнер, parent layout (root) всё равно применяется
+  return <div id="sanity-studio-root" style={{ position: 'fixed', inset: 0, zIndex: 99999 }}>{children}</div>;
 }

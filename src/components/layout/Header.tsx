@@ -150,9 +150,9 @@ export function Header() {
               </a>
             </div>
             
-            <a href="tel:+79609552100" className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white shadow-[0_10px_20px_rgba(34,85,34,0.3)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.4)] rounded-full px-7 py-4 font-bold text-sm uppercase tracking-wide transition-all hover:-translate-y-0.5 border border-primary/20">
-              Связаться
-            </a>
+            <Link href="/booking" className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white shadow-[0_10px_20px_rgba(34,85,34,0.3)] hover:shadow-[0_15px_30px_rgba(34,85,34,0.4)] rounded-full px-7 py-4 font-bold text-sm uppercase tracking-wide transition-all hover:-translate-y-0.5 border border-primary/20">
+              Забронировать
+            </Link>
             <button onClick={() => setIsMenuOpen(true)} className={`lg:hidden p-2 rounded-xl border transition-colors ${
               isScrolled 
                 ? 'text-stone-700 bg-stone-50 border-stone-200'

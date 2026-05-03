@@ -152,9 +152,9 @@ export default function RootLayout({
             }}
           />
 
-          {/* <Suspense fallback={null}>
-  <YandexMetrica ymid="YOUR_YANDEX_METRICA_ID" />
-</Suspense> */}
+          <Suspense fallback={null}>
+            <YandexMetrica ymid="109024189" />
+          </Suspense>
           <Header />
           <main className="min-h-screen pt-[72px]">
             {children}

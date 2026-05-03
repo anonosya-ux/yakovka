@@ -26,6 +26,15 @@ const pathNames: Record<string, string> = {
   services: 'Услуги',
   events: 'Мероприятия',
   contacts: 'Контакты',
+  history: 'История Яковки',
+  gallery: 'Галерея',
+  summer: 'Летний отдых',
+  winter: 'Зимний отдых',
+  excursions: 'Экскурсии',
+  faq: 'Частые вопросы',
+  reviews: 'Отзывы',
+  offers: 'Спецпредложения',
+  booking: 'Бронирование',
 };
 
 interface BreadcrumbsProps {

@@ -74,7 +74,7 @@ export default function ServicesSection() {
         </div>
 
         {/* BENTO BOX GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[350px] bento-grid mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[400px] md:auto-rows-[350px] bento-grid mb-32">
           
           {/* Winter Box - spans 2 cols, 2 rows */}
           <Link href="/winter" className="bento-item md:col-span-2 md:row-span-2 relative rounded-[3rem] overflow-hidden group cursor-pointer block">
@@ -87,7 +87,7 @@ export default function ServicesSection() {
               />
               <div className="absolute inset-0 bg-stone-900/40 group-hover:bg-stone-900/50 transition-colors duration-500" />
             </div>
-            <div className="relative z-10 w-full h-full flex flex-col justify-end p-10 md:p-14 text-white">
+            <div className="relative z-10 w-full h-full flex flex-col justify-end p-8 md:p-14 text-white">
               <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 backdrop-blur-md mb-6">
                 <Mountain size={28} />
               </span>

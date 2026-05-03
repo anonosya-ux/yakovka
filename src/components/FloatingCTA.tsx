@@ -8,7 +8,7 @@ export default function FloatingCTA() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-4 md:bottom-8 md:right-8 z-40 flex flex-col-reverse items-end gap-3">
+      <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40 flex flex-col-reverse items-end gap-3">
         {/* Main toggle button */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
@@ -66,7 +66,9 @@ export default function FloatingCTA() {
 
           {/* MAX */}
           <a
-            href="tel:+79090975209"
+            href="https://max.ru/u/f9LHodD0cOJgs8-Ji8TUTWyxOWG2luEllCgGpLV267s5Hjpb6iMGSByhedg"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-3 group"
             onClick={() => setIsExpanded(false)}
           >

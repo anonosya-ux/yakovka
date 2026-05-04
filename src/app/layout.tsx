@@ -19,11 +19,13 @@ const KonturWidgetMobileButton = dynamic(
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin", "cyrillic"],
+  display: 'swap',
 });
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {

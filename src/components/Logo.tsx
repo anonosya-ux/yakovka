@@ -3,90 +3,74 @@ import React from 'react';
 export function YakovkaLogo({ className = "" }: { className?: string }) {
   return (
     <svg 
-      viewBox="0 0 120 120" 
+      viewBox="0 0 200 200" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg" 
       className={className}
     >
-      {/* Background */}
-      <circle cx="60" cy="60" r="58" fill="#1C2E24" />
-      <circle cx="60" cy="60" r="54" fill="none" stroke="white" strokeWidth="1" strokeOpacity="0.2" />
-      
-      {/* Leaves / Sprigs Left */}
-      <path d="M 15 60 Q 25 45 40 35" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M 22 52 Q 22 40 32 32" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M 18 68 Q 30 55 42 50" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      
-      {/* Leaves / Sprigs Right */}
-      <path d="M 105 60 Q 95 45 80 35" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M 98 52 Q 98 40 88 32" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M 102 68 Q 90 55 78 50" stroke="#6B8E71" strokeWidth="2" fill="none" strokeLinecap="round"/>
+      {/* Outer border */}
+      <circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="2" strokeOpacity="0.2" />
+      <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="4 4" />
 
-      {/* House outline */}
+      {/* Decorative Leaves */}
+      <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" fill="none">
+        {/* Left branch */}
+        <path d="M 25 125 Q 10 95 25 55" />
+        <path d="M 25 55 Q 35 45 45 55 Q 35 65 25 55" fill="currentColor" fillOpacity="0.1"/>
+        <path d="M 18 85 Q 30 75 35 85 Q 25 95 18 85" fill="currentColor" fillOpacity="0.1"/>
+        <path d="M 15 105 Q 25 95 28 105 Q 20 115 15 105" fill="currentColor" fillOpacity="0.1"/>
+        
+        {/* Right branch */}
+        <path d="M 175 125 Q 190 95 175 55" />
+        <path d="M 175 55 Q 165 45 155 55 Q 165 65 175 55" fill="currentColor" fillOpacity="0.1"/>
+        <path d="M 182 85 Q 170 75 165 85 Q 175 95 182 85" fill="currentColor" fillOpacity="0.1"/>
+        <path d="M 185 105 Q 175 95 172 105 Q 180 115 185 105" fill="currentColor" fillOpacity="0.1"/>
+      </g>
+
+      {/* Main House and Heart Icon */}
       <path 
-        d="M 25 60 L 25 45 L 60 20 L 95 45 L 95 60" 
-        stroke="white" 
-        strokeWidth="4" 
+        d="M 40 105 
+           L 95 105 
+           C 80 105, 60 60, 80 60 
+           C 90 60, 95 80, 100 85 
+           C 105 80, 110 60, 120 60 
+           C 140 60, 120 105, 105 105 
+           L 160 105 
+           L 160 70 
+           L 175 70 
+           L 135 30 
+           L 100 65 
+           L 65 30 
+           L 25 70 
+           L 40 70 
+           Z" 
+        stroke="currentColor" 
+        strokeWidth="7" 
         strokeLinecap="round" 
         strokeLinejoin="round" 
-        fill="none"
-      />
-      <path 
-        d="M 40 34 L 15 52" 
-        stroke="white" 
-        strokeWidth="4" 
-        strokeLinecap="round" 
-      />
-      <path 
-        d="M 80 34 L 105 52" 
-        stroke="white" 
-        strokeWidth="4" 
-        strokeLinecap="round" 
-      />
-      
-      {/* Inner Heart merged with house base */}
-      <path 
-        d="M 40 55 C 35 48 30 52 35 62 L 60 80 L 85 62 C 90 52 85 48 80 55" 
-        stroke="white" 
-        strokeWidth="4.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        fill="none"
-      />
-      <path 
-        d="M 25 60 C 25 65 30 70 42 70" 
-        stroke="white" 
-        strokeWidth="4" 
-        strokeLinecap="round" 
-        fill="none"
-      />
-      <path 
-        d="M 95 60 C 95 65 90 70 78 70" 
-        stroke="white" 
-        strokeWidth="4" 
-        strokeLinecap="round" 
         fill="none"
       />
 
       {/* Text */}
       <text 
-        x="60" 
-        y="100" 
-        fontFamily="system-ui, sans-serif" 
-        fontSize="16" 
-        fill="white" 
-        fontWeight="500" 
+        x="100" 
+        y="150" 
+        fontFamily="var(--font-montserrat), system-ui, sans-serif" 
+        fontSize="28" 
+        fill="currentColor" 
+        fontWeight="600" 
         textAnchor="middle" 
-        letterSpacing="1.5"
+        letterSpacing="0.05em"
       >
         Yakovka
       </text>
       <text 
-        x="60" 
-        y="112" 
-        fontFamily="Georgia, serif" 
-        fontSize="10" 
-        fill="#8FB896" 
+        x="100" 
+        y="178" 
+        fontFamily="Caveat, 'Brush Script MT', cursive" 
+        fontSize="24" 
+        fill="currentColor" 
+        opacity="0.7"
         fontStyle="italic" 
         textAnchor="middle"
       >

@@ -37,7 +37,7 @@ export function YandexMetrica({ ymid }: { ymid: string }) {
       <noscript>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={\`https://mc.yandex.ru/watch/\${ymid}\`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
+          <img src={`https://mc.yandex.ru/watch/${ymid}`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
         </div>
       </noscript>
     </>

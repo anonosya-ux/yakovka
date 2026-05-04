@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Montserrat, Manrope } from "next/font/google";
+import dynamic from 'next/dynamic';
 import "./globals.css";
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import SmoothScroll from '@/components/ui/SmoothScroll';
-import CustomCursor from '@/components/ui/CustomCursor';
-import FloatingCTA from '@/components/FloatingCTA';
-import { KonturWidgetMobileButton } from '@/components/KonturWidget';
 import { YandexMetrica } from '@/components/YandexMetrica';
-import CookieBanner from '@/components/CookieBanner';
+
+// Non-critical UI — lazy loaded to reduce initial bundle
+const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'));
+const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'));
+const CookieBanner = dynamic(() => import('@/components/CookieBanner'));
+const KonturWidgetMobileButton = dynamic(
+  () => import('@/components/KonturWidget').then(m => ({ default: m.KonturWidgetMobileButton }))
+);
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",

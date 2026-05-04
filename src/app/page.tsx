@@ -3,15 +3,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Tag, Snowflake, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Existing Sections to keep at the bottom
-import ServicesSection from '@/components/ServicesSection';
-import MapSection from '@/components/MapSection';
-import CTABanner from '@/components/CTABanner';
-import CallbackModal from '@/components/CallbackModal';
+// Lazy-load below-fold sections — reduces initial JS bundle significantly
+const ServicesSection = dynamic(() => import('@/components/ServicesSection'), {
+  loading: () => <section className="py-32 md:py-48 bg-white" />,
+});
+const MapSection = dynamic(() => import('@/components/MapSection'), {
+  loading: () => <section className="py-24 bg-[#fafafa]" />,
+});
+const CTABanner = dynamic(() => import('@/components/CTABanner'));
+const CallbackModal = dynamic(() => import('@/components/CallbackModal'), {
+  ssr: false,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,7 +68,7 @@ const RoomSlider = ({ images, title }: { images: string[], title: string }) => {
 const offers = [
   { id: 1, title: 'Раннее бронирование', desc: 'Забронируйте отдых за 30 дней и получите скидку 15% на проживание.', bg: '/optimized/Виды/Фасады/Фасады-01.webp' },
   { id: 2, title: 'Семейный отдых', desc: 'Детская площадка, просторные шале и чистый горный воздух.', bg: '/optimized/Мероприятия/Свадьбы/Свадьбы-06.webp' },
-  { id: 3, title: 'Банный релакс', desc: 'При бронировании от 5 ночей — 2 часа русской бани в подарок.', bg: '/optimized/Виды/Женщины/СПА.jpg' },
+  { id: 3, title: 'Банный релакс', desc: 'При бронировании от 5 ночей — 2 часа русской бани в подарок.', bg: '/optimized/Виды/Женщины/СПА-optimized.jpg' },
 ];
 
 export default function Home() {
@@ -148,7 +155,7 @@ export default function Home() {
       {/* 1. HERO SECTION (Контуры горы Яковка) */}
       <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden bg-stone-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video autoPlay loop muted playsInline className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
+          <video autoPlay loop muted playsInline poster="/videos/hero-poster.jpg" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
             <source src="/videos/hero-yakovka.webm" type="video/webm" />
             <source src="/videos/hero-yakovka.mp4" type="video/mp4" />
           </video>

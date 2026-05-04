@@ -179,7 +179,7 @@ export default function Home() {
       {/* 1. HERO SECTION (Контуры горы Яковка) */}
       <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden bg-stone-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video autoPlay loop muted playsInline poster="/videos/hero-poster.jpg" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
+          <video autoPlay loop muted playsInline poster="/videos/hero-poster.webp" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
             <source src="/videos/hero-yakovka.webm" type="video/webm" />
             <source src="/videos/hero-yakovka.mp4" type="video/mp4" />
           </video>

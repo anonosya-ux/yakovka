@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Lazy-load below-fold sections — reduces initial JS bundle significantly
 const ServicesSection = dynamic(() => import('@/components/ServicesSection'), {
@@ -20,7 +18,19 @@ const CallbackModal = dynamic(() => import('@/components/CallbackModal'), {
   ssr: false,
 });
 
-gsap.registerPlugin(ScrollTrigger);
+// GSAP loaded lazily to avoid blocking main thread
+let gsapModule: typeof import('gsap') | null = null;
+const getGsap = async () => {
+  if (!gsapModule) {
+    const [g, st] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]);
+    gsapModule = g;
+    g.default.registerPlugin(st.ScrollTrigger);
+  }
+  return gsapModule.default;
+};
 
 const RoomSlider = ({ images, title }: { images: string[], title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -76,62 +86,75 @@ export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // prefers-reduced-motion check
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let ctx: any;
 
-    const ctx = gsap.context(() => {
-      if (!prefersReducedMotion) {
-        // SVG Mountain Draw
-        const path = document.querySelector('.mountain-path') as SVGPathElement;
-        if (path) {
-          const length = path.getTotalLength();
-          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-          gsap.to(path, { strokeDashoffset: 0, duration: 3, ease: 'power3.inOut', delay: 0.5 });
-        }
+    // Defer GSAP initialization to avoid blocking main thread (reduces TBT)
+    const initAnimations = async () => {
+      const gsap = await getGsap();
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Hero Content Fade In
-        gsap.fromTo('.animate-fade-in-up', 
-          { y: 30, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
-        );
-
-        // Hero Parallax
-        gsap.to('.hero-video', {
-          yPercent: 30,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero-section',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
+      ctx = gsap.context(() => {
+        if (!prefersReducedMotion) {
+          // SVG Mountain Draw
+          const path = document.querySelector('.mountain-path') as SVGPathElement;
+          if (path) {
+            const length = path.getTotalLength();
+            gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+            gsap.to(path, { strokeDashoffset: 0, duration: 3, ease: 'power3.inOut', delay: 0.5 });
           }
-        });
 
-        // About Parallax
-        gsap.fromTo('.about-bg', 
-          { yPercent: -15 },
-          { yPercent: 15, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: true } }
-        );
+          // Hero Content Fade In
+          gsap.fromTo('.animate-fade-in-up', 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
+          );
 
-        // Glass Box Enter
-        gsap.fromTo('.glass-box', 
-          { y: 100, opacity: 0, rotateX: -10 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.about-section', start: 'top 70%' } }
-        );
+          // Hero Parallax
+          gsap.to('.hero-video', {
+            yPercent: 30,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.hero-section',
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+            }
+          });
 
-        // Offers Stagger
-        gsap.fromTo('.offer-card',
-          { y: 80, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.offers-section', start: 'top 75%' } }
-        );
-      }
-    }, mainRef);
+          // About Parallax
+          gsap.fromTo('.about-bg', 
+            { yPercent: -15 },
+            { yPercent: 15, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: true } }
+          );
 
-    return () => ctx.revert();
+          // Glass Box Enter
+          gsap.fromTo('.glass-box', 
+            { y: 100, opacity: 0, rotateX: -10 },
+            { y: 0, opacity: 1, rotateX: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.about-section', start: 'top 70%' } }
+          );
+
+          // Offers Stagger
+          gsap.fromTo('.offer-card',
+            { y: 80, opacity: 0 },
+            { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.offers-section', start: 'top 75%' } }
+          );
+        }
+      }, mainRef);
+    };
+
+    // Use requestIdleCallback to defer to when browser is idle
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => initAnimations());
+    } else {
+      setTimeout(() => initAnimations(), 200);
+    }
+
+    return () => ctx?.revert();
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>, target: HTMLElement | null) => {
+  const handleMouseMove = useCallback(async (e: React.MouseEvent<HTMLAnchorElement>, target: HTMLElement | null) => {
     if (!target) return;
+    const gsap = await getGsap();
     const rect = target.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -142,12 +165,13 @@ export default function Home() {
       ease: 'power2.out',
       duration: 0.5
     });
-  };
+  }, []);
 
-  const handleMouseLeave = (target: HTMLElement | null) => {
+  const handleMouseLeave = useCallback(async (target: HTMLElement | null) => {
     if (!target) return;
+    const gsap = await getGsap();
     gsap.to(target, { rotateY: 0, rotateX: 0, ease: 'power3.out', duration: 0.7 });
-  };
+  }, []);
 
   return (
     <div ref={mainRef} className="font-sans overflow-x-hidden bg-background text-stone-900">

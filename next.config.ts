@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Standalone output for Beget VPS deployment
-  output: 'standalone',
   
   images: {
     remotePatterns: [

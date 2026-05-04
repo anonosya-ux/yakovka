@@ -8,14 +8,14 @@ export default function FloatingCTA() {
 
   return (
     <>
-      <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40 flex flex-col-reverse items-end gap-3">
+      <div className="fixed bottom-28 right-4 md:bottom-12 md:right-8 z-40 flex flex-col-reverse items-end gap-3">
         {/* Main toggle button */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-premium-lg transition-all duration-300 ${
             isExpanded
               ? 'bg-stone-800 text-white rotate-0'
-              : 'bg-primary text-white animate-float-bounce hover:scale-105 hover:bg-primary/90'
+              : 'bg-[#4E342E] text-white animate-float-bounce hover:scale-105 hover:bg-[#3E2723]'
           }`}
           aria-label={isExpanded ? 'Закрыть' : 'Связаться с нами'}
         >
@@ -43,7 +43,7 @@ export default function FloatingCTA() {
             <span className="bg-white/95 backdrop-blur-md text-stone-900 text-sm font-bold px-4 py-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
               Позвонить
             </span>
-            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-[#4E342E] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
               <Phone className="w-5 h-5 md:w-6 md:h-6" />
             </div>
           </a>

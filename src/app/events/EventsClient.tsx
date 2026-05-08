@@ -45,9 +45,11 @@ export default function EventsClient() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768;
+      
       gsap.utils.toArray('.event-block').forEach((block: any) => {
         gsap.fromTo(block, 
-          { y: 50, opacity: 0 }, 
+          { y: isMobile ? 20 : 50, opacity: 0 }, 
           { 
             y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: block, start: 'top 85%' }

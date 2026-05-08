@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
@@ -12,6 +12,7 @@ interface PhotoGalleryProps {
 export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -24,14 +25,31 @@ export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps)
     document.body.style.overflow = 'auto';
   };
 
-  const nextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const nextImage = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) e.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
-  const prevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const prevImage = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) e.stopPropagation();
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (diff > 50) {
+      nextImage(); // Swiped left
+    } else if (diff < -50) {
+      prevImage(); // Swiped right
+    }
+    touchStartX.current = null;
   };
 
   const columnClass = {
@@ -46,7 +64,7 @@ export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps)
         {images.map((src, index) => (
           <div 
             key={index} 
-            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-2xl bg-stone-100"
+            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-2xl bg-stone-100 skeleton"
             onClick={() => openLightbox(index)}
           >
             <Image
@@ -67,6 +85,8 @@ export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps)
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/95 backdrop-blur-sm"
           onClick={closeLightbox}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button 
             className="absolute top-6 right-6 text-white/70 hover:text-white z-50"
@@ -76,7 +96,7 @@ export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps)
           </button>
 
           <button 
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-colors hidden sm:block"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-colors hidden sm:block z-50"
             onClick={prevImage}
           >
             <ChevronLeft size={32} />
@@ -96,7 +116,7 @@ export default function PhotoGallery({ images, columns = 3 }: PhotoGalleryProps)
           </div>
 
           <button 
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-colors hidden sm:block"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full transition-colors hidden sm:block z-50"
             onClick={nextImage}
           >
             <ChevronRight size={32} />

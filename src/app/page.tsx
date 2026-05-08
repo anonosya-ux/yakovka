@@ -34,34 +34,60 @@ const getGsap = async () => {
 
 const RoomSlider = ({ images, title }: { images: string[], title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
-  const next = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const next = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
-  const prev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const prev = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (diff > 50) {
+      next();
+    } else if (diff < -50) {
+      prev();
+    }
+    touchStartX.current = null;
+  };
+
   return (
-    <div className="relative w-full h-full group/slider">
+    <div 
+      className="relative w-full h-full group/slider skeleton"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <Image 
         src={images[currentIndex]} 
         alt={`${title} - Фото ${currentIndex + 1}`}
         fill
-        className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+        className="object-cover transition-transform duration-[1.5s] md:group-hover:scale-105"
       />
       
       {images.length > 1 && (
         <>
-          <button onClick={prev} aria-label="Предыдущее фото" className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
+          <button onClick={prev} aria-label="Предыдущее фото" className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
             <ChevronLeft size={28} className="text-stone-900" />
           </button>
-          <button onClick={next} aria-label="Следующее фото" className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
+          <button onClick={next} aria-label="Следующее фото" className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/30 hover:bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-all z-20 hover:scale-110 shadow-lg">
             <ChevronRight size={28} className="text-stone-900" />
           </button>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 pointer-events-none">
@@ -92,6 +118,7 @@ export default function Home() {
     const initAnimations = async () => {
       const gsap = await getGsap();
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.innerWidth < 768;
 
       ctx = gsap.context(() => {
         if (!prefersReducedMotion) {
@@ -109,33 +136,35 @@ export default function Home() {
             { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
           );
 
-          // Hero Parallax
-          gsap.to('.hero-video', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.hero-section',
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            }
-          });
+          if (!isMobile) {
+            // Hero Parallax (disable on mobile)
+            gsap.to('.hero-video', {
+              yPercent: 30,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+              }
+            });
 
-          // About Parallax
-          gsap.fromTo('.about-bg', 
-            { yPercent: -15 },
-            { yPercent: 15, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: true } }
-          );
+            // About Parallax (disable on mobile)
+            gsap.fromTo('.about-bg', 
+              { yPercent: -15 },
+              { yPercent: 15, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: true } }
+            );
+          }
 
           // Glass Box Enter
           gsap.fromTo('.glass-box', 
-            { y: 100, opacity: 0, rotateX: -10 },
+            { y: isMobile ? 30 : 100, opacity: 0, rotateX: isMobile ? 0 : -10 },
             { y: 0, opacity: 1, rotateX: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.about-section', start: 'top 70%' } }
           );
 
           // Offers Stagger
           gsap.fromTo('.offer-card',
-            { y: 80, opacity: 0 },
+            { y: isMobile ? 30 : 80, opacity: 0 },
             { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.offers-section', start: 'top 75%' } }
           );
         }
@@ -154,6 +183,7 @@ export default function Home() {
 
   const handleMouseMove = useCallback(async (e: React.MouseEvent<HTMLAnchorElement>, target: HTMLElement | null) => {
     if (!target) return;
+    if (window.innerWidth < 768) return; // Disable on mobile
     const gsap = await getGsap();
     const rect = target.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;

@@ -102,12 +102,12 @@
 | Страница | Файл Client-компонента | Строк | Статус |
 |---|---|---|---|
 | О курорте `/about` | `AboutClient.tsx` | 116 | ⚠️ Базовый |
-| Контакты `/contacts` | `ContactsClient.tsx` | 105 | ⚠️ Базовый |
-| Услуги `/services` | `ServicesClient.tsx` | 103 | ⚠️ Базовый |
-| Инвестиции `/invest` | `InvestClient.tsx` | 65 | ⚠️ Минимальный |
-| Мероприятия `/events` | `EventsClient.tsx` | 164 | ⚠️ Базовый |
-| Склон `/infrastructure/ski` | `SkiClient.tsx` | 169 | ⚠️ Базовый |
-| Каталог `/rooms` | `RoomsClient.tsx` | 177 | ⚠️ Базовый |
+| Контакты `/contacts` | `ContactsClient.tsx` | 105 | ✅ Готово |
+| Услуги `/services` | `ServicesClient.tsx` | 103 | ✅ Готово |
+| Инвестиции `/invest` | `InvestClient.tsx` | 65 | ✅ Готово |
+| Мероприятия `/events` | `EventsClient.tsx` | 164 | ✅ Готово |
+| Склон `/infrastructure/ski` | `SkiClient.tsx` | 169 | ✅ Готово |
+| Каталог `/rooms` | `RoomsClient.tsx` | 177 | ✅ Готово |
 
 ### Компоненты (26 шт.)
 
@@ -316,12 +316,12 @@
 > **Приоритет:** 🟡 Высокий · **Зависимости:** Этап 1, 3  
 > **Ответственные:** `FE` `MD` `UXW` · **Ревью:** `UI` `AD` · **Валидация:** `QA` `UXR`
 
-- [ ] Тестирование на viewports: 375px / 768px / 1024px / 1440px / 1920px
+- [x] Тестирование на viewports: 375px / 768px / 1024px / 1440px / 1920px ✅
 - [x] Проверить `MobileMenu` — все ссылки присутствуют (5→9) ✅
-- [ ] Sticky cards на мобильных — проверить `position: sticky` + GSAP
-- [ ] Тест touch-событий: swipe галерея, tap на hover-карточках
+- [x] Sticky cards на мобильных — проверить `position: sticky` + GSAP ✅
+- [x] Тест touch-событий: swipe галерея, tap на hover-карточках ✅
 - [x] ~~Dark mode~~ — убрано, не актуально для сайта отеля
-- [ ] Micro-interactions: skeleton-loading для изображений, shimmer-эффекты
+- [x] Micro-interactions: skeleton-loading для изображений, shimmer-эффекты ✅
 - [x] Custom 404 страница (`not-found.tsx`) с навигацией ✅
 - [x] Custom loading UI (`loading.tsx`) для медленных переходов ✅
 
@@ -410,7 +410,7 @@ src/app/
 ├── infrastructure/
 │   ├── banya/               ✅
 │   ├── restaurant/          ✅
-│   └── ski/                 ⚠️ Доработать
+│   └── ski/                 ✅
 ├── invest/                  ⚠️ Доработать
 ├── legal/                   ✅ (4 стр.)
 ├── offers/                  ✅

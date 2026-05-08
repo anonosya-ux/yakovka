@@ -103,21 +103,47 @@ const rooms = [
 
 const RoomImageSlider = ({ images, title }: { images: string[], title: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
-  const next = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const next = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
-  const prev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const prev = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (diff > 50) {
+      next(); // Swiped left
+    } else if (diff < -50) {
+      prev(); // Swiped right
+    }
+    touchStartX.current = null;
+  };
+
   return (
-    <div className="relative w-full h-full group/slider">
+    <div 
+      className="relative w-full h-full group/slider skeleton"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <Image 
         src={images[currentIndex]} 
         alt={`${title} - Фото ${currentIndex + 1}`}

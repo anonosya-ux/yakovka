@@ -82,8 +82,10 @@ export default function ServicesClient() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 768;
+      
       gsap.fromTo('.svc-card', 
-        { y: 50, opacity: 0 }, 
+        { y: isMobile ? 20 : 50, opacity: 0 }, 
         { 
           y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: '.svc-grid', start: 'top 85%' }
@@ -91,7 +93,7 @@ export default function ServicesClient() {
       );
       
       gsap.fromTo('.price-section', 
-        { y: 50, opacity: 0 }, 
+        { y: isMobile ? 20 : 50, opacity: 0 }, 
         { 
           y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: '.price-section', start: 'top 85%' }

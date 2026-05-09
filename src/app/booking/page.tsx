@@ -12,7 +12,7 @@ import gsap from 'gsap';
 const rooms = [
   {
     slug: 'standart',
-    title: 'Стандарт 2-местный',
+    title: 'Категория Стандарт',
     konturName: 'Стандарт 2-местный',
     size: '12 м²',
     guestsText: 'до 2 гостей',
@@ -27,7 +27,7 @@ const rooms = [
   },
   {
     slug: 'standart-plus',
-    title: 'Стандарт +',
+    title: 'Категория Стандарт Улучшенный',
     konturName: 'Стандарт +',
     size: '12 м²',
     guestsText: 'до 3 гостей',
@@ -42,7 +42,7 @@ const rooms = [
   },
   {
     slug: 'family',
-    title: 'Семейный',
+    title: 'Категория Семейный',
     konturName: 'Семейный',
     size: '18 м²',
     guestsText: 'до 2 гостей',
@@ -57,7 +57,7 @@ const rooms = [
   },
   {
     slug: 'family-plus',
-    title: 'Семейный Улучшенный',
+    title: 'Категория Семейный Улучшенный',
     konturName: 'Семейный +',
     size: '25 м²',
     guestsText: 'до 5 гостей',

@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import HeroReveal from '@/components/HeroReveal';
 
 // Lazy-load below-fold sections — reduces initial JS bundle significantly
 const ServicesSection = dynamic(() => import('@/components/ServicesSection'), {
@@ -207,8 +206,66 @@ export default function Home() {
   return (
     <div ref={mainRef} className="font-sans overflow-x-hidden bg-background text-stone-900">
       
-      {/* 1. HERO SECTION (Interactive Reveal Mask) */}
-      <HeroReveal />
+      {/* 1. HERO SECTION (Контуры горы Яковка) */}
+      <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden bg-stone-950">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video autoPlay loop muted playsInline poster="/videos/hero-poster.webp" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
+            <source src="/videos/hero-yakovka.webm" type="video/webm" />
+            <source src="/videos/hero-yakovka.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-transparent" />
+        </div>
+
+        {/* Mountain Silhouette Transition */}
+        <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none translate-y-[1px]">
+          <svg viewBox="0 0 1000 300" className="w-full h-[12vh] md:h-[20vh]" preserveAspectRatio="none">
+            {/* Solid mask that merges seamlessly with the next section */}
+            <path 
+              d="M0,300 L0,200 L120,160 L240,210 L380,90 L520,150 L680,60 L850,130 L1000,80 L1000,300 Z" 
+              className="fill-background" 
+            />
+            {/* Animated edge tracing the mountains */}
+            <path 
+              className="mountain-path"
+              d="M0,200 L120,160 L240,210 L380,90 L520,150 L680,60 L850,130 L1000,80" 
+              fill="none" 
+              stroke="rgba(255,255,255,0.5)" 
+              strokeWidth="2" 
+              vectorEffect="non-scaling-stroke"
+              style={{ filter: 'drop-shadow(0 -5px 10px rgba(255,255,255,0.4))' }}
+            />
+          </svg>
+        </div>
+
+        <div className="relative z-20 flex flex-col items-center justify-center md:justify-center text-center px-6 pt-16 md:pt-0">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up">
+            <Tag size={16} className="text-primary" /> Выгодные предложения на лето
+          </div>
+          <h1 className="font-heading text-6xl md:text-8xl lg:text-[120px] font-bold text-white tracking-tighter drop-shadow-2xl mb-4 leading-none">
+            ЯКОВКА<span className="text-primary block text-4xl md:text-6xl mt-2 tracking-normal font-light">RESORT</span>
+          </h1>
+          <p className="text-lg md:text-2xl text-stone-200 font-light max-w-3xl mx-auto mb-12 drop-shadow-md">
+            Загородный эко-курорт в Белокурихе. Идеальное место для восстановления сил, семейного отдыха и погружения в природу Алтая.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6">
+            <Link 
+              href="/booking"
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-primary text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)]"
+              style={{ willChange: 'transform' }}
+            >
+              Забронировать номер
+              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/summer" 
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105"
+            >
+              Летний отдых
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* 2. ABOUT SECTION (Прозрачный фон природы + Лого + Текст) */}
       <section className="about-section relative min-h-screen py-32 flex items-center justify-center overflow-hidden bg-stone-900">

@@ -101,22 +101,25 @@ export default function Home() {
             { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
           );
 
-          // Hero Parallax
-          gsap.to('.hero-video', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.hero-section',
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            }
+          // Hero Parallax (Desktop Only for better performance)
+          let mm = gsap.matchMedia();
+          mm.add("(min-width: 768px)", () => {
+            gsap.to('.hero-video', {
+              yPercent: 20,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1, // Smooth interpolation
+              }
+            });
           });
 
           // About Parallax
           gsap.fromTo('.about-bg', 
-            { yPercent: -15 },
-            { yPercent: 15, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: true } }
+            { yPercent: -10 },
+            { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.about-section', scrub: 1 } }
           );
 
           // Glass Box Enter
@@ -152,39 +155,47 @@ export default function Home() {
       {/* 1. HERO SECTION (Контуры горы Яковка) */}
       <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden bg-stone-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video autoPlay loop muted playsInline poster="/videos/hero-poster.webp" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-110 opacity-70">
+          <video autoPlay loop muted playsInline poster="/videos/hero-poster.webp" preload="metadata" className="hero-video w-full h-full object-cover object-center scale-[1.15] opacity-80 will-change-transform">
             <source src="/videos/hero-yakovka.webm" type="video/webm" />
             <source src="/videos/hero-yakovka.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/40 to-transparent" />
+          {/* Subtle Radial Vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-stone-950/20 to-stone-950/80 pointer-events-none" />
         </div>
 
         {/* Smooth Fade Transition */}
         <div className="absolute bottom-0 left-0 w-full h-32 md:h-64 bg-gradient-to-t from-stone-900 to-transparent z-10 pointer-events-none translate-y-[1px]" />
 
         <div className="relative z-20 flex flex-col items-center justify-center md:justify-center text-center px-6 pt-16 md:pt-0">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up">
-            <Tag size={16} className="text-primary" /> Выгодные предложения на лето
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-widest uppercase mb-8 animate-fade-in-up hover:bg-white/20 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+            <span className="relative flex h-3 w-3 mr-1">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </span>
+            Выгодные предложения на лето
           </div>
-          <h1 className="font-heading text-6xl md:text-8xl lg:text-[120px] font-bold text-white tracking-tighter drop-shadow-2xl mb-4 leading-none">
-            ЯКОВКА<span className="text-primary block text-4xl md:text-6xl mt-2 tracking-normal font-light">RESORT</span>
+          <h1 className="font-heading text-6xl md:text-[100px] lg:text-[130px] font-bold text-white tracking-tighter drop-shadow-2xl mb-2 leading-none">
+            ЯКОВКА
+            <span className="text-white/90 block text-2xl md:text-5xl mt-5 tracking-[0.35em] font-light uppercase">RESORT</span>
           </h1>
-          <p className="text-lg md:text-2xl text-stone-200 font-light max-w-3xl mx-auto mb-12 drop-shadow-md">
-            Загородный эко-курорт в Белокурихе. Идеальное место для восстановления сил, семейного отдыха и погружения в природу Алтая.
+          <div className="w-16 md:w-24 h-px bg-white/30 mx-auto my-8 md:my-10"></div>
+          <p className="text-lg md:text-2xl text-stone-200 font-light max-w-3xl mx-auto mb-14 drop-shadow-md tracking-wide">
+            Загородный эко-курорт в Белокурихе. <br className="hidden md:block"/> Идеальное место для восстановления сил и погружения в природу Алтая.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6">
+          <div className="flex flex-col sm:flex-row gap-5">
             <Link 
               href="/booking"
-              className="group relative inline-flex items-center justify-center px-12 py-5 bg-primary text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_20px_40px_rgba(255,255,255,0.2)]"
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] overflow-hidden"
               style={{ willChange: 'transform' }}
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"></div>
               Забронировать номер
               <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
               href="/summer" 
-              className="group relative inline-flex items-center justify-center px-12 py-5 bg-white/10 backdrop-blur-xl border border-white/30 text-white rounded-full font-bold text-lg md:text-xl transition-all duration-500 hover:bg-white hover:text-stone-900 hover:scale-105"
+              className="group relative inline-flex items-center justify-center px-12 py-5 bg-transparent border border-white/20 text-white/90 rounded-full font-medium text-lg transition-all duration-500 hover:bg-white/5 hover:text-white hover:border-white/40"
             >
               Летний отдых
             </Link>
@@ -243,16 +254,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {offers.map((offer) => (
-              <div key={offer.id} className="offer-card group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.05)] bg-white cursor-pointer will-change-transform">
-                <Image src={offer.bg} alt={offer.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent" />
+              <div key={offer.id} className="offer-card group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-premium border border-stone-100 bg-white cursor-pointer will-change-transform">
+                <Image src={offer.bg} alt={offer.title} fill className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/30 to-transparent" />
                 
                 <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-                  <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary">
+                  <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg">
                     <Tag size={20} />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold mb-2">{offer.title}</h3>
-                  <p className="text-stone-300 text-sm font-light">{offer.desc}</p>
+                  <h3 className="font-heading text-3xl font-bold mb-3">{offer.title}</h3>
+                  <p className="text-stone-200 text-base font-light leading-relaxed">{offer.desc}</p>
                 </div>
               </div>
             ))}

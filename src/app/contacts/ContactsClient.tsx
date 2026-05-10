@@ -197,13 +197,24 @@ export default function ContactsClient() {
             </div>
           </div>
 
-          {/* Company Requisites Block */}
-          {/* TODO: Обновить данные после предоставления карточки ИП */}
           <div className="mt-12 bg-stone-900 p-10 md:p-14 rounded-[3rem] shadow-2xl relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
              <h2 className="font-heading text-3xl font-bold text-white mb-6">Реквизиты организации</h2>
-             <div className="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
-               <p className="text-stone-400">Реквизиты организации будут добавлены после предоставления карточки ИП.</p>
+             <div className="bg-stone-800/50 p-6 md:p-8 rounded-2xl border border-stone-700">
+               <ul className="text-stone-300 space-y-3 md:text-lg font-light">
+                 <li className="flex flex-col sm:flex-row sm:gap-2">
+                   <strong className="text-white w-32">Организация:</strong> 
+                   <span>ИП Валынкин Павел Николаевич</span>
+                 </li>
+                 <li className="flex flex-col sm:flex-row sm:gap-2">
+                   <strong className="text-white w-32">ИНН:</strong> 
+                   <span className="font-mono tracking-wider">220300170548</span>
+                 </li>
+                 <li className="flex flex-col sm:flex-row sm:gap-2">
+                   <strong className="text-white w-32">ОГРНИП:</strong> 
+                   <span className="font-mono tracking-wider">304220309000076</span>
+                 </li>
+               </ul>
              </div>
           </div>
 

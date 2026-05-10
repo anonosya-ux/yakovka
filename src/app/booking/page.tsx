@@ -326,10 +326,10 @@ export default function BookingPage() {
             <h3 className="font-heading text-xl font-bold text-stone-900 mb-3">Нужна помощь с бронированием?</h3>
             <p className="text-stone-500 mb-6 font-light">Наш администратор поможет подобрать идеальный номер и ответит на все вопросы</p>
             <a
-              href="tel:+79609552100"
+              href="tel:+79090975209"
               className="inline-flex items-center gap-3 text-primary font-bold text-xl hover:underline"
             >
-              +7 (960) 955-21-00
+              +7 (909) 097-52-09
             </a>
           </div>
         </div>

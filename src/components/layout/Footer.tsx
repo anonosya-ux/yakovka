@@ -19,9 +19,9 @@ export function Footer() {
             Загородный отель «Яковка» — семейный горнолыжный курорт у подножия горы в Белокурихе, Алтайский край.
           </p>
           <div className="space-y-3">
-            <a href="tel:+79609552100" className="flex items-center gap-3 text-xl font-bold text-white hover:text-primary transition-colors">
+            <a href="tel:+79090975209" className="flex items-center gap-3 text-xl font-bold text-white hover:text-primary transition-colors">
               <Phone size={18} className="text-primary" />
-              +7 (960) 955-21-00
+              +7 (909) 097-52-09
             </a>
             <a href="tel:+79090975209" className="flex items-center gap-3 text-lg text-stone-300 hover:text-primary transition-colors">
               <Phone size={16} className="text-stone-500" />
@@ -90,7 +90,7 @@ export function Footer() {
             <p>ИП Валынкин Павел Николаевич</p>
             <p>ИНН: 220300170548 &nbsp;|&nbsp; ОГРНИП: 304220309000076</p>
             <p>Адрес: 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4</p>
-            <p>Тел.: +7 (960) 955-21-00 &nbsp;|&nbsp; E-mail: valynkina.44@mail.ru</p>
+            <p>Тел.: +7 (909) 097-52-09 &nbsp;|&nbsp; E-mail: valynkina.44@mail.ru</p>
             <p>Режим работы: круглосуточно</p>
           </div>
 
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-6 mt-4 md:mt-0">
           {/* Social Links */}
-          <a href="https://t.me/+79609552100" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">
+          <a href="https://t.me/+79090975209" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="hover:text-white transition-colors" title="Telegram">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           </a>
           <a href="https://max.ru/u/f9LHodD0cOJgs8-Ji8TUTWyxOWG2luEllCgGpLV267s5Hjpb6iMGSByhedg" target="_blank" rel="noopener noreferrer" aria-label="MAX" className="hover:text-white transition-colors" title="MAX">

@@ -124,11 +124,11 @@ export function Header() {
             {/* Phone numbers (desktop) */}
             <div className="hidden xl:flex flex-col items-end gap-0.5 mr-4">
               <a 
-                href="tel:+79609552100" 
+                href="tel:+79090975209" 
                 className="flex items-center gap-1.5 text-[15px] font-bold transition-colors text-white hover:text-primary drop-shadow-md"
               >
                 <Phone size={15} className="text-primary" />
-                +7 (960) 955-21-00
+                +7 (909) 097-52-09
               </a>
               <a 
                 href="tel:+79090975209" 

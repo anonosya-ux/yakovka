@@ -15,7 +15,7 @@ export default function EventsPage() {
     "name": "Банкетный зал отеля «Яковка»",
     "description": "Организация корпоративов, свадеб, юбилеев и ретритов в загородном отеле на Алтае. Банкетный зал до 50 человек.",
     "url": "https://yakovka.ru/events",
-    "telephone": "+7 (960) 955-21-00",
+    "telephone": "+7 (909) 097-52-09",
     "maximumAttendeeCapacity": 50,
     "address": {
       "@type": "PostalAddress",

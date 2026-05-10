@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const faqItems = [
   {
     question: 'Как забронировать номер в отеле «Яковка»?',
-    answer: 'Забронировать номер можно онлайн прямо на сайте — нажмите кнопку «Забронировать» на любой странице, выберите даты и оплатите картой. Также можно позвонить по телефону +7 (960) 955-21-00 или написать в Telegram.',
+    answer: 'Забронировать номер можно онлайн прямо на сайте — нажмите кнопку «Забронировать» на любой странице, выберите даты и оплатите картой. Также можно позвонить по телефону +7 (909) 097-52-09 или написать в Telegram.',
   },
   {
     question: 'Во сколько заезд и выезд?',
@@ -119,10 +119,10 @@ export default function FAQPage() {
           <div className="mt-16 text-center">
             <p className="text-stone-500 mb-4">Не нашли ответ на свой вопрос?</p>
             <a
-              href="tel:+79609552100"
+              href="tel:+79090975209"
               className="inline-flex items-center gap-2 bg-stone-900 text-white px-8 py-4 rounded-full font-bold hover:bg-primary transition-colors"
             >
-              Позвоните нам: +7 (960) 955-21-00
+              Позвоните нам: +7 (909) 097-52-09
             </a>
           </div>
         </div>

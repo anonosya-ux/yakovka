@@ -98,7 +98,7 @@ export default function RootLayout({
                 "name": "Загородный отель «Яковка»",
                 "description": "Загородный отель у подножия горы Яковка в Белокурихе. Горнолыжные трассы, домашняя кухня, русская баня, комфортные номера для семейного отдыха на Алтае.",
                 "url": "https://yakovka.ru",
-                "telephone": "+7 (960) 955-21-00",
+                "telephone": "+7 (909) 097-52-09",
                 "email": "info@yakovka.ru",
                 "address": {
                   "@type": "PostalAddress",

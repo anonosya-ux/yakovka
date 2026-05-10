@@ -38,9 +38,9 @@ export default function PrivacyPage() {
               <strong>Оператор:</strong> ИП Валынкин Павел Николаевич<br />
               <strong>ИНН:</strong> 220300170548 &nbsp;|&nbsp; <strong>ОГРНИП:</strong> 304220309000076<br />
               <strong>Адрес:</strong> 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4<br />
-              <strong>Телефон:</strong> +7 (960) 955-21-00<br />
+              <strong>Телефон:</strong> +7 (909) 097-52-09<br />
               <strong>E-mail:</strong> valynkina.44@mail.ru<br />
-              <strong>Ответственный за организацию обработки персональных данных:</strong> Валынкин Павел Николаевич, тел. +7 (960) 955-21-00, e-mail: valynkina.44@mail.ru
+              <strong>Ответственный за организацию обработки персональных данных:</strong> Валынкин Павел Николаевич, тел. +7 (909) 097-52-09, e-mail: valynkina.44@mail.ru
             </p>
 
             <h2>3. Основные понятия</h2>

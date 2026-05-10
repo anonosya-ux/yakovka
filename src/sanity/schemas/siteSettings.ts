@@ -66,7 +66,7 @@ export const siteSettingsType = defineType({
       type: 'string',
       description: 'Основной номер телефона для звонков',
       group: 'contacts',
-      initialValue: '+7 (960) 955-21-00',
+      initialValue: '+7 (909) 097-52-09',
     }),
     defineField({
       name: 'email',

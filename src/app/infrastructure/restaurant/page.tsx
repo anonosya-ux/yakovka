@@ -31,7 +31,7 @@ export default function RestaurantPage() {
           "name": "Домашняя кухня «Яковка»",
           "description": "Авторская алтайская кухня из натуральных местных продуктов. Фермерские эко-продукты, стейк из марала, горный мёд.",
           "url": "https://yakovka.ru/infrastructure/restaurant",
-          "telephone": "+7 (960) 955-21-00",
+          "telephone": "+7 (909) 097-52-09",
           "servesCuisine": ["Алтайская", "Русская", "Европейская"],
           "priceRange": "₽₽",
           "openingHoursSpecification": {

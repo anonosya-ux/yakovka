@@ -32,7 +32,7 @@ export default function ContactsClient() {
             "description": "Свяжитесь с нами для бронирования или по любым вопросам.",
             "mainEntity": {
               "@type": "Hotel",
-              "telephone": "+7 (960) 955-21-00",
+              "telephone": "+7 (909) 097-52-09",
               "email": "valynkina.44@mail.ru",
               "address": {
                 "@type": "PostalAddress",
@@ -66,7 +66,7 @@ export default function ContactsClient() {
                  <Phone size={24} className="text-primary" />
                </div>
                <h3 className="text-sm font-bold text-stone-400 mb-2 uppercase tracking-wider">Телефон</h3>
-               <a href="tel:+79609552100" className="text-2xl font-bold text-stone-900 hover:text-primary transition-colors">+7 (960) 955-21-00</a>
+               <a href="tel:+79090975209" className="text-2xl font-bold text-stone-900 hover:text-primary transition-colors">+7 (909) 097-52-09</a>
                <a href="tel:+79090975209" className="text-xl font-medium text-stone-500 hover:text-primary transition-colors mt-2">+7 (909) 097-52-09</a>
              </div>
 

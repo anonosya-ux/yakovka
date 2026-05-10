@@ -44,7 +44,7 @@ export default function OfferPage() {
           <p>
             2.1. Бронирование номеров осуществляется через сайт{' '}
             <a href="https://yakovka.ru" className="text-primary hover:underline">yakovka.ru</a>, 
-            по телефону +7 (960) 955-21-00, через мессенджер MAX (+7 909 097-52-09) 
+            по телефону +7 (909) 097-52-09 
             или по электронной почте valynkina.44@mail.ru.
           </p>
           <p>
@@ -113,7 +113,7 @@ export default function OfferPage() {
             <strong>ИП Валынкин Павел Николаевич</strong><br />
             ИНН: 220300170548 &nbsp;|&nbsp; ОГРНИП: 304220309000076<br />
             Адрес: 659900, Алтайский край, г. Белокуриха, ул. Угрюмова, д. 4<br />
-            Телефон: +7 (960) 955-21-00<br />
+            Телефон: +7 (909) 097-52-09<br />
             E-mail: valynkina.44@mail.ru<br />
             Реестровая запись:{' '}
             <a 

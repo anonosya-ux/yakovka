@@ -3,7 +3,7 @@ import ContactsClient from './ContactsClient';
 
 export const metadata: Metadata = {
   title: 'Контакты — Загородный отель «Яковка» в Белокурихе',
-  description: 'Свяжитесь с нами для бронирования номеров. Телефон: +7 (960) 955-21-00. Электронная почта и адрес отеля горы Яковка.',
+  description: 'Свяжитесь с нами для бронирования номеров. Телефон: +7 (909) 097-52-09. Электронная почта и адрес отеля горы Яковка.',
   keywords: ['адрес отеля Яковка', 'телефон забронировать номер Белокуриха', 'как добраться гора Яковка'],
   alternates: { canonical: '/contacts' },
 };
@@ -17,7 +17,7 @@ export default function ContactsPage() {
     "mainEntity": {
       "@type": "Hotel",
       "name": "Загородный отель «Яковка»",
-      "telephone": ["+7 (960) 955-21-00", "+7 (909) 097-52-09"],
+      "telephone": ['+7 (909) 097-52-09'],
       "email": "valynkina.44@mail.ru",
       "checkinTime": "14:00",
       "checkoutTime": "12:00",

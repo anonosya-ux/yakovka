@@ -76,7 +76,7 @@ export default function CallbackModal({ isOpen, onClose, excursion }: CallbackMo
         setTimeout(() => setIsSuccess(false), 500);
       }, 4000);
     } catch (err) {
-      alert('Не удалось отправить заявку. Пожалуйста, позвоните нам: +7 (960) 955-21-00');
+      alert('Не удалось отправить заявку. Пожалуйста, позвоните нам: +7 (909) 097-52-09');
     } finally {
       setIsSubmitting(false);
     }

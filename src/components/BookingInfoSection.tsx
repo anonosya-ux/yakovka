@@ -50,8 +50,8 @@ export default function BookingInfoSection() {
               Вы всегда можете связаться с нами напрямую для уточнения деталей. При бронировании от 3х суток действует скидка.
             </p>
             <div className="space-y-3">
-              <a href="tel:+79609552100" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 font-semibold bg-white p-3 rounded-xl border border-slate-100 shadow-sm transition-colors" aria-label="Позвонить на первый номер">
-                +7 (960) 955-21-00
+              <a href="tel:+79090975209" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 font-semibold bg-white p-3 rounded-xl border border-slate-100 shadow-sm transition-colors" aria-label="Позвонить на первый номер">
+                +7 (909) 097-52-09
               </a>
               <a href="tel:+79090975209" className="flex items-center gap-3 text-slate-700 hover:text-blue-600 font-semibold bg-white p-3 rounded-xl border border-slate-100 shadow-sm transition-colors" aria-label="Позвонить на второй номер">
                 +7 (909) 097-52-09

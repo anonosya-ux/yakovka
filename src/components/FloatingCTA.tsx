@@ -36,7 +36,7 @@ export default function FloatingCTA() {
         >
           {/* Позвонить */}
           <a
-            href="tel:+79609552100"
+            href="tel:+79090975209"
             className="flex items-center gap-3 group"
             onClick={() => setIsExpanded(false)}
           >
@@ -50,7 +50,7 @@ export default function FloatingCTA() {
 
           {/* Telegram */}
           <a
-            href="https://t.me/+79609552100"
+            href="https://t.me/+79090975209"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 group"

@@ -81,7 +81,7 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
             );
           })}
           <li style={{ transformStyle: 'preserve-3d' }} className="pt-6">
-            <a href="tel:+79609552100" onClick={onClose} className="block w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+            <a href="tel:+79090975209" onClick={onClose} className="block w-full text-center bg-primary text-white rounded-[2rem] py-4 text-xl shadow-[0_15px_30px_rgba(34,85,34,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
               Позвонить
             </a>
           </li>
@@ -93,7 +93,7 @@ export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () =
           <div className="flex flex-col gap-2 mb-3">
             <div className="flex items-center gap-3">
               <Phone className="text-primary" size={20} />
-              <a href="tel:+79609552100" className="text-lg">+7 (960) 955-21-00</a>
+              <a href="tel:+79090975209" className="text-lg">+7 (909) 097-52-09</a>
             </div>
             <div className="flex items-center gap-3 mt-1">
               <Phone className="text-stone-400" size={20} />

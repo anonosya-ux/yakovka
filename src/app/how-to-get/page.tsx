@@ -48,7 +48,7 @@ const routes = [
 const faqItems = [
   {
     question: 'Можно ли заказать трансфер?',
-    answer: 'Да, мы организуем трансфер из аэропорта Барнаула или с ж/д станции Бийск. Стоимость и условия уточняйте при бронировании по телефону +7 (960) 955-21-00.',
+    answer: 'Да, мы организуем трансфер из аэропорта Барнаула или с ж/д станции Бийск. Стоимость и условия уточняйте при бронировании по телефону +7 (909) 097-52-09.',
   },
   {
     question: 'Есть ли парковка при отеле?',
@@ -125,10 +125,10 @@ export default function HowToGetPage() {
             <p className="text-stone-800 text-xl font-semibold mb-6">ул. Угрюмова, д. 4</p>
             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+79609552100"
+                href="tel:+79090975209"
                 className="inline-flex items-center gap-2 bg-stone-900 text-white px-8 py-4 rounded-full font-bold hover:bg-primary transition-colors"
               >
-                📞 +7 (960) 955-21-00
+                📞 +7 (909) 097-52-09
               </a>
               <a
                 href="https://yandex.ru/maps/org/yakovka/1062999531/"

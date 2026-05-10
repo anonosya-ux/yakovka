@@ -13,7 +13,7 @@ export const HOTEL_ADDRESS = {
   postalCode: '659900',
   geo: { lat: 51.993, lng: 84.983 },
 };
-export const HOTEL_PHONE = ['+7 (960) 955-21-00', '+7 (909) 097-52-09'];
+export const HOTEL_PHONE = ['+7 (909) 097-52-09'];
 export const HOTEL_EMAIL = 'valynkina.44@mail.ru';
 export const KONTUR_HOTEL_ID = '2774874f-1347-4c7d-a835-9791d5814751';
 export const BOOKING_URL = `https://bookonline24.ru/?hotelId=${KONTUR_HOTEL_ID}`;

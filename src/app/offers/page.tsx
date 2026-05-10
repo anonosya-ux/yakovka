@@ -177,7 +177,7 @@ export default function OffersPage() {
 
                   {/* CTA */}
                   <a
-                    href="tel:+79609552100"
+                    href="tel:+79090975209"
                     className="block w-full text-center bg-stone-900 text-white py-4 rounded-2xl font-bold hover:bg-primary transition-colors"
                   >
                     Забронировать
@@ -198,7 +198,7 @@ export default function OffersPage() {
         subtitle="Свяжитесь с нами — мы подберём индивидуальный пакет под ваши пожелания и бюджет"
         variant="nature"
         buttonText="Позвонить"
-        buttonLink="tel:+79609552100"
+        buttonLink="tel:+79090975209"
       />
     </div>
   );

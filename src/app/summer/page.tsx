@@ -4,6 +4,7 @@ import CTABanner from '@/components/CTABanner';
 import FAQAccordion from '@/components/FAQAccordion';
 import { Sun, TreePine, Compass, Camera, Bike, UtensilsCrossed, Mountain, Users, Wallet } from 'lucide-react';
 import { PriceTable } from '@/components/PriceTable';
+import { ActivityCard } from '@/components/ActivityCard';
 
 export const metadata: Metadata = {
   title: 'Летний отдых на Алтае',

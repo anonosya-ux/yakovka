@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import FAQAccordion from '@/components/FAQAccordion';
-import { Sun, TreePine, Compass, Camera, Bike, UtensilsCrossed } from 'lucide-react';
+import { Sun, TreePine, Compass, Camera, Bike, UtensilsCrossed, Mountain, Users, Wallet } from 'lucide-react';
 import { PriceTable } from '@/components/PriceTable';
 
 export const metadata: Metadata = {
@@ -66,7 +66,7 @@ export default function SummerPage() {
       <PageHero
         title="Лето на Алтае"
         subtitle="Горные походы, экскурсии, рыбалка и релакс на свежем воздухе — летний отдых для всей семьи в Белокурихе"
-        badge="☀️ Июнь — Сентябрь"
+        badge="Июнь — Сентябрь"
         imageSrc="/optimized/Виды/Природа/Природа-03.webp"
         imageAlt="Летний отдых в отеле Яковка Белокуриха"
         breadcrumbs={[{ label: 'Летний отдых' }]}
@@ -110,21 +110,41 @@ export default function SummerPage() {
               Почему лето в Белокурихе?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
-                <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">🌿 Чистый горный воздух</h3>
-                <p className="text-stone-500 leading-relaxed">Белокуриха расположена в долине, окружённой горами. Воздух насыщен фитонцидами хвойных лесов и лёгкими аэроионами — природный оздоровительный эффект.</p>
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 flex flex-col items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-xl text-primary">
+                  <TreePine size={24} />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">Чистый горный воздух</h3>
+                  <p className="text-stone-500 leading-relaxed">Белокуриха расположена в долине, окружённой горами. Воздух насыщен фитонцидами хвойных лесов и лёгкими аэроионами — природный оздоровительный эффект.</p>
+                </div>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
-                <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">🏔️ Потрясающие виды</h3>
-                <p className="text-stone-500 leading-relaxed">Панорамы горных хребтов, альпийские луга, горные реки — пейзажи, которые невозможно передать фотографиями. Здесь нужно побывать.</p>
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 flex flex-col items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-xl text-primary">
+                  <Mountain size={24} />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">Потрясающие виды</h3>
+                  <p className="text-stone-500 leading-relaxed">Панорамы горных хребтов, альпийские луга, горные реки — пейзажи, которые невозможно передать фотографиями. Здесь нужно побывать.</p>
+                </div>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
-                <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">👨‍👩‍👧‍👦 Для всей семьи</h3>
-                <p className="text-stone-500 leading-relaxed">Развлечения для всех возрастов: от батутов для малышей до горных маршрутов для взрослых. Безопасно и комфортно.</p>
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 flex flex-col items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-xl text-primary">
+                  <Users size={24} />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">Для всей семьи</h3>
+                  <p className="text-stone-500 leading-relaxed">Развлечения для всех возрастов: от батутов для малышей до горных маршрутов для взрослых. Безопасно и комфортно.</p>
+                </div>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
-                <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">💰 Доступные цены</h3>
-                <p className="text-stone-500 leading-relaxed">Летние цены на проживание — от 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 15%.</p>
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100 flex flex-col items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-xl text-primary">
+                  <Wallet size={24} />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">Доступные цены</h3>
+                  <p className="text-stone-500 leading-relaxed">Летние цены на проживание — от 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 15%.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -142,9 +162,10 @@ export default function SummerPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <PriceTable
+            <ActivityCard
               title="Квадроциклы"
               subtitle="Захватывающие маршруты по пересеченной местности"
+              imageSrc="/optimized/Виды/Природа/Природа-01.webp"
               items={[
                 { name: '1 час', price: 6500 },
                 { name: '2 часа', price: 12000 },
@@ -152,9 +173,10 @@ export default function SummerPage() {
                 { name: 'Дневной тур', price: 45000, highlighted: true },
               ]}
             />
-            <PriceTable
+            <ActivityCard
               title="Конные прогулки"
               subtitle="Живописные летние маршруты"
+              imageSrc="/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-01.webp"
               items={[
                 { name: 'Прогулка вдоль реки (1.5ч)', price: 1750 },
                 { name: 'С подъемом на гору (2ч)', price: 3000 },

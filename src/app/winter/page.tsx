@@ -9,6 +9,7 @@ import { Snowflake, ThermometerSnowflake, Coffee, Mountain, Compass, Activity, C
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import { PriceTable } from '@/components/PriceTable';
+import { ActivityCard } from '@/components/ActivityCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +44,7 @@ export default function WinterPage() {
       <PageHero
         title="Зимняя Яковка"
         subtitle="Погрузитесь в атмосферу сказки. Заснеженные вершины, чистый горный воздух и идеальные трассы прямо у порога вашего номера."
-        badge="❄️ Ski-in / Ski-out"
+        badge="Ski-in / Ski-out"
         imageSrc="/optimized/Мероприятия/Горные лыжи/Горные лыжи-02.webp"
         imageAlt="Зимний отдых в отеле Яковка"
         breadcrumbs={[{ label: 'Зимний отдых' }]}
@@ -209,9 +210,10 @@ export default function WinterPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <PriceTable
+              <ActivityCard
                 title="Снегоходы"
                 subtitle="Захватывающие маршруты по горам Алтая"
+                imageSrc="/optimized/Виды/Природа/Природа-02.webp"
                 items={[
                   { name: '1 час', price: 6500 },
                   { name: '2 часа', price: 12000 },
@@ -219,11 +221,12 @@ export default function WinterPage() {
                   { name: 'Дневной тур', price: 45000, highlighted: true },
                 ]}
               />
-              <PriceTable
+              <ActivityCard
                 title="Конные прогулки"
                 subtitle="Зимние маршруты"
+                imageSrc="/optimized/Мероприятия/Катание на лошадях/Катание на лошадях-02.webp"
                 items={[
-                  { name: 'Зимняя / вдоль реки (1.5ч)', price: 1750 },
+                  { name: 'Вдоль реки (1.5ч)', price: 1750 },
                   { name: 'С подъемом на гору (2ч)', price: 3000 },
                   { name: 'На 3 часа', price: 4500 },
                   { name: 'На 5 часов', price: 7500, highlighted: true },

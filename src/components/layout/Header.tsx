@@ -66,8 +66,8 @@ export function Header() {
     <>
       <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         isScrolled 
-          ? 'bg-stone-950/60 backdrop-blur-lg shadow-lg border-b border-white/10 py-1'
-          : 'bg-gradient-to-b from-stone-950/80 to-transparent border-b border-transparent py-3'
+          ? 'bg-stone-950/60 backdrop-blur-lg shadow-lg py-1'
+          : 'bg-gradient-to-b from-stone-950/80 to-transparent py-3'
       }`}>
         <div className="container mx-auto flex h-[72px] items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3 group">

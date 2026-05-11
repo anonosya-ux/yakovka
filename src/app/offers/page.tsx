@@ -39,7 +39,7 @@ const offers = [
     oldPrice: '9 500 ₽',
     newPrice: '8 075 ₽',
     discount: '-15%',
-    description: 'Семейный номер для 4+ гостей + бесплатное проживание детей до 5 лет + детское меню на завтрак.',
+    description: 'Семейный номер для 2-х гостей + бесплатное проживание детей до 5 лет + детское меню на завтрак.',
     features: ['Семейный номер', 'Дети до 5 лет бесплатно', 'Детское меню', 'Детская площадка'],
     highlight: false,
   },
@@ -177,7 +177,7 @@ export default function OffersPage() {
 
                   {/* CTA */}
                   <a
-                    href="tel:+79090975209"
+                    href="/booking"
                     className="block w-full text-center bg-stone-900 text-white py-4 rounded-2xl font-bold hover:bg-primary transition-colors"
                   >
                     Забронировать

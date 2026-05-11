@@ -30,7 +30,7 @@ const advantages = [
   { icon: Utensils, title: 'Домашняя кухня', desc: 'Блюда алтайской кухни из фермерских продуктов.' },
   { icon: Snowflake, title: 'Зимние трассы', desc: '2 собственные трассы: для новичков и опытных.' },
   { icon: Heart, title: 'Pet-Friendly', desc: 'Мы рады гостям с воспитанными питомцами.' },
-  { icon: ShieldCheck, title: 'Безопасность', desc: 'Закрытая территория и круглосуточная охрана.' },
+  { icon: ShieldCheck, title: 'Безопасность', desc: 'Закрытая территория и видеонаблюдение.' },
 ];
 
 export default function AboutClient() {

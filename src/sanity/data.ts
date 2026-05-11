@@ -82,8 +82,8 @@ const FALLBACK_ROOMS: RoomData[] = [
     slug: 'family',
     title: 'Категория Семейный',
     size: '20 м²',
-    guestsText: 'до 4 гостей',
-    maxGuests: 4,
+    guestsText: 'до 2 гостей',
+    maxGuests: 2,
     priceText: '5 800 ₽',
     priceNum: 5800,
     images: [

@@ -171,7 +171,7 @@ export default function RestaurantPage() {
       {/* Additional features */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">
               <Wine className="text-primary shrink-0" size={24} />
               <div>
@@ -184,13 +184,6 @@ export default function RestaurantPage() {
               <div>
                 <h4 className="font-heading font-bold text-stone-900 mb-1">Банкетный зал</h4>
                 <p className="text-sm text-stone-500">До 50 человек для свадеб и корпоративов</p>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-premium border border-stone-100 flex items-start gap-4">
-              <Music className="text-primary shrink-0" size={24} />
-              <div>
-                <h4 className="font-heading font-bold text-stone-900 mb-1">Живая музыка</h4>
-                <p className="text-sm text-stone-500">По пятницам и субботам</p>
               </div>
             </div>
           </div>

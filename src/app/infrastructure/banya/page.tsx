@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import { Flame, Droplets, Clock, Users, Sparkles, Heart } from 'lucide-react';
+import { PriceTable } from '@/components/PriceTable';
 
 export const metadata: Metadata = {
   title: 'Русская баня на дровах',
@@ -71,36 +72,14 @@ export default function BanyaPage() {
       <section className="py-16 bg-stone-50">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
-            <h3 className="font-heading text-2xl md:text-3xl font-bold text-stone-900 mb-8 text-center">Стоимость</h3>
-            <div className="bg-white rounded-3xl shadow-premium overflow-hidden border border-stone-100">
-              <div className="p-8 border-b border-stone-100">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h4 className="font-heading font-bold text-stone-800 text-lg">Аренда бани (2 часа)</h4>
-                    <p className="text-stone-400 text-sm mt-1">До 4 человек</p>
-                  </div>
-                  <span className="font-heading text-2xl font-bold text-primary">2 500 ₽</span>
-                </div>
-              </div>
-              <div className="p-8 border-b border-stone-100">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h4 className="font-heading font-bold text-stone-800 text-lg">Аренда бани (2 часа)</h4>
-                    <p className="text-stone-400 text-sm mt-1">До 8 человек, с комнатой отдыха</p>
-                  </div>
-                  <span className="font-heading text-2xl font-bold text-primary">4 000 ₽</span>
-                </div>
-              </div>
-              <div className="p-8">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h4 className="font-heading font-bold text-stone-800 text-lg">Веник</h4>
-                    <p className="text-stone-400 text-sm mt-1">Берёзовый/дубовый</p>
-                  </div>
-                  <span className="font-heading text-2xl font-bold text-primary">300 ₽</span>
-                </div>
-              </div>
-            </div>
+            <PriceTable
+              title="Стоимость бани"
+              items={[
+                { name: 'Первый час', price: 3300, description: 'До 6 человек' },
+                { name: 'Каждый последующий час', price: 2200, description: 'Продление отдыха' },
+                { name: 'Веник', price: 300, description: 'Берёзовый или дубовый' },
+              ]}
+            />
           </div>
         </div>
       </section>

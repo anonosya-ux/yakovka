@@ -3,6 +3,7 @@ import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import FAQAccordion from '@/components/FAQAccordion';
 import { Sun, TreePine, Compass, Camera, Bike, UtensilsCrossed } from 'lucide-react';
+import { PriceTable } from '@/components/PriceTable';
 
 export const metadata: Metadata = {
   title: 'Летний отдых на Алтае',
@@ -123,15 +124,51 @@ export default function SummerPage() {
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
                 <h3 className="font-heading text-lg font-bold text-stone-800 mb-3">💰 Доступные цены</h3>
-                <p className="text-stone-500 leading-relaxed">Летние цены на проживание — 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 20% при бронировании от 5 ночей.</p>
+                <p className="text-stone-500 leading-relaxed">Летние цены на проживание — от 5 800 ₽/сутки. Специальные пакеты «Летний релакс» со скидкой 15%.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Pricing Tables */}
+      <section className="py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-stone-900 mb-4">
+              Цены на активности
+            </h2>
+            <p className="text-stone-500 text-lg max-w-2xl mx-auto font-light">Насладитесь красотами Алтая на квадроциклах или верхом на лошади.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <PriceTable
+              title="Квадроциклы"
+              subtitle="Захватывающие маршруты по пересеченной местности"
+              items={[
+                { name: '1 час', price: 6500 },
+                { name: '2 часа', price: 12000 },
+                { name: 'Каждый последующий час', price: 6000 },
+                { name: 'Дневной тур', price: 45000, highlighted: true },
+              ]}
+            />
+            <PriceTable
+              title="Конные прогулки"
+              subtitle="Живописные летние маршруты"
+              items={[
+                { name: 'Прогулка вдоль реки (1.5ч)', price: 1750 },
+                { name: 'С подъемом на гору (2ч)', price: 3000 },
+                { name: 'На 3 часа', price: 4500 },
+                { name: 'На 5 часов', price: 7500, highlighted: true },
+              ]}
+            />
+          </div>
+          <p className="text-sm text-stone-400 mt-8 text-center">* Цены указаны для ознакомления, тарифы могут быть изменены.</p>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 bg-stone-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-stone-900">
@@ -144,7 +181,7 @@ export default function SummerPage() {
 
       <CTABanner 
         title="Забронируйте летний отдых" 
-        subtitle="Забронируйте от 5 ночей и получите скидку 20% на проживание. Номера — 5 800 ₽/сутки."
+        subtitle="Специальный пакет «Летний релакс» со скидкой 15% на проживание."
         variant="nature"
       />
     </div>

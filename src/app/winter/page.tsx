@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Snowflake, ThermometerSnowflake, Coffee, Mountain, Compass, Activity, Calendar, Info, Clock } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
+import { PriceTable } from '@/components/PriceTable';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -154,71 +155,83 @@ export default function WinterPage() {
           </div>
 
           {/* Pricing Tables */}
-          <div className="max-w-5xl mx-auto mb-20">
-            <h2 className="font-heading text-3xl font-bold text-center text-stone-900 mb-10">Тарифы на подъемники</h2>
+          <div className="max-w-6xl mx-auto mb-20">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center text-stone-900 mb-10">Прайс-лист на услуги</h2>
             
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Бугельный подъемник */}
-              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-lg shadow-stone-200/50 border border-stone-200/60 relative overflow-hidden">
-                <div className="absolute top-0 inset-x-0 h-2 bg-primary"></div>
-                <h3 className="font-heading text-2xl font-bold text-stone-900 mb-6">Бугельный подъемник</h3>
-                <ul className="space-y-4">
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">1 подъем</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">100 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">1 час</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">700 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">2 часа</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">1000 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">3 часа</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">1200 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-2">
-                    <span className="text-stone-600 font-medium tracking-wide">Дневной абонемент</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">1500 ₽</span>
-                  </li>
-                </ul>
-                <p className="text-xs text-stone-400 mt-6">* Цены указаны для ознакомления, тарифы могут быть изменены.</p>
-              </div>
-
-              {/* Беби-лифт */}
-              <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-lg shadow-stone-200/50 border border-stone-200/60 relative overflow-hidden">
-                <div className="absolute top-0 inset-x-0 h-2 bg-stone-800"></div>
-                <h3 className="font-heading text-2xl font-bold text-stone-900 mb-6">Беби-лифт (Учебный склон)</h3>
-                <ul className="space-y-4">
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">1 подъем</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">50 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">1 час</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">300 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">2 часа</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">500 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-4 border-b border-stone-100">
-                    <span className="text-stone-600 font-medium tracking-wide">3 часа</span>
-                    <span className="font-heading text-lg font-bold text-stone-900">700 ₽</span>
-                  </li>
-                  <li className="flex justify-between items-center pb-2">
-                    <span className="text-stone-600 font-medium tracking-wide">Полдня <span className="text-sm font-normal text-stone-400">(до/после 14:00)</span></span>
-                    <span className="font-heading text-lg font-bold text-stone-900">800 ₽</span>
-                  </li>
-                </ul>
-                <div className="mt-6 flex items-start gap-2 text-sm text-stone-700 bg-stone-50 p-3 rounded-lg border border-stone-200">
-                  <Info size={18} className="shrink-0 mt-0.5 text-stone-400" />
-                  <p>Экскурсионный подъем («банан» и «ватрушки» не предоставляются) — 150 ₽</p>
-                </div>
-              </div>
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <PriceTable
+                title="Бугельный подъемник"
+                items={[
+                  { name: '1 подъем', price: 100 },
+                  { name: '1 час', price: 700 },
+                  { name: '2 часа', price: 1000 },
+                  { name: '3 часа', price: 1200 },
+                  { name: 'Дневной абонемент', price: 1500, highlighted: true },
+                ]}
+              />
+              <PriceTable
+                title="Беби-лифт (Учебный склон)"
+                subtitle="Экскурсионный подъем — 150 ₽"
+                items={[
+                  { name: '1 подъем', price: 50 },
+                  { name: '1 час', price: 300 },
+                  { name: '2 часа', price: 500 },
+                  { name: '3 часа', price: 700 },
+                  { name: 'Полдня', price: 800, description: 'До или после 14:00' },
+                ]}
+              />
             </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <PriceTable
+                title="Прокат снаряжения"
+                subtitle="Горные лыжи и сноуборды (комплект)"
+                items={[
+                  { name: '1 час (взрослый / детский)', price: '700 ₽ / 500 ₽' },
+                  { name: '2 часа', price: '1000 ₽ / 800 ₽' },
+                  { name: '3 часа', price: '1200 ₽ / 1000 ₽' },
+                  { name: 'Дневной прокат', price: '1500 ₽', highlighted: true },
+                ]}
+              />
+              <PriceTable
+                title="Услуги инструктора"
+                items={[
+                  { name: 'Индивидуально (1 час)', price: 3000 },
+                  { name: 'Индивидуально (2 часа)', price: 5000 },
+                  { name: 'Групповое занятие', price: 1800, description: 'С человека' },
+                ]}
+              />
+            </div>
+
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-900 mb-6">Зимние активности</h2>
+              <p className="text-stone-500 text-lg max-w-2xl mx-auto">Откройте для себя красоту заснеженного Алтая на снегоходах или верхом на лошади.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <PriceTable
+                title="Снегоходы"
+                subtitle="Захватывающие маршруты по горам Алтая"
+                items={[
+                  { name: '1 час', price: 6500 },
+                  { name: '2 часа', price: 12000 },
+                  { name: 'Каждый последующий час', price: 6000 },
+                  { name: 'Дневной тур', price: 45000, highlighted: true },
+                ]}
+              />
+              <PriceTable
+                title="Конные прогулки"
+                subtitle="Зимние маршруты"
+                items={[
+                  { name: 'Зимняя / вдоль реки (1.5ч)', price: 1750 },
+                  { name: 'С подъемом на гору (2ч)', price: 3000 },
+                  { name: 'На 3 часа', price: 4500 },
+                  { name: 'На 5 часов', price: 7500, highlighted: true },
+                ]}
+              />
+            </div>
+            
+            <p className="text-sm text-stone-400 mt-8 text-center">* Цены указаны для ознакомления, тарифы могут быть изменены.</p>
           </div>
         </div>
       </section>
